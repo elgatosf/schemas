@@ -1,0 +1,55 @@
+{
+	"name": "@elgato/schemas",
+	"version": "0.0.0",
+	"description": "JSON schemas and types that support building with Stream Deck.",
+	"type": "module",
+	"main": "index.js",
+	"types": "index.d.ts",
+	"files": [
+		"streamdeck/"
+	],
+	"scripts": {
+		"build": "npm run build:schemas && npm run build:tsc",
+		"build:schemas": "node -r @swc-node/register ./scripts/build.ts",
+		"build:tsc": "tsc --project tsconfig.build.json",
+		"preversion": "npm run build && git add streamdeck/**/*.json && npm run lint",
+		"lint": "eslint . --ext .ts --max-warnings 0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/elgatosf/schemas.git"
+	},
+	"keywords": [
+		"elgato",
+		"stream deck",
+		"sdk",
+		"json",
+		"schemas"
+	],
+	"author": {
+		"name": "Elgato",
+		"url": "https://www.elgato.com"
+	},
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/elgatosf/schemas/issues"
+	},
+	"homepage": "https://github.com/elgatosf/schemas#readme",
+	"devDependencies": {
+		"@swc-node/register": "^1.8.0",
+		"@trivago/prettier-plugin-sort-imports": "^4.3.0",
+		"@tsconfig/node20": "^20.1.2",
+		"@types/lodash": "^4.14.202",
+		"@types/node": "^20.5.1",
+		"@typescript-eslint/eslint-plugin": "^6.7.4",
+		"@typescript-eslint/parser": "^6.7.4",
+		"eslint": "^8.51.0",
+		"eslint-config-prettier": "^9.0.0",
+		"eslint-plugin-jsdoc": "^46.8.2",
+		"eslint-plugin-prettier": "^5.0.0",
+		"lodash": "^4.17.21",
+		"prettier": "^3.2.5",
+		"ts-json-schema-generator": "^1.5.0",
+		"typescript": "^5.3.3"
+	}
+}
