@@ -1,5 +1,3 @@
-/* eslint-disable jsdoc/check-tag-names */
-
 /**
  * Defines the structure of a custom layout file.
  */

@@ -3,6 +3,11 @@
 	"$ref": "#/definitions/Manifest",
 	"definitions": {
 		"Manifest": {
+			"$ref": "#/definitions/Manifest_6_4",
+			"description": "Defines the plugin and available actions, and all information associated with them, including the plugin's entry point, all iconography, action default behavior, etc.",
+			"markdownDescription": "Defines the plugin and available actions, and all information associated with them, including the plugin's entry point, all iconography, action default behavior, etc."
+		},
+		"Manifest_6_4": {
 			"type": "object",
 			"properties": {
 				"$schema": {
@@ -279,13 +284,11 @@
 									"required": [
 										"Image"
 									],
-									"additionalProperties": false,
-									"description": "Defines the state of the action; this includes behavior, iconography, typography, etc.",
-									"markdownDescription": "Defines the state of the action; this includes behavior, iconography, typography, etc."
+									"additionalProperties": false
 								},
+								"description": "States the action can be in. When two states are defined the action will act as a toggle, with users being able to select their preferred iconography for each state.\n\nNB: Automatic toggling of the state on action activation can be disabled by setting `DisableAutomaticStates` to `true`.",
 								"minItems": 1,
 								"maxItems": 2,
-								"description": "States the action can be in. When two states are defined the action will act as a toggle, with users being able to select their preferred iconography for each state.\n\nNB: Automatic toggling of the state on action activation can be disabled by setting `DisableAutomaticStates` to `true`.",
 								"markdownDescription": "States the action can be in. When two states are defined the action will act as a toggle, with users being able to select their preferred iconography for each state.\n\nNB: Automatic toggling of the state on action activation can be disabled by setting `DisableAutomaticStates` to `true`."
 							},
 							"SupportedInMultiActions": {
@@ -322,7 +325,9 @@
 							"States",
 							"UUID"
 						],
-						"additionalProperties": false
+						"additionalProperties": false,
+						"description": "Provides information about an action provided by the plugin.",
+						"markdownDescription": "Provides information about an action provided by the plugin."
 					},
 					"description": "Collection of actions provided by the plugin, and all of their information; this can include actions that are available to user's via the actions list, and actions that are hidden to the user but available to pre-defined profiles distributed with the plugin (`Manifest.Actions.VisibleInActionsList`).",
 					"markdownDescription": "Collection of actions provided by the plugin, and all of their information; this can include actions that are available to user's via the actions list, and actions that are hidden to the user but available to pre-defined profiles distributed with the plugin (`Manifest.Actions.VisibleInActionsList`)."

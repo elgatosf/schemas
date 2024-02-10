@@ -4,6 +4,7 @@ import { existsSync, mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { createGenerator } from "ts-json-schema-generator";
 import { customKeywordTransformer } from "./transformers/custom-keywords";
+import { versionManifests } from "./transformers/version-manifests";
 
 // Create a generator so we're able to produce multiple schemas.
 const generator = createGenerator({
@@ -19,7 +20,7 @@ if (!existsSync(outputDir)) {
 	mkdirSync(outputDir, { recursive: true });
 }
 
-generateAndWriteSchema("Manifest");
+generateAndWriteSchema("Manifest", versionManifests);
 generateAndWriteSchema("Layout");
 
 /**

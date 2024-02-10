@@ -1,10 +1,19 @@
-/* eslint-disable jsdoc/check-tag-names */
 import { DeviceType } from "./device-type";
 
 /**
  * Defines the plugin and available actions, and all information associated with them, including the plugin's entry point, all iconography, action default behavior, etc.
  */
-export type Manifest = {
+export type Manifest = Manifest_6_4;
+
+/**
+ * @inheritdoc
+ */
+export type Manifest_6_4 = ManifestBase<"6.4" | "6.5">;
+
+/**
+ * Defines the plugin and available actions, and all information associated with them, including the plugin's entry point, all iconography, action default behavior, etc.
+ */
+type ManifestBase<V extends string> = {
 	/**
 	 * JSON schema responsible for describing the manifest's data format and validation.
 	 */
@@ -14,223 +23,7 @@ export type Manifest = {
 	 * Collection of actions provided by the plugin, and all of their information; this can include actions that are available to user's via the actions list, and actions that are
 	 * hidden to the user but available to pre-defined profiles distributed with the plugin (`Manifest.Actions.VisibleInActionsList`).
 	 */
-	Actions: {
-		/**
-		 * Defines the controller type the action is applicable to. **Keypad** refers to a standard action on a Stream Deck device, e.g. 1 of the 15 buttons on the Stream Deck MK.2,
-		 * or a pedal on the Stream Deck Pedal, etc., whereas an **Encoder** refers to a dial / touchscreen on the Stream Deck+.
-		 * @uniqueItems
-		 */
-		Controllers?: [Controller, Controller?];
-
-		/**
-		 * Determines whether the state of the action should automatically toggle when the user presses the action; only applies to actions that have two states defined. Default is
-		 * `false`.
-		 * @example
-		 * false
-		 */
-		DisableAutomaticStates?: boolean;
-
-		/**
-		 * Determines whether Stream Deck should cache images associated with the plugin, and its actions. Default is `false`.
-		 * @example
-		 * false
-		 */
-		DisableCaching?: boolean;
-
-		/**
-		 * Provides information about how the action functions as part of an `Encoder` (dial / touchscreen).
-		 */
-		Encoder?: {
-			/**
-			 * Path to the image, with the **file extension omitted**, that will be displayed in the Stream Deck application in the circular canvas that represents the dial of the
-			 * action. The image must fulfill the following style guidelines.
-			 * - Be in .PNG or .SVG format.
-			 * - Be provided in two sizes, 72x72 px and 144x144 px (@2x).
-			 *
-			 * NB: Can be overridden by the user in the Stream Deck application.
-			 *
-			 * **Examples:**
-			 * - assets/actions/mute/encoder-icon
-			 * - imgs/join-voice-chat-encoder
-			 * @imageDimensions
-			 * [72, 72]
-			 */
-			Icon?: ImageFilePath;
-
-			/**
-			 * Background color to display in the Stream Deck application when the action is part of a dial stack, and is the current action. Represented as a hexadecimal value.
-			 *
-			 * **Examples:**
-			 * - #d60270
-			 * - #1f1f1
-			 * - #0038a8
-			 */
-			StackColor?: HexColorString;
-
-			/**
-			 * Descriptions that define the interaction of the action when it is associated with a dial / touchscreen on the Stream Deck+. This information is shown to the user.
-			 *
-			 * **Examples:**
-			 * - "Adjust volume"
-			 * - "Play / Pause"
-			 */
-			TriggerDescription?: {
-				/**
-				 * Touchscreen "long-touch" interaction behavior description.
-				 */
-				LongTouch?: string;
-
-				/**
-				 * Dial "push" (press) interaction behavior description.
-				 */
-				Push?: string;
-
-				/**
-				 * Dial rotation interaction behavior description.
-				 */
-				Rotate?: string;
-
-				/**
-				 * Touchscreen "touch" interaction behavior description.
-				 */
-				Touch?: string;
-			};
-
-			/**
-			 * Path to the image, with the **file extension omitted**, that will be displayed on the touchscreen behind the action's layout. The image must fulfill the following style
-			 * guidelines.
-			 * - Be in .PNG or .SVG format.
-			 * - Be provided in two sizes, 200x100 px and 400x200 px (@2x).
-			 *
-			 * NB: Can be overridden by the user in the Stream Deck application.
-			 *
-			 * **Examples:**
-			 * - assets/backgrounds/main
-			 * - imgs/bright-blue-bg
-			 * @imageDimensions
-			 * [200, 100]
-			 * @filePath
-			 * { extensions: [".png", ".svg"], includeExtension: false }
-			 */
-			background?: string;
-
-			/**
-			 * Name of a pre-defined layout, or the path to a JSON file that details a custom layout and its components, to be rendered on the action's touchscreen canvas.
-			 *
-			 * **Pre-defined Layouts:**
-			 * - `$X1`, layout with the title at the top and the icon beneath it in the center.
-			 * - `$A0`, layout with the title at the top and a full-width image canvas beneath it in the center.
-			 * - `$A1`, layout with the title at the top, the icon on the left, and text value on the right.
-			 * - `$B1`, layout with the title at the top, the icon on the left, and a text value on the right with a progress bar beneath it.
-			 * - `$B2`, layout with the title at the top, the icon on the left, and a text value on the right with a gradient progress bar beneath it.
-			 * - `$C1`, layout with the title at the top, and two rows that display an icon on the left and progress bar on the right (i.e. a double progress bar layout).
-			 *
-			 * **Examples:**
-			 * - $A1
-			 * - layouts/my-custom-layout.json
-			 * @example
-			 * "$X1"
-			 * @example
-			 * "$A0"
-			 * @example
-			 * "$A1"
-			 * @example
-			 * "$B1"
-			 * @example
-			 * "$B2"
-			 * @example
-			 * "$C1"
-			 * @example
-			 * "custom.json"
-			 * @pattern
-			 * ^(^(?![\.]*[\\\/]+).+\.([Jj][Ss][Oo][Nn])$)|(\$(X1|A0|A1|B1|B2|C1))$
-			 * @errorMessage
-			 * String must reference .json file in the plugin directory, or a pre-defined layout.
-			 */
-			layout?: FilePath<"json"> | "$A0" | "$A1" | "$B1" | "$B2" | "$C1" | "$X1";
-		};
-
-		/**
-		 * Path to the image, with the **file extension omitted**, that will be displayed next to the action in the Stream Deck application's action list. The image must adhere to
-		 * the following style guidelines.
-		 * - Be in .PNG or .SVG format.
-		 * - Be provided in two sizes, 20x20 px and 40x40 px (@2x).
-		 * - Be monochromatic, with foreground color of #EFEFEF and a transparent background.
-		 *
-		 * **Examples:**
-		 * - assets/counter
-		 * - imgs/actions/mute
-		 * @imageDimensions
-		 * [20, 20]
-		 */
-		Icon: ImageFilePath;
-
-		/**
-		 * Name of the action; this is displayed to the user in the actions list, and is used throughout the Stream Deck application to visually identify the action.
-		 */
-		Name: string;
-
-		/**
-		 * Optional path to the HTML file that represents the property inspector for this action; this is displayed to the user in the Stream Deck application when they add the
-		 * action, allowing them to configure the action's settings. When `undefined`, the manifest's top-level `PropertyInspectorPath` is used, otherwise none.
-		 *
-		 * NB: Path should be relative to the root of the plugin's folder, with no leading slash.
-		 *
-		 * **Examples:**
-		 * - mute.html
-		 * - actions/join-voice-chat/settings.html
-		 */
-		PropertyInspectorPath?: HtmlFilePath;
-
-		/**
-		 * States the action can be in. When two states are defined the action will act as a toggle, with users being able to select their preferred iconography for each state.
-		 *
-		 * NB: Automatic toggling of the state on action activation can be disabled by setting `DisableAutomaticStates` to `true`.
-		 */
-		States: [ActionState, ActionState?];
-
-		/**
-		 * Determines whether the action is available to user's when they are creating multi-actions. Default is `true`.
-		 */
-		SupportedInMultiActions?: boolean;
-
-		/**
-		 * Tooltip shown to the user when they hover over the action within the actions list in the Stream Deck application.
-		 */
-		Tooltip?: string;
-
-		/**
-		 * Unique identifier of the action, represented in reverse-DNS format. This value is supplied by Stream Deck when events are emitted that relate to the action enabling you
-		 * to identify the source of the event.
-		 *
-		 * **Allowed characters:**
-		 * - Lowercase alphanumeric characters (a-z, 0-9)
-		 * - Hyphens (-)
-		 * - Underscores (_)
-		 * - Periods (.)
-		 *
-		 * NB: `UUID` must be unique, and should be prefixed with the plugin's UUID.
-		 *
-		 *
-		 * **Examples:**
-		 * - com.elgato.wavelink.toggle-mute
-		 * - com.elgato.discord.join-voice
-		 * - tv.twitch.go-live
-		 */
-		UUID: Identifier;
-
-		/**
-		 * Determines whether the title field is available to the user when viewing the action's property inspector. Setting this to `false` will disable the user from specifying a
-		 * title, thus allowing the plugin to have exclusive access to the title. Default is `true`, i.e. the title field is enabled.
-		 */
-		UserTitleEnabled?: boolean;
-
-		/**
-		 * Determines whether the action is available to user's via the actions list in the Stream Deck application. Setting this to `false` allows for the action to be used as
-		 * part of pre-defined profiles distributed with the plugins, whilst not being available to users. Default is `true`.
-		 */
-		VisibleInActionsList?: boolean;
-	}[];
+	Actions: Action[];
 
 	/**
 	 * Applications to monitor on Mac and Windows; upon a monitored application being launched or terminated, Stream Deck will notify the plugin.
@@ -464,7 +257,7 @@ export type Manifest = {
 		/**
 		 * Minimum version of the Stream Deck application required for this plugin to run.
 		 */
-		MinimumVersion: "6.4" | "6.5";
+		MinimumVersion: V;
 	};
 
 	/**
@@ -516,6 +309,333 @@ export type Manifest = {
 export type Controller = "Encoder" | "Keypad";
 
 /**
+ * Provides information about an action provided by the plugin.
+ */
+type Action = {
+	/**
+	 * Defines the controller type the action is applicable to. **Keypad** refers to a standard action on a Stream Deck device, e.g. 1 of the 15 buttons on the Stream Deck MK.2,
+	 * or a pedal on the Stream Deck Pedal, etc., whereas an **Encoder** refers to a dial / touchscreen on the Stream Deck+.
+	 * @uniqueItems
+	 */
+	Controllers?: [Controller, Controller?];
+
+	/**
+	 * Determines whether the state of the action should automatically toggle when the user presses the action; only applies to actions that have two states defined. Default is
+	 * `false`.
+	 * @example
+	 * false
+	 */
+	DisableAutomaticStates?: boolean;
+
+	/**
+	 * Determines whether Stream Deck should cache images associated with the plugin, and its actions. Default is `false`.
+	 * @example
+	 * false
+	 */
+	DisableCaching?: boolean;
+
+	/**
+	 * Provides information about how the action functions as part of an `Encoder` (dial / touchscreen).
+	 */
+	Encoder?: {
+		/**
+		 * Path to the image, with the **file extension omitted**, that will be displayed in the Stream Deck application in the circular canvas that represents the dial of the
+		 * action. The image must fulfill the following style guidelines.
+		 * - Be in .PNG or .SVG format.
+		 * - Be provided in two sizes, 72x72 px and 144x144 px (@2x).
+		 *
+		 * NB: Can be overridden by the user in the Stream Deck application.
+		 *
+		 * **Examples:**
+		 * - assets/actions/mute/encoder-icon
+		 * - imgs/join-voice-chat-encoder
+		 * @imageDimensions
+		 * [72, 72]
+		 */
+		Icon?: ImageFilePath;
+
+		/**
+		 * Background color to display in the Stream Deck application when the action is part of a dial stack, and is the current action. Represented as a hexadecimal value.
+		 *
+		 * **Examples:**
+		 * - #d60270
+		 * - #1f1f1
+		 * - #0038a8
+		 */
+		StackColor?: HexColorString;
+
+		/**
+		 * Descriptions that define the interaction of the action when it is associated with a dial / touchscreen on the Stream Deck+. This information is shown to the user.
+		 *
+		 * **Examples:**
+		 * - "Adjust volume"
+		 * - "Play / Pause"
+		 */
+		TriggerDescription?: {
+			/**
+			 * Touchscreen "long-touch" interaction behavior description.
+			 */
+			LongTouch?: string;
+
+			/**
+			 * Dial "push" (press) interaction behavior description.
+			 */
+			Push?: string;
+
+			/**
+			 * Dial rotation interaction behavior description.
+			 */
+			Rotate?: string;
+
+			/**
+			 * Touchscreen "touch" interaction behavior description.
+			 */
+			Touch?: string;
+		};
+
+		/**
+		 * Path to the image, with the **file extension omitted**, that will be displayed on the touchscreen behind the action's layout. The image must fulfill the following style
+		 * guidelines.
+		 * - Be in .PNG or .SVG format.
+		 * - Be provided in two sizes, 200x100 px and 400x200 px (@2x).
+		 *
+		 * NB: Can be overridden by the user in the Stream Deck application.
+		 *
+		 * **Examples:**
+		 * - assets/backgrounds/main
+		 * - imgs/bright-blue-bg
+		 * @imageDimensions
+		 * [200, 100]
+		 * @filePath
+		 * { extensions: [".png", ".svg"], includeExtension: false }
+		 */
+		background?: string;
+
+		/**
+		 * Name of a pre-defined layout, or the path to a JSON file that details a custom layout and its components, to be rendered on the action's touchscreen canvas.
+		 *
+		 * **Pre-defined Layouts:**
+		 * - `$X1`, layout with the title at the top and the icon beneath it in the center.
+		 * - `$A0`, layout with the title at the top and a full-width image canvas beneath it in the center.
+		 * - `$A1`, layout with the title at the top, the icon on the left, and text value on the right.
+		 * - `$B1`, layout with the title at the top, the icon on the left, and a text value on the right with a progress bar beneath it.
+		 * - `$B2`, layout with the title at the top, the icon on the left, and a text value on the right with a gradient progress bar beneath it.
+		 * - `$C1`, layout with the title at the top, and two rows that display an icon on the left and progress bar on the right (i.e. a double progress bar layout).
+		 *
+		 * **Examples:**
+		 * - $A1
+		 * - layouts/my-custom-layout.json
+		 * @example
+		 * "$X1"
+		 * @example
+		 * "$A0"
+		 * @example
+		 * "$A1"
+		 * @example
+		 * "$B1"
+		 * @example
+		 * "$B2"
+		 * @example
+		 * "$C1"
+		 * @example
+		 * "custom.json"
+		 * @pattern
+		 * ^(^(?![\.]*[\\\/]+).+\.([Jj][Ss][Oo][Nn])$)|(\$(X1|A0|A1|B1|B2|C1))$
+		 * @errorMessage
+		 * String must reference .json file in the plugin directory, or a pre-defined layout.
+		 */
+		layout?: FilePath<"json"> | "$A0" | "$A1" | "$B1" | "$B2" | "$C1" | "$X1";
+	};
+
+	/**
+	 * Path to the image, with the **file extension omitted**, that will be displayed next to the action in the Stream Deck application's action list. The image must adhere to
+	 * the following style guidelines.
+	 * - Be in .PNG or .SVG format.
+	 * - Be provided in two sizes, 20x20 px and 40x40 px (@2x).
+	 * - Be monochromatic, with foreground color of #EFEFEF and a transparent background.
+	 *
+	 * **Examples:**
+	 * - assets/counter
+	 * - imgs/actions/mute
+	 * @imageDimensions
+	 * [20, 20]
+	 */
+	Icon: ImageFilePath;
+
+	/**
+	 * Name of the action; this is displayed to the user in the actions list, and is used throughout the Stream Deck application to visually identify the action.
+	 */
+	Name: string;
+
+	/**
+	 * Optional path to the HTML file that represents the property inspector for this action; this is displayed to the user in the Stream Deck application when they add the
+	 * action, allowing them to configure the action's settings. When `undefined`, the manifest's top-level `PropertyInspectorPath` is used, otherwise none.
+	 *
+	 * NB: Path should be relative to the root of the plugin's folder, with no leading slash.
+	 *
+	 * **Examples:**
+	 * - mute.html
+	 * - actions/join-voice-chat/settings.html
+	 */
+	PropertyInspectorPath?: HtmlFilePath;
+
+	/**
+	 * States the action can be in. When two states are defined the action will act as a toggle, with users being able to select their preferred iconography for each state.
+	 *
+	 * NB: Automatic toggling of the state on action activation can be disabled by setting `DisableAutomaticStates` to `true`.
+	 * @minItems 1
+	 * @maxItems 2
+	 */
+	States: {
+		/**
+		 * Default font-family to be used when rendering the title of this state.
+		 *
+		 * NB: Can be overridden by the user in the Stream Deck application.
+		 */
+		FontFamily?: string;
+
+		/**
+		 * Default font-size to be used when rendering the title of this state.
+		 *
+		 * NB: Can be overridden by the user in the Stream Deck application.
+		 */
+		FontSize?: number;
+
+		/**
+		 * Default font-style to be used when rendering the title of this state.
+		 *
+		 * NB: Can be overridden by the user in the Stream Deck application.
+		 */
+		FontStyle?: "" | "Bold Italic" | "Bold" | "Italic" | "Regular";
+
+		/**
+		 * Determines whether the title associated with this state is underlined by default.
+		 *
+		 * NB: Can be overridden by the user in the Stream Deck application.
+		 */
+		FontUnderline?: boolean;
+
+		/**
+		 * Path to the image, with the **file extension omitted**, that will be displayed on the Stream Deck when this action's state is active. The image must adhere to the following
+		 * style guidelines.
+		 * - Be in .GIF, .PNG or .SVG format.
+		 * - Be provided in two sizes, 72x72 px and 144x144 px (@2x).
+		 *
+		 * NB: Can be overridden by the user in the Stream Deck application.
+		 *
+		 * **Examples:**
+		 * - assets/counter-key
+		 * - assets/icons/mute
+		 * @filePath
+		 * { extensions: [".gif", ".svg", ".png"], includeExtension: false }
+		 * @imageDimensions
+		 * [72, 72]
+		 */
+		Image: string;
+
+		/**
+		 * Path to the image, with the **file extension omitted**, that will be displayed when the action is being viewed as part of a multi-action. The image must adhere to the following
+		 * style guidelines.
+		 * - Be in .PNG or .SVG format.
+		 * - Be provided in two sizes, 72x72 px and 144x144 px (@2x).
+		 *
+		 * NB: Can be overridden by the user in the Stream Deck application.
+		 *
+		 * **Examples:**
+		 * - assets/counter-key
+		 * - assets/icons/mute
+		 * @imageDimensions
+		 * [72, 72]
+		 */
+		MultiActionImage?: ImageFilePath;
+
+		/**
+		 * Name of the state; when multiple states are defined this value is shown to the user when the action is being added to a multi-action. The user is then able to specify which
+		 * state they would like to activate as part of the multi-action.
+		 */
+		Name?: string;
+
+		/**
+		 * Determines whether the title should be shown.
+		 *
+		 * NB: Can be overridden by the user in the Stream Deck application.
+		 */
+		ShowTitle?: boolean;
+
+		/**
+		 * Default title to be shown when the action is added to the Stream Deck.
+		 */
+		Title?: string;
+
+		/**
+		 * Default title alignment to be used when rendering the title of this state.
+		 *
+		 * NB: Can be overridden by the user in the Stream Deck application.
+		 */
+		TitleAlignment?: "bottom" | "middle" | "top";
+
+		/**
+		 * Default title color to be used when rendering the title of this state, represented a hexadecimal value.
+		 *
+		 * NB: Can be overridden by the user in the Stream Deck application.
+		 *
+		 * **Examples:**
+		 * - #5bcefa
+		 * - #f5a9b8
+		 * - #FFFFFF
+		 */
+		TitleColor?: HexColorString;
+	}[];
+
+	/**
+	 * Determines whether the action is available to user's when they are creating multi-actions. Default is `true`.
+	 */
+	SupportedInMultiActions?: boolean;
+
+	/**
+	 * Tooltip shown to the user when they hover over the action within the actions list in the Stream Deck application.
+	 */
+	Tooltip?: string;
+
+	/**
+	 * Unique identifier of the action, represented in reverse-DNS format. This value is supplied by Stream Deck when events are emitted that relate to the action enabling you
+	 * to identify the source of the event.
+	 *
+	 * **Allowed characters:**
+	 * - Lowercase alphanumeric characters (a-z, 0-9)
+	 * - Hyphens (-)
+	 * - Underscores (_)
+	 * - Periods (.)
+	 *
+	 * NB: `UUID` must be unique, and should be prefixed with the plugin's UUID.
+	 *
+	 *
+	 * **Examples:**
+	 * - com.elgato.wavelink.toggle-mute
+	 * - com.elgato.discord.join-voice
+	 * - tv.twitch.go-live
+	 */
+	UUID: Identifier;
+
+	/**
+	 * Determines whether the title field is available to the user when viewing the action's property inspector. Setting this to `false` will disable the user from specifying a
+	 * title, thus allowing the plugin to have exclusive access to the title. Default is `true`, i.e. the title field is enabled.
+	 */
+	UserTitleEnabled?: boolean;
+
+	/**
+	 * Determines whether the action is available to user's via the actions list in the Stream Deck application. Setting this to `false` allows for the action to be used as
+	 * part of pre-defined profiles distributed with the plugins, whilst not being available to users. Default is `true`.
+	 */
+	VisibleInActionsList?: boolean;
+};
+
+/**
+ * File path, relative to the manifest's location.
+ */
+type FilePath<TExt extends string> = `${string}.${Lowercase<TExt>}`;
+
+/**
  * Color represents as a hexadecimal string.
  * @pattern
  * ^#(?:[0-9a-fA-F]{3}){1,2}$
@@ -532,16 +652,20 @@ type HexColorString = string;
 type HtmlFilePath = FilePath<"htm" | "html">;
 
 /**
+ * Unique identifier, in reverse DNS format.
+ * @pattern
+ * ^([a-z0-9\-]+)(\.[a-z0-9\-]+)+$
+ * @errorMessage
+ * String must only contain alphanumeric characters (A-z, 0-9), hyphens (-), and periods (.), and be in reverse DNS format
+ */
+type Identifier = string;
+
+/**
  * File path that represents a file relative to the plugin's manifest, with the extension omitted. When multiple images with the same name are found, they are resolved in order.
  * @filePath
  * { extensions: [".svg", ".png"], includeExtension: false }
  */
 type ImageFilePath = string;
-
-/**
- * File path, relative to the manifest's location.
- */
-type FilePath<TExt extends string> = `${string}.${Lowercase<TExt>}`;
 
 /**
  * Operating system that the plugin supports, and the minimum required version needed to run the plugin.
@@ -556,117 +680,4 @@ type OS = {
 	 * Operating system supported by the plugin.
 	 */
 	Platform: "mac" | "windows";
-};
-
-/**
- * Unique identifier, in reverse DNS format.
- * @pattern
- * ^([a-z0-9\-]+)(\.[a-z0-9\-]+)+$
- * @errorMessage
- * String must only contain alphanumeric characters (A-z, 0-9), hyphens (-), and periods (.), and be in reverse DNS format
- */
-type Identifier = string;
-
-/**
- * Defines the state of the action; this includes behavior, iconography, typography, etc.
- */
-type ActionState = {
-	/**
-	 * Default font-family to be used when rendering the title of this state.
-	 *
-	 * NB: Can be overridden by the user in the Stream Deck application.
-	 */
-	FontFamily?: string;
-
-	/**
-	 * Default font-size to be used when rendering the title of this state.
-	 *
-	 * NB: Can be overridden by the user in the Stream Deck application.
-	 */
-	FontSize?: number;
-
-	/**
-	 * Default font-style to be used when rendering the title of this state.
-	 *
-	 * NB: Can be overridden by the user in the Stream Deck application.
-	 */
-	FontStyle?: "" | "Bold Italic" | "Bold" | "Italic" | "Regular";
-
-	/**
-	 * Determines whether the title associated with this state is underlined by default.
-	 *
-	 * NB: Can be overridden by the user in the Stream Deck application.
-	 */
-	FontUnderline?: boolean;
-
-	/**
-	 * Path to the image, with the **file extension omitted**, that will be displayed on the Stream Deck when this action's state is active. The image must adhere to the following
-	 * style guidelines.
-	 * - Be in .GIF, .PNG or .SVG format.
-	 * - Be provided in two sizes, 72x72 px and 144x144 px (@2x).
-	 *
-	 * NB: Can be overridden by the user in the Stream Deck application.
-	 *
-	 * **Examples:**
-	 * - assets/counter-key
-	 * - assets/icons/mute
-	 * @filePath
-	 * { extensions: [".gif", ".svg", ".png"], includeExtension: false }
-	 * @imageDimensions
-	 * [72, 72]
-	 */
-	Image: string;
-
-	/**
-	 * Path to the image, with the **file extension omitted**, that will be displayed when the action is being viewed as part of a multi-action. The image must adhere to the following
-	 * style guidelines.
-	 * - Be in .PNG or .SVG format.
-	 * - Be provided in two sizes, 72x72 px and 144x144 px (@2x).
-	 *
-	 * NB: Can be overridden by the user in the Stream Deck application.
-	 *
-	 * **Examples:**
-	 * - assets/counter-key
-	 * - assets/icons/mute
-	 * @imageDimensions
-	 * [72, 72]
-	 */
-	MultiActionImage?: ImageFilePath;
-
-	/**
-	 * Name of the state; when multiple states are defined this value is shown to the user when the action is being added to a multi-action. The user is then able to specify which
-	 * state they would like to activate as part of the multi-action.
-	 */
-	Name?: string;
-
-	/**
-	 * Determines whether the title should be shown.
-	 *
-	 * NB: Can be overridden by the user in the Stream Deck application.
-	 */
-	ShowTitle?: boolean;
-
-	/**
-	 * Default title to be shown when the action is added to the Stream Deck.
-	 */
-	Title?: string;
-
-	/**
-	 * Default title alignment to be used when rendering the title of this state.
-	 *
-	 * NB: Can be overridden by the user in the Stream Deck application.
-	 */
-	TitleAlignment?: "bottom" | "middle" | "top";
-
-	/**
-	 * Default title color to be used when rendering the title of this state, represented a hexadecimal value.
-	 *
-	 * NB: Can be overridden by the user in the Stream Deck application.
-	 *
-	 * **Examples:**
-	 * - #5bcefa
-	 * - #f5a9b8
-	 * - #FFFFFF
-	 */
-	TitleColor?: HexColorString;
 };
