@@ -17,13 +17,19 @@ export type Layout = {
 	/**
 	 * Items within the layout.
 	 */
-	items: (Bar | GBar | Pixmap | Text)[];
+	items: LayoutItem[];
 };
+
+/**
+ * A layout item.
+ * @discriminator type
+ */
+type LayoutItem = Bar | GBar | Pixmap | Text;
 
 /**
  * Extended information used to define a layout item within a layout's JSON file.
  */
-type LayoutItem<T extends string> = {
+type LayoutItemBase<T extends string> = {
 	/**
 	 * Background color represented as a named color, hexadecimal value, or gradient. Gradients can be defined by specifying multiple color-stops separated by commas, in the following
 	 * format `[{offset}:{color}[,]]`.
@@ -75,7 +81,7 @@ type LayoutItem<T extends string> = {
 /**
  * Bar layout item used to render a horizontal bar with a filler, e.g. a progress bar. The amount to fill the bar by can be specified by setting the `value`.
  */
-export type Bar<T extends string = "bar"> = LayoutItem<T> & {
+export type Bar<T extends string = "bar"> = LayoutItemBase<T> & {
 	/**
 	 * Bar background color represented as a named color, hexadecimal value, or gradient. Default is `darkGray`. Gradients can be defined by specifying multiple color-stops separated
 	 * by commas, in the following format `[{offset}:{color}[,]]`.
@@ -168,7 +174,7 @@ export type GBar = Bar<"gbar"> & {
 /**
  * Image layout item used to render an image sourced from either a local file located under the plugin's folder, or base64 encoded `string`. The `value` defines the image.
  */
-export type Pixmap = LayoutItem<"pixmap"> & {
+export type Pixmap = LayoutItemBase<"pixmap"> & {
 	/**
 	 * Image to render; this can be either a path to a local file within the plugin's folder, a base64 encoded `string` with the mime type declared (e.g. PNG, JPEG, etc.), or an SVG
 	 * `string`.
@@ -185,7 +191,7 @@ export type Pixmap = LayoutItem<"pixmap"> & {
  * user to specify the font's
  * settings via the property inspector, and will cause `setTitle` to update this item.
  */
-export type Text = LayoutItem<"text"> & {
+export type Text = LayoutItemBase<"text"> & {
 	/**
 	 * Alignment of the text. Default is `"center"`. **Note**, when the `key` of this layout item is set to `"title"` within the layout's JSON definition, these values will be ignored
 	 * in favour of the user's preferred title settings, as set in property inspector.

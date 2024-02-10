@@ -18,95 +18,84 @@
 				"items": {
 					"type": "array",
 					"items": {
-						"anyOf": [
+						"type": "object",
+						"properties": {
+							"type": {
+								"enum": [
+									"bar",
+									"gbar",
+									"pixmap",
+									"text"
+								]
+							}
+						},
+						"required": [
+							"type"
+						],
+						"allOf": [
 							{
 								"if": {
 									"properties": {
 										"type": {
+											"type": "string",
 											"const": "bar",
-											"enum": [
-												"bar",
-												"gbar",
-												"pixmap",
-												"text"
-											]
+											"description": "Type of layout item this instance represents, e.g. \"pixmap\", \"bar\", etc.",
+											"markdownDescription": "Type of layout item this instance represents, e.g. \"pixmap\", \"bar\", etc."
 										}
 									}
 								},
 								"then": {
 									"$ref": "#/definitions/Bar"
-								},
-								"else": {
-									"if": {
-										"properties": {
-											"type": {
-												"const": "gbar",
-												"enum": [
-													"bar",
-													"gbar",
-													"pixmap",
-													"text"
-												]
-											}
-										}
-									},
-									"then": {
-										"$ref": "#/definitions/GBar"
-									},
-									"else": {
-										"if": {
-											"properties": {
-												"type": {
-													"const": "pixmap",
-													"enum": [
-														"bar",
-														"gbar",
-														"pixmap",
-														"text"
-													]
-												}
-											}
-										},
-										"then": {
-											"$ref": "#/definitions/Pixmap"
-										},
-										"else": {
-											"if": {
-												"properties": {
-													"type": {
-														"const": "text",
-														"enum": [
-															"bar",
-															"gbar",
-															"pixmap",
-															"text"
-														]
-													}
-												}
-											},
-											"then": {
-												"$ref": "#/definitions/Text"
-											},
-											"else": {
-												"type": "object",
-												"additionalProperties": false,
-												"properties": {
-													"type": {
-														"type": "string",
-														"enum": [
-															"bar",
-															"gbar",
-															"pixmap",
-															"text"
-														]
-													}
-												}
-											}
+								}
+							},
+							{
+								"if": {
+									"properties": {
+										"type": {
+											"type": "string",
+											"const": "gbar",
+											"description": "Type of layout item this instance represents, e.g. \"pixmap\", \"bar\", etc.",
+											"markdownDescription": "Type of layout item this instance represents, e.g. \"pixmap\", \"bar\", etc."
 										}
 									}
+								},
+								"then": {
+									"$ref": "#/definitions/GBar"
+								}
+							},
+							{
+								"if": {
+									"properties": {
+										"type": {
+											"type": "string",
+											"const": "pixmap",
+											"description": "Type of layout item this instance represents, e.g. \"pixmap\", \"bar\", etc.",
+											"markdownDescription": "Type of layout item this instance represents, e.g. \"pixmap\", \"bar\", etc."
+										}
+									}
+								},
+								"then": {
+									"$ref": "#/definitions/Pixmap"
+								}
+							},
+							{
+								"if": {
+									"properties": {
+										"type": {
+											"type": "string",
+											"const": "text",
+											"description": "Type of layout item this instance represents, e.g. \"pixmap\", \"bar\", etc.",
+											"markdownDescription": "Type of layout item this instance represents, e.g. \"pixmap\", \"bar\", etc."
+										}
+									}
+								},
+								"then": {
+									"$ref": "#/definitions/Text"
 								}
 							}
-						]
+						],
+						"description": "A layout item.",
+						"markdownDescription": "A layout item."
 					},
 					"description": "Items within the layout.",
 					"markdownDescription": "Items within the layout."

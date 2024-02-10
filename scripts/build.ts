@@ -4,7 +4,6 @@ import { existsSync, mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { createGenerator } from "ts-json-schema-generator";
 import { customKeywordTransformer } from "./transformers/custom-keywords";
-import { layoutItemsTransformer } from "./transformers/layout-items";
 
 // Create a generator so we're able to produce multiple schemas.
 const generator = createGenerator({
@@ -21,7 +20,7 @@ if (!existsSync(outputDir)) {
 }
 
 generateAndWriteSchema("Manifest");
-generateAndWriteSchema("Layout", layoutItemsTransformer);
+generateAndWriteSchema("Layout");
 
 /**
  * Generates the JSON schema for the specified TypeScript `type`, and writes it locally to `{type}.json`.
