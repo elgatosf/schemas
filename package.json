@@ -14,10 +14,10 @@
 			"default": "./dist/streamdeck/plugins/index.js",
 			"types": "./dist/streamdeck/plugins/index.d.ts"
 		},
-		"./streamdeck/plugins/manifest.json": {
+		"./streamdeck/plugins/layout.json": {
 			"default": "./streamdeck/plugins/layout.json"
 		},
-		"./streamdeck/plugins/manifest.layout": {
+		"./streamdeck/plugins/manifest.json": {
 			"default": "./streamdeck/plugins/manifest.json"
 		}
 	},
