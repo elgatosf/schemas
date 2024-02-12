@@ -1,6 +1,6 @@
 {
 	"name": "@elgato/schemas",
-	"version": "0.0.0",
+	"version": "0.1.0",
 	"description": "JSON schemas and types that support building with Stream Deck.",
 	"type": "module",
 	"main": "dist/index.js",
