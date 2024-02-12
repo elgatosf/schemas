@@ -31,7 +31,8 @@
 		"build:exports": "rollup --config rollup.config.ts --configPlugin typescript",
 		"clean": "rm -rf ./dist/ && rm -rf ./streamdeck/",
 		"lint": "eslint . --ext .ts --max-warnings 0",
-		"preversion": "npm run build && npm run lint"
+		"preversion": "npm run lint",
+		"version": "npm run build"
 	},
 	"repository": {
 		"type": "git",
