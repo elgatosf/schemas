@@ -11,7 +11,7 @@
 
 </div>
 
-This project contains a collection of schemas to support the creation and validation of Stream Deck SDK files. In addition to the schemas, TypeScript declarations are also available.
+Collection of schemas, and TypeScript declarations, to support the creation and validation of Stream Deck SDK files.
 
 ```bash
 npm install @elgato/schemas
@@ -23,7 +23,7 @@ npm install @elgato/schemas
 
 #### Manifest
 
-Schema for the `manifest.json` file, responsible for defining a Stream Deck plugin.
+Manifest JSON file responsible for defining a Stream Deck plugin.
 
 ```
 @elgato/schemas/streamdeck/plugins/manifest.json
@@ -35,7 +35,7 @@ import { type Manifest } from "@elgato/schemas/streamdeck/plugins";
 
 #### Layout
 
-Schema for JSON files that define the layout on Stream Deck +.
+JSON file that defines the layout of an action on Stream Deck +.
 
 ```
 @elgato/schemas/streamdeck/plugins/layout.json
@@ -47,7 +47,7 @@ import { type Layout } from "@elgato/schemas/streamdeck/plugins";
 
 ## Keywords
 
-Definitions for the custom keywords used within the schemas are also available; this can be useful when constructing a validator, such as `Ajv`.
+Custom keywords used within the provided schemas can also be directly imported to assist with constructing a validator, such as `Ajv`. Please note, the custom keyword definitions will only register the keyword, and will not provide validation.
 
 ```ts
 import { keywordDefinitions } from "@elgato/schemas";
