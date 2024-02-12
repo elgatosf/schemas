@@ -5,16 +5,33 @@
 	"type": "module",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
+	"exports": {
+		".": {
+			"default": "./dist/index.js",
+			"types": "./dist/index.d.ts"
+		},
+		"./streamdeck/plugins": {
+			"default": "./dist/streamdeck/plugins/index.js",
+			"types": "./dist/streamdeck/plugins/index.d.ts"
+		},
+		"./streamdeck/plugins/manifest.json": {
+			"default": "./streamdeck/plugins/layout.json"
+		},
+		"./streamdeck/plugins/manifest.layout": {
+			"default": "./streamdeck/plugins/manifest.json"
+		}
+	},
 	"files": [
 		"dist/",
 		"streamdeck/"
 	],
 	"scripts": {
-		"build": "npm run build:schemas && npm run build:tsc",
+		"build": "npm run clean && npm run build:schemas && npm run build:exports",
 		"build:schemas": "node -r @swc-node/register ./scripts/build.ts",
-		"build:tsc": "tsc --project tsconfig.build.json",
-		"preversion": "npm run build && git add streamdeck/**/*.json && npm run lint",
-		"lint": "eslint . --ext .ts --max-warnings 0"
+		"build:exports": "rollup --config rollup.config.ts --configPlugin typescript",
+		"clean": "rm -rf ./dist/ && rm -rf ./streamdeck/",
+		"lint": "eslint . --ext .ts --max-warnings 0",
+		"preversion": "npm run build && npm run lint"
 	},
 	"repository": {
 		"type": "git",
@@ -37,6 +54,8 @@
 	},
 	"homepage": "https://github.com/elgatosf/schemas#readme",
 	"devDependencies": {
+		"@rollup/plugin-node-resolve": "^15.2.2",
+		"@rollup/plugin-typescript": "^11.1.5",
 		"@swc-node/register": "^1.8.0",
 		"@trivago/prettier-plugin-sort-imports": "^4.3.0",
 		"@tsconfig/node20": "^20.1.2",
@@ -50,6 +69,8 @@
 		"eslint-plugin-prettier": "^5.0.0",
 		"lodash": "^4.17.21",
 		"prettier": "^3.2.5",
+		"rollup": "^4.0.2",
+		"rollup-plugin-dts": "^6.1.0",
 		"ts-json-schema-generator": "^1.5.0",
 		"typescript": "^5.3.3"
 	}

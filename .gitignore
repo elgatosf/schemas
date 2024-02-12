@@ -1,13 +1,14 @@
 # Node.js
-node_modules/
+/node_modules/
 .npm
 
 # Logs
-logs
+logs/
 *.log
 
 # Environment variable files
 .env*
 
 # @elgato/schemas
-dist
+/dist/
+/streamdeck/

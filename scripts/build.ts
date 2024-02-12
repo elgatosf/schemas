@@ -9,7 +9,7 @@ import { versionManifests } from "./transformers/version-manifests";
 // Create a generator so we're able to produce multiple schemas.
 const generator = createGenerator({
 	extraTags: ["errorMessage", "imageDimensions", "filePath"],
-	path: join(__dirname, "../streamdeck/plugins/index.ts"),
+	path: join(__dirname, "../src/streamdeck/plugins/index.ts"),
 	skipTypeCheck: true,
 	tsconfig: join(__dirname, "../tsconfig.json")
 });

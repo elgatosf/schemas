@@ -1,6 +1,6 @@
 import type { JSONSchema7 } from "json-schema";
 import { Schema } from "ts-json-schema-generator";
-import type { FilePathOptions } from "../..";
+import type { FilePathOptions } from "../../src";
 
 /**
  * Applies the custom keywords, aggregating the schema to form a valid structure.
