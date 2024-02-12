@@ -3,9 +3,10 @@
 	"version": "0.0.0",
 	"description": "JSON schemas and types that support building with Stream Deck.",
 	"type": "module",
-	"main": "index.js",
-	"types": "index.d.ts",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
 	"files": [
+		"dist/",
 		"streamdeck/"
 	],
 	"scripts": {

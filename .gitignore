@@ -10,5 +10,4 @@ logs
 .env*
 
 # @elgato/schemas
-index.d.ts
-index.js
+dist
