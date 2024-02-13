@@ -79,3 +79,8 @@ export type FilePathOptions =
 			 */
 			includeExtension: boolean;
 	  };
+
+/**
+ * Options associated with the {@link keywordDefinitions.imageDimensions} keyword.
+ */
+export type ImageDimensions = [width: number, height: number];
