@@ -275,7 +275,6 @@ type ManifestBase<V extends string> = {
 	 * **Allowed characters:**
 	 * - Lowercase alphanumeric characters (a-z, 0-9)
 	 * - Hyphens (-)
-	 * - Underscores (_)
 	 * - Periods (.)
 	 *
 	 * **Examples:**
@@ -604,7 +603,6 @@ type Action = {
 	 * **Allowed characters:**
 	 * - Lowercase alphanumeric characters (a-z, 0-9)
 	 * - Hyphens (-)
-	 * - Underscores (_)
 	 * - Periods (.)
 	 *
 	 * NB: `UUID` must be unique, and should be prefixed with the plugin's UUID.
@@ -654,9 +652,9 @@ type HtmlFilePath = FilePath<"htm" | "html">;
 /**
  * Unique identifier, in reverse DNS format.
  * @pattern
- * ^([a-z0-9\-]+)(\.[a-z0-9\-]+)+$
+ * ^([a-z0-9-]+)(\.[a-z0-9-]+)+$
  * @errorMessage
- * String must only contain alphanumeric characters (A-z, 0-9), hyphens (-), and periods (.), and be in reverse DNS format
+ * String must be in reverse DNS format, and must only contain lowercase alphanumeric characters (a-z, 0-9), hyphens (-), and periods (.)
  */
 type Identifier = string;
 
