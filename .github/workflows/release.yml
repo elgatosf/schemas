@@ -11,7 +11,7 @@ defaults:
     shell: bash
 
 jobs:
-  Build:
+  Release:
     runs-on: "ubuntu-latest"
     permissions:
       contents: read
