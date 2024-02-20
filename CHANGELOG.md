@@ -11,6 +11,12 @@
 
 # Change Log
 
+## 0.1.3
+
+### ✨ New
+
+-   Add support for CommonJS.
+
 ## 0.1.2
 
 ### 🐞 Fix
