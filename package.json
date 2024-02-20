@@ -2,16 +2,17 @@
 	"name": "@elgato/schemas",
 	"version": "0.1.2",
 	"description": "Collection of schemas, and TypeScript declarations, to support the creation and validation of Stream Deck SDK files",
-	"type": "module",
-	"main": "dist/index.js",
-	"types": "dist/index.d.ts",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
 	"exports": {
 		".": {
 			"default": "./dist/index.js",
+			"import": "./dist/index.mjs",
 			"types": "./dist/index.d.ts"
 		},
 		"./streamdeck/plugins": {
 			"default": "./dist/streamdeck/plugins/index.js",
+			"import": "./dist/streamdeck/plugins/index.mjs",
 			"types": "./dist/streamdeck/plugins/index.d.ts"
 		},
 		"./streamdeck/plugins/layout.json": {

@@ -6,6 +6,7 @@
 	"explorer.fileNesting.enabled": true,
 	"explorer.fileNesting.patterns": {
 		"*.ts": "${capture}.d.ts, ${capture}.js",
+		"*.js": "${capture}.d.ts, ${capture}.mjs",
 		".editorconfig": ".eslintrc, .prettierrc",
 		"package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, .npmrc",
 		"README.md": "LICENSE, CHANGELOG.md"

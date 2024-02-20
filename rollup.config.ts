@@ -19,13 +19,20 @@ const banner = `/**!
 function getConfig(input: string): RollupOptions[] {
 	const outputDir = join("dist", dirname(input));
 	input = join("src", input);
+	const pathWithoutExtension = join(outputDir, `${parse(input).name}`);
 
 	return [
 		{
 			input,
 			output: [
 				{
-					file: join(outputDir, `${parse(input).name}.js`),
+					file: `${pathWithoutExtension}.js`,
+					format: "cjs",
+					banner
+				},
+				{
+					file: `${pathWithoutExtension}.mjs`,
+					format: "es",
 					banner
 				}
 			],
@@ -40,7 +47,7 @@ function getConfig(input: string): RollupOptions[] {
 			input,
 			output: [
 				{
-					file: join(outputDir, `${parse(input).name}.d.ts`),
+					file: `${pathWithoutExtension}.d.ts`,
 					banner
 				}
 			],
