@@ -294,7 +294,7 @@ type ManifestBase<V extends string> = {
 	 * @example
 	 * "1.0.0"
 	 * @pattern
-	 * ^\d+(\.\d+){2,3}$
+	 * ^\d+(\.\d+){0,3}$
 	 * @errorMessage
 	 * String must be semantic version (pre-releases are not permitted)
 	 */
