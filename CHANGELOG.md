@@ -11,6 +11,10 @@
 
 # Change Log
 
+## 0.1.4
+
+- Loosen rules on `Version` within manifest to allow more types; valid formats are now `{major}`, `{major}.{minor}`, `{major}.{minor}.{patch}`, and `{major}.{minor}.{patch}.{build}`.
+
 ## 0.1.3
 
 ### ✨ New
