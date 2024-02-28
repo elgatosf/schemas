@@ -11,7 +11,7 @@ defaults:
     shell: bash
 
 jobs:
-  Release:
+  Publish:
     runs-on: "ubuntu-latest"
     permissions:
       contents: read
@@ -24,7 +24,7 @@ jobs:
       - name: "🗃️ Setup Node"
         uses: actions/setup-node@v4
         with:
-          node-version: "20.5.1"
+          node-version: "20.8.1"
           registry-url: "https://registry.npmjs.org"
 
       - name: "📐 Install dependencies"
@@ -40,3 +40,35 @@ jobs:
         run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: "💾 Preserve schemas"
+        uses: actions/upload-artifact@v4
+        with:
+          name: streamdeck
+          path: streamdeck/**/*.json
+
+  Upload:
+    runs-on: "ubuntu-latest"
+    needs: [Publish]
+
+    steps:
+      - name: "📥 Checkout"
+        uses: actions/checkout@v4
+
+      - name: "📥 Get schemas"
+        uses: actions/download-artifact@v4
+        with:
+          path: schemas/
+
+      - name: "🔐 Configure credentials"
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: "eu-central-1"
+
+      - name: "🔄️ Synchronize"
+        run: aws s3 sync ./schemas/ ${{ secrets.AWS_S3_BUCKET }} --delete
+
+      - name: "🌐 Invalidate CDN"
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CF_DISTRIBUTION_ID }} --paths "/*" > /dev/null
