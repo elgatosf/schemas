@@ -51,7 +51,7 @@ https://schemas.elgato.com/streamdeck/plugins/layout.json
 
 Schemas can be referenced directly within JSON files, providing intellisense and validation, using the `$schema` property, for example:
 
-```json
+```jsonc
 {
     "$schema": "https://schemas.elgato.com/streamdeck/plugins/manifest.json",
     "Name": "Wave Link",
