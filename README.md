@@ -30,6 +30,10 @@ import { type Manifest } from "@elgato/schemas/streamdeck/plugins";
 import manifestSchema from "@elgato/schemas/streamdeck/plugins/manifest.json";
 ```
 
+```
+https://schemas.elgato.com/streamdeck/plugins/manifest.json
+```
+
 #### Layout
 
 Layout JSON file that defines the layout of an action on Stream Deck +.
@@ -37,6 +41,24 @@ Layout JSON file that defines the layout of an action on Stream Deck +.
 ```ts
 import { type Layout } from "@elgato/schemas/streamdeck/plugins";
 import layoutSchema from "@elgato/schemas/streamdeck/plugins/layout.json";
+```
+
+```
+https://schemas.elgato.com/streamdeck/plugins/layout.json
+```
+
+## Usage
+
+Schemas can be referenced directly within JSON files, providing intellisense and validation, using the `$schema` property, for example:
+
+```json
+{
+    "$schema": "https://schemas.elgato.com/streamdeck/plugins/manifest.json",
+    "Name": "Wave Link",
+    "Version": "1.9.0",
+    "Author": "Elgato"
+    // ...
+}
 ```
 
 ## Keywords

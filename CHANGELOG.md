@@ -11,11 +11,19 @@
 
 # Change Log
 
+## 0.1.5
+
+### ✨ New
+
+-   Schemas are now accessible directly under the Elgato domain.
+    -   [Manifest schema](https://schemas.elgato.com/streamdeck/plugins/manifest.json)
+    -   [Layout schema](https://schemas.elgato.com/streamdeck/plugins/layout.json)
+
 ## 0.1.4
 
 ### 🐞 Fix
 
-- Loosen rules on `Version` within manifest to allow more types; valid formats are now `{major}`, `{major}.{minor}`, `{major}.{minor}.{patch}`, and `{major}.{minor}.{patch}.{build}`.
+-   Loosen rules on `Version` within manifest to allow more types; valid formats are now `{major}`, `{major}.{minor}`, `{major}.{minor}.{patch}`, and `{major}.{minor}.{patch}.{build}`.
 
 ## 0.1.3
 
