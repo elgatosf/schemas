@@ -1,14 +1,34 @@
+import type { ElementOf } from "../../utils";
 import { DeviceType } from "./device-type";
 
 /**
  * Defines the plugin and available actions, and all information associated with them, including the plugin's entry point, all iconography, action default behavior, etc.
  */
-export type Manifest = Manifest_6_4;
+export type Manifest = Manifest_6_4 | Manifest_6_6;
 
 /**
  * @inheritdoc
  */
 export type Manifest_6_4 = ManifestBase<"6.4" | "6.5">;
+
+/**
+ * @inheritdoc
+ */
+export type Manifest_6_6 = Omit<ManifestBase<"6.6">, "Actions"> & {
+	/**
+	 * Collection of actions provided by the plugin, and all of their information; this can include actions that are available to user's via the actions list, and actions that are
+	 * hidden to the user but available to pre-defined profiles distributed with the plugin (`Manifest.Actions.VisibleInActionsList`).
+	 */
+	Actions: (ElementOf<Manifest_6_4["Actions"]> & {
+		/**
+		 * Operating system that the action supports.
+		 * @minItems 1
+		 * @maxItems 2
+		 * @uniqueItems
+		 */
+		OS?: OS["Platform"][];
+	})[];
+};
 
 /**
  * Defines the plugin and available actions, and all information associated with them, including the plugin's entry point, all iconography, action default behavior, etc.
