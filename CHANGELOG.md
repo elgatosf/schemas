@@ -11,6 +11,12 @@
 
 # Change Log
 
+## 0.1.6
+
+### ✨ New
+
+-   Add `Actions[].OS`, introduced in Stream Deck 6.6.
+
 ## 0.1.5
 
 ### ✨ New
