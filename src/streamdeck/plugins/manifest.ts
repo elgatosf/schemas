@@ -305,18 +305,18 @@ type ManifestBase<V extends string> = {
 	UUID: Identifier;
 
 	/**
-	 * Version of the plugin, represented as a semantic version, excluding pre-release values (https://semver.org). The version can also include an optional build number.
+	 * Version of the plugin represented as a semantic version (https://semver.org) with a build number; pre-release identifiers are not permitted.
 	 *
 	 * **Examples:**
-	 * - 1.0.3 ✅
+	 * - 1.2.3.0 ✅
 	 * - 0.0.99.123 ✅
 	 * - 2.1.9-beta1 ❌
 	 * @example
 	 * "1.0.0"
 	 * @pattern
-	 * ^\d+(\.\d+){0,3}$
+	 * ^(0|[1-9]\d*)(\.(0|[1-9]\d*)){3}$
 	 * @errorMessage
-	 * String must be semantic version (pre-releases are not permitted)
+	 * String must be semantic version with a build number (pre-release identifiers are not permitted)
 	 */
 	Version: string;
 };
