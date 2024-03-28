@@ -11,6 +11,13 @@
 
 # Change Log
 
+## 0.1.7
+
+### 🐞 Fix
+
+-   Update `Version` to require a major, minor, patch, and build numbers.
+-   Prevent `Version` from having leading zeroes, for example `1.002.3.4`; non-leading zeroes are still permitted.
+
 ## 0.1.6
 
 ### ✨ New
