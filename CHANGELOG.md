@@ -11,6 +11,12 @@
 
 # Change Log
 
+## 0.1.8
+
+### 🐞 Fix
+
+-   Version fix.
+
 ## 0.1.7
 
 ### 🐞 Fix
