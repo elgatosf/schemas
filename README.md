@@ -55,7 +55,7 @@ Schemas can be referenced directly within JSON files, providing intellisense and
 {
     "$schema": "https://schemas.elgato.com/streamdeck/plugins/manifest.json",
     "Name": "Wave Link",
-    "Version": "1.9.0",
+    "Version": "1.9.0.0",
     "Author": "Elgato"
     // ...
 }
