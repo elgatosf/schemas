@@ -3,14 +3,8 @@
 	"semi": true,
 	"trailingComma": "none",
 	"useTabs": true,
-	"importOrder": [
-		"<THIRD_PARTY_MODULES>",
-		"^[./]"
-	],
-	"importOrderParserPlugins": [
-		"typescript",
-		"[\"decorators\", { \"decoratorsBeforeExport\": true }]"
-	],
+	"importOrder": ["<THIRD_PARTY_MODULES>", "^[./]"],
+	"importOrderParserPlugins": ["typescript", "[\"decorators\", { \"decoratorsBeforeExport\": true }]"],
 	"importOrderSeparation": true,
 	"importOrderSortSpecifiers": true,
 	"importOrderCaseInsensitive": true,
@@ -20,6 +14,13 @@
 			"options": {
 				"useTabs": false,
 				"tabWidth": 4
+			}
+		},
+		{
+			"files": "**/*.yaml",
+			"options": {
+				"useTabs": false,
+				"tabWidth": 2
 			}
 		}
 	]
