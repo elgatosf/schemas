@@ -129,7 +129,7 @@
 				"./jest.config.cjs"
 			],
 			"rules": {
-				"@typescript-eslint/no-var-requires": "none"
+				"@typescript-eslint/no-var-requires": "off"
 			}
 		}
 	]
