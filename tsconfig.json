@@ -5,10 +5,16 @@
 			"node"
 		],
 		"module": "ES2022",
-		"moduleResolution": "Bundler"
+		"moduleResolution": "Bundler",
+		"paths": {
+			"@tests": [
+				"./tests/validate"
+			]
+		}
 	},
 	"include": [
-		"**/*.ts"
+		"**/*.ts",
+		"**/*.d.ts"
 	],
 	"exclude": [
 		"node_modules"

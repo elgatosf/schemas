@@ -1,3 +1,7 @@
+const config = ({
+	compilerOptions: { paths }
+} = require("./tsconfig.json"));
+
 /*
  * For a detailed explanation regarding each configuration property and type check, visit:
  * https://jestjs.io/docs/configuration
@@ -8,6 +12,7 @@ module.exports = {
 	modulePathIgnorePatterns: ["<rootDir>/src/.+/__mocks__/.*"],
 	verbose: true,
 	roots: ["src"],
+	setupFilesAfterEnv: ["./tests/setup.ts"],
 	transform: {
 		"^.+\\.ts$": [
 			"@swc/jest",
@@ -16,7 +21,9 @@ module.exports = {
 					parser: {
 						syntax: "typescript",
 						decorators: true
-					}
+					},
+					baseUrl: "./",
+					paths
 				}
 			}
 		]
