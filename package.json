@@ -33,9 +33,10 @@
 		"clean": "rm -rf ./dist/ && rm -rf ./streamdeck/",
 		"lint": "eslint . --ext .ts --max-warnings 0",
 		"preversion": "npm run lint",
-		"test": "jest",
-		"version": "npm run build",
-		"watch": "nodemon --watch src --ext ts --exec \"npm run build:schemas && npm run test\""
+		"test": "npm run build && jest",
+		"test:ci": "jest",
+		"test:watch": "nodemon --watch src --ext ts --exec \"npm run test\"",
+		"version": "npm run build && npm run test:ci"
 	},
 	"repository": {
 		"type": "git",

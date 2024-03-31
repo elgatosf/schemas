@@ -37,7 +37,7 @@ jobs:
         run: npm run lint
 
       - name: "🧪 Test"
-        run: npm run test
+        run: npm run test:ci
 
       - name: "📤 Publish"
         run: npm publish --provenance --access public
