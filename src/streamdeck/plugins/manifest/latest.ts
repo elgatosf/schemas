@@ -42,7 +42,7 @@ type NonVersionedManifest = {
 	 * - `streamDeck.system.onApplicationDidLaunch(...)`
 	 * - `streamDeck.system.onApplicationDidTerminate(...)`
 	 */
-	ApplicationsToMonitor?: ApplicationMonitoringConfiguration;
+	ApplicationsToMonitor?: ApplicationMonitoring;
 
 	/**
 	 * Author's name that will be displayed on the plugin's product page on the Marketplace, e.g. "Elgato".
@@ -143,12 +143,12 @@ type NonVersionedManifest = {
 	 * - [`--enable-source-maps`](https://nodejs.org/api/cli.html#--enable-source-maps)
 	 * - [`--no-global-search-paths`](https://nodejs.org/api/cli.html#--no-global-search-paths)
 	 */
-	Nodejs?: NodejsConfiguration;
+	Nodejs?: Nodejs;
 
 	/**
 	 * Collection of operating systems, and their minimum required versions, that the plugin supports.
 	 */
-	OS: [SupportedOperatingSystem, SupportedOperatingSystem?];
+	OS: [OS, OS?];
 
 	/**
 	 * Collection of pre-defined profiles that are distributed with this plugin. Upon the plugin switching to the profile, the user will be prompted to install the profiles.
@@ -284,7 +284,7 @@ export type Action = {
 	 * @maxItems 2
 	 * @uniqueItems
 	 */
-	OS?: SupportedOperatingSystem["Platform"][];
+	OS?: OS["Platform"][];
 
 	/**
 	 * Optional path to the HTML file that represents the property inspector for this action; this is displayed to the user in the Stream Deck application when they add the
@@ -352,7 +352,7 @@ export type Action = {
 /**
  * Applications to monitor on Mac and Windows; upon a monitored application being launched or terminated, Stream Deck will notify the plugin.
  */
-export type ApplicationMonitoringConfiguration = {
+export type ApplicationMonitoring = {
 	/**
 	 * Collection of applications to monitor on macOS.
 	 *
@@ -601,7 +601,7 @@ export type State = {
 /**
  * Configuration options for Node.js based plugins.
  */
-export type NodejsConfiguration = {
+export type Nodejs = {
 	/**
 	 * Command-line arguments supplied to the plugin when run in debug mode. Optionally, the pre-defined values `"enabled"` and `"break"` run the plugin with a debugger enabled
 	 * with [`--inspect`](https://nodejs.org/api/cli.html#--inspecthostport) and [`--inspect-brk`](https://nodejs.org/api/cli.html#--inspect-brkhostport) respectively.
@@ -675,7 +675,7 @@ export type Profile = {
 /**
  * Operating system that the plugin supports, and the minimum required version needed to run the plugin.
  */
-export type SupportedOperatingSystem = {
+export type OS = {
 	/**
 	 * Minimum version required of the operating system to run the plugin.
 	 */
