@@ -10,20 +10,20 @@ describe("v6.6", () => {
 		expect(errors).toHaveLength(0);
 	});
 
-	describe("v6.6", () => {
+	describe("v6.6 features", () => {
 		/**
 		 * Asserts `Actions[].OS` is not valid for a v6.5 manifest.
 		 */
-		test("Actions[].OS is not valid", () => {
+		test("Actions[].OS is valid", () => {
 			// Arrange, act, assert.
-			const errors = validateStreamDeckPluginManifest("actions[].os.json", "6.6");
+			const errors = validateStreamDeckPluginManifest("Actions[].OS.json", "6.6");
 			expect(errors).toHaveLength(0);
 		});
 
 		/**
 		 * Asserts `Profiles[].AutoInstall` is not valid for a v6.5 manifest.
 		 */
-		test("Profiles[].AutoInstall is not valid", () => {
+		test("Profiles[].AutoInstall is valid", () => {
 			// Arrange, act, assert.
 			const errors = validateStreamDeckPluginManifest("Profiles[].AutoInstall.json", "6.6");
 			expect(errors).toHaveLength(0);
