@@ -1,34 +1,19 @@
 import { DeviceType } from "../device-type";
 
 /**
- * Defines the plugin and available actions, and all information associated with them, including the plugin's entry point, all iconography, action default behavior, etc.
- */
-export type Manifest = NonVersionedManifest & Software;
-
-/**
  * Determines the Stream Deck software requirements for this plugin.
  */
-type Software = {
+export type Software = {
 	/**
-	 * Determines the Stream Deck software requirements for this plugin.
+	 * Minimum version of the Stream Deck application required for this plugin to run.
 	 */
-	Software: {
-		/**
-		 * Minimum version of the Stream Deck application required for this plugin to run.
-		 */
-		MinimumVersion: "6.6";
-	};
+	MinimumVersion: "6.6";
 };
 
 /**
  * Defines the plugin and available actions, and all information associated with them, including the plugin's entry point, all iconography, action default behavior, etc.
  */
-type NonVersionedManifest = {
-	/**
-	 * JSON schema responsible for describing the manifest's data format and validation.
-	 */
-	$schema?: string;
-
+export type Manifest = {
 	/**
 	 * Collection of actions provided by the plugin, and all of their information; this can include actions that are available to user's via the actions list, and actions that are
 	 * hidden to the user but available to pre-defined profiles distributed with the plugin (`Manifest.Actions.VisibleInActionsList`).
@@ -179,6 +164,11 @@ type NonVersionedManifest = {
 	 * Preferred SDK version; this should _currently_ always be 2.
 	 */
 	SDKVersion: 2;
+
+	/**
+	 * Determines the Stream Deck software requirements for this plugin.
+	 */
+	Software: Software;
 
 	/**
 	 * Link to the plugin's website.

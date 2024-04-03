@@ -1,4 +1,4 @@
-import type { ElementOf } from "../../../../utils";
+import type { ElementOf } from "../../../utils";
 import type { Manifest_6_6 } from "./v6.6";
 
 /**

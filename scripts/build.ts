@@ -22,7 +22,7 @@ generateAndWriteSchema("Layout", [customKeywordTransformer]);
  */
 function generateAndWriteSchema(type: string, transformers?: ((schema: JSONSchema7) => void)[]): void {
 	// Build the generator.
-	const path = join(__dirname, "../src/streamdeck/plugins/index.ts");
+	const path = join(__dirname, "../src/streamdeck/plugins/schemas.ts");
 	const generator = createGenerator({
 		extraTags: ["errorMessage", "imageDimensions", "filePath"],
 		path,

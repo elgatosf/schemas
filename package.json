@@ -33,7 +33,7 @@
 		"clean": "rm -rf ./dist/ && rm -rf ./streamdeck/",
 		"lint": "eslint . --ext .ts --max-warnings 0",
 		"preversion": "npm run lint",
-		"test": "npm run build && jest",
+		"test": "npm run build:schemas && jest",
 		"test:ci": "jest",
 		"test:watch": "nodemon --watch src --ext ts --exec \"npm run test\"",
 		"version": "npm run build && npm run test:ci"
