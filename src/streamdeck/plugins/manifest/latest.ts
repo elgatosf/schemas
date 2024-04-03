@@ -202,7 +202,7 @@ export type Manifest = {
 	 * - 0.0.99.123 ✅
 	 * - 2.1.9-beta1 ❌
 	 * @example
-	 * "1.0.0"
+	 * "1.0.0.0"
 	 * @pattern
 	 * ^(0|[1-9]\d*)(\.(0|[1-9]\d*)){3}$
 	 * @errorMessage
