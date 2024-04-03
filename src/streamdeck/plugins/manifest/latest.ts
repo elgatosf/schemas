@@ -626,6 +626,12 @@ export type Nodejs = {
  */
 export type Profile = {
 	/**
+	 * Determines whether the profile should be automatically installed when the plugin is installed. When `false`, the profile will be installed the first time
+	 * the plugin attempts to switch to it. Default is `true`.
+	 */
+	AutoInstall?: boolean;
+
+	/**
 	 * Type of device the profile is intended for, for example Stream Deck+, Stream Deck Pedal, etc.
 	 *
 	 * **Devices**

@@ -10,16 +10,31 @@ describe("v6.4", () => {
 		expect(errors).toHaveLength(0);
 	});
 
-	/**
-	 * Asserts `Actions[].OS` is not valid for a v6.4 manifest.
-	 */
-	test("Actions[].OS is not valid", () => {
-		// Arrange, act, assert.
-		const errors = validateStreamDeckPluginManifest("actions[].os.json", "6.4");
-		expect(errors).toHaveError({
-			instancePath: "/Actions/0",
-			keyword: "additionalProperties",
-			property: "OS"
+	describe("v6.6", () => {
+		/**
+		 * Asserts `Actions[].OS` is not valid for a v6.4 manifest.
+		 */
+		test("Actions[].OS is not valid", () => {
+			// Arrange, act, assert.
+			const errors = validateStreamDeckPluginManifest("actions[].os.json", "6.4");
+			expect(errors).toHaveError({
+				instancePath: "/Actions/0",
+				keyword: "additionalProperties",
+				property: "OS"
+			});
+		});
+
+		/**
+		 * Asserts `Profiles[].AutoInstall` is not valid for a v6.4 manifest.
+		 */
+		test("Profiles[].AutoInstall is not valid", () => {
+			// Arrange, act, assert.
+			const errors = validateStreamDeckPluginManifest("Profiles[].AutoInstall.json", "6.4");
+			expect(errors).toHaveError({
+				instancePath: "/Profiles/0",
+				keyword: "additionalProperties",
+				property: "AutoInstall"
+			});
 		});
 	});
 });
