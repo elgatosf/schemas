@@ -23,16 +23,15 @@ export function versionManifests(schema: any): void {
 	manifest.allOf = [];
 
 	// Iterate over the manifest version references.
-	for (const { $ref } of manifest.anyOf) {
+	for (const manifestVersionDefinition of manifest.anyOf) {
 		// Get the minimum versions the manifest version supports.
-		const [, , manifestRef] = $ref.split("/");
 		const {
 			properties: {
 				Software: {
 					properties: { MinimumVersion }
 				}
 			}
-		} = schema.definitions[manifestRef];
+		} = manifestVersionDefinition;
 
 		// Add each of the conditional statements for the versions.
 		for (const version of MinimumVersion.enum || [MinimumVersion.const]) {
@@ -43,7 +42,7 @@ export function versionManifests(schema: any): void {
 			versions.add(version);
 			schema.definitions.Manifest.allOf.push({
 				if: getMinimumVersionSchema(version),
-				then: { $ref }
+				then: manifestVersionDefinition
 			});
 		}
 	}

@@ -127,17 +127,7 @@ export type Bar<T extends string = "bar"> = LayoutItemBase<T> & {
 	/**
 	 * Defines the range of the value the bar represents, e.g. 0-20, 0-100, etc.
 	 */
-	range?: {
-		/**
-		 * Minimum value of the bar.
-		 */
-		min: number;
-
-		/**
-		 * Maximum value of the bar.
-		 */
-		max: number;
-	};
+	range?: Range;
 
 	/**
 	 * Sub-type used to determine the type of bar to render. Default is {@link BarSubType.Groove} (4).
@@ -155,6 +145,21 @@ export type Bar<T extends string = "bar"> = LayoutItemBase<T> & {
 	 * Value used to determine how much of the bar is filled. Correlates with the item's `range` if specified in the layout's JSON definition; default range is `0..100`.
 	 */
 	value: number;
+};
+
+/**
+ * Defines the range of the value the bar represents, e.g. 0-20, 0-100, etc.
+ */
+export type Range = {
+	/**
+	 * Minimum value of the bar.
+	 */
+	min: number;
+
+	/**
+	 * Maximum value of the bar.
+	 */
+	max: number;
 };
 
 /**

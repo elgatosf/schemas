@@ -122,5 +122,15 @@
 			}
 		],
 		"@typescript-eslint/sort-type-constituents": "warn"
-	}
+	},
+	"overrides": [
+		{
+			"files": [
+				"./jest.config.cjs"
+			],
+			"rules": {
+				"@typescript-eslint/no-var-requires": "off"
+			}
+		}
+	]
 }
