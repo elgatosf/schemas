@@ -11,6 +11,16 @@
 
 # Change Log
 
+## 0.2.0
+
+### ✨ New
+
+-   Add `Profiles[].AutoInstall`, introduced in Stream Deck 6.6.
+
+### ⚠️ Breaking
+
+-   Remove `$schema` property from TypeScript types.
+
 ## 0.1.8
 
 ### 🐞 Fix
