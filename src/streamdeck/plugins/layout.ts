@@ -130,7 +130,7 @@ export type Bar<T extends string = "bar"> = LayoutItemBase<T> & {
 	range?: Range;
 
 	/**
-	 * Sub-type used to determine the type of bar to render. Default is {@link BarSubType.Groove} (4).
+	 * Sub-type used to determine the type of bar to render. Default is `4` (Groove).
 	 *
 	 * **Options**
 	 * - Rectangle (0)
@@ -215,21 +215,7 @@ export type Text = LayoutItemBase<"text"> & {
 	 * Defines how the font should be rendered. **Note**, when the `key` of this layout item is set to `"title"` within the layout's JSON definition, these values will be ignored in
 	 * favour of the user's preferred title settings, as set in property inspector.
 	 */
-	font?: {
-		/**
-		 * Size of the font. **Note**, when the `key` of this layout item is set to `"title"` within the layout's JSON definition, this value will be ignored in favour of the user's
-		 * preferred title settings, as set in property inspector.
-		 */
-		size?: number;
-
-		/**
-		 * Weight of the font; value must be a whole `number` in the range of `100..1000`. **Note**, when the `key` of this layout item is set to `"title"` within the layout's JSON
-		 * definition, this value will be ignored in favour of the user's preferred title settings, as set in property inspector.
-		 * @minimum 100
-		 * @maximum 1000
-		 */
-		weight?: number;
-	};
+	font?: Font;
 
 	/**
 	 * Defines how overflowing text should be rendered on the layout.
@@ -244,6 +230,26 @@ export type Text = LayoutItemBase<"text"> & {
 	 * Text to be displayed.
 	 */
 	value?: string;
+};
+
+/**
+ * Defines how the font should be rendered. **Note**, when the `key` of this layout item is set to `"title"` within the layout's JSON definition, these values will be ignored in
+ * favour of the user's preferred title settings, as set in property inspector.
+ */
+export type Font = {
+	/**
+	 * Size of the font. **Note**, when the `key` of this layout item is set to `"title"` within the layout's JSON definition, this value will be ignored in favour of the user's
+	 * preferred title settings, as set in property inspector.
+	 */
+	size?: number;
+
+	/**
+	 * Weight of the font; value must be a whole `number` in the range of `100..1000`. **Note**, when the `key` of this layout item is set to `"title"` within the layout's JSON
+	 * definition, this value will be ignored in favour of the user's preferred title settings, as set in property inspector.
+	 * @minimum 100
+	 * @maximum 1000
+	 */
+	weight?: number;
 };
 
 /**
