@@ -43,9 +43,9 @@ export enum DeviceType {
 	StreamDeckPlus = 7,
 
 	/**
-	 * Scuf G keys, available on select Scuf controllers, for example Scuf Envision.
+	 * SCUF controller G keys, available on select SCUF controllers, for example SCUF Envision.
 	 */
-	ScufGamepad = 8,
+	SCUFController = 8,
 
 	/**
 	 * Stream Deck Neo, comprised of 8 customizable LCD keys in a 4 x 2 layout, an info bar, and 2 touch points for page navigation.

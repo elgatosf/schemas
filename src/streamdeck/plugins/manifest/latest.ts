@@ -643,7 +643,7 @@ export type Profile = {
 	 * - Stream Deck Pedal (5)
 	 * - Corsair Voyager (6)
 	 * - Stream Deck + (7)
-	 * - Scuf Gamepad (8)
+	 * - SCUF Controller (8)
 	 * - Stream Deck Neo (9)
 	 */
 	DeviceType: (typeof DeviceType)[keyof typeof DeviceType];

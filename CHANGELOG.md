@@ -11,6 +11,12 @@
 
 # Change Log
 
+## 0.3.0
+
+### ♻️ Changed
+
+-   Renamed SCUF device type to `SCUFController`.
+
 ## 0.2.2
 
 ### ✨ New
