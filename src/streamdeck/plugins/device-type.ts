@@ -3,32 +3,32 @@
  */
 export enum DeviceType {
 	/**
-	 * Stream Deck, comprising of 15 buttons in a 5x3 layout.
+	 * Stream Deck, comprised of 15 customizable LCD keys in a 5 x 3 layout.
 	 */
 	StreamDeck = 0,
 
 	/**
-	 * Stream Deck Mini, comprising of 6 buttons in a 3x2 layout.
+	 * Stream Deck Mini, comprised of 6 customizable LCD keys in a 3 x 2 layout.
 	 */
 	StreamDeckMini = 1,
 
 	/**
-	 * Stream Deck XL, comprising of 32 buttons in an 8x4 layout.
+	 * Stream Deck XL, comprised of 32 customizable LCD keys in an 8 x 4 layout.
 	 */
 	StreamDeckXL = 2,
 
 	/**
-	 * Stream Deck Mobile for iOS and Android.
+	 * Stream Deck Mobile, for iOS and Android.
 	 */
 	StreamDeckMobile = 3,
 
 	/**
-	 * Corsair G Keys, buttons available on selected Corsair keyboards.
+	 * Corsair G Keys, available on select Corsair keyboards.
 	 */
 	CorsairGKeys = 4,
 
 	/**
-	 * Stream Deck Pedal.
+	 * Stream Deck Pedal, comprised of 3 customizable pedals.
 	 */
 	StreamDeckPedal = 5,
 
@@ -38,7 +38,17 @@ export enum DeviceType {
 	CorsairVoyager = 6,
 
 	/**
-	 * Stream Deck+, comprising of 8 buttons in a 4x2 layout and 4 dials with accompanying touch screen.
+	 * Stream Deck +, comprised of 8 customizable LCD keys in a 4 x 2 layout, a touch strip, and 4 dials.
 	 */
-	StreamDeckPlus = 7
+	StreamDeckPlus = 7,
+
+	/**
+	 * Scuf G keys, available on select Scuf controllers, for example Scuf Envision.
+	 */
+	ScufGamepad = 8,
+
+	/**
+	 * Stream Deck Neo, comprised of 8 customizable LCD keys in a 4 x 2 layout, an info bar, and 2 touch points for page navigation.
+	 */
+	StreamDeckNeo = 9
 }

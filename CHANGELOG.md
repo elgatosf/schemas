@@ -11,6 +11,12 @@
 
 # Change Log
 
+## 0.2.1
+
+### ✨ New
+
+-   Add `ScufGamepad` and `StreamDeckNeo` device types.
+
 ## 0.2.0
 
 ### ✨ New
