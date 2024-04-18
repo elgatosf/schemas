@@ -11,6 +11,12 @@
 
 # Change Log
 
+## 0.2.2
+
+### ✨ New
+
+-   Add `ScufGamepad` and `StreamDeckNeo` device hints to manifest documentation.
+
 ## 0.2.1
 
 ### ✨ New

@@ -213,7 +213,7 @@ export type Manifest = {
 
 /**
  * Defines the controller type the action is applicable to. **Keypad** refers to a standard action on a Stream Deck device, e.g. 1 of the 15 buttons on the Stream Deck MK.2, or a pedal
- * on the Stream Deck Pedal, etc., whereas an **Encoder** refers to a dial / touchscreen on the Stream Deck+.
+ * on the Stream Deck Pedal, etc., whereas an **Encoder** refers to a dial / touchscreen on the Stream Deck +.
  */
 export type Controller = "Encoder" | "Keypad";
 
@@ -223,7 +223,7 @@ export type Controller = "Encoder" | "Keypad";
 export type Action = {
 	/**
 	 * Defines the controller type the action is applicable to. **Keypad** refers to a standard action on a Stream Deck device, e.g. 1 of the 15 buttons on the Stream Deck MK.2,
-	 * or a pedal on the Stream Deck Pedal, etc., whereas an **Encoder** refers to a dial / touchscreen on the Stream Deck+.
+	 * or a pedal on the Stream Deck Pedal, etc., whereas an **Encoder** refers to a dial / touchscreen on the Stream Deck +.
 	 * @uniqueItems
 	 */
 	Controllers?: [Controller, Controller?];
@@ -391,7 +391,7 @@ export type Encoder = {
 	StackColor?: HexColorString;
 
 	/**
-	 * Descriptions that define the interaction of the action when it is associated with a dial / touchscreen on the Stream Deck+. This information is shown to the user.
+	 * Descriptions that define the interaction of the action when it is associated with a dial / touchscreen on the Stream Deck +. This information is shown to the user.
 	 *
 	 * **Examples:**
 	 * - "Adjust volume"
@@ -454,7 +454,7 @@ export type Encoder = {
 };
 
 /**
- * Descriptions that define the interaction of the action when it is associated with a dial / touchscreen on the Stream Deck+. This information is shown to the user.
+ * Descriptions that define the interaction of the action when it is associated with a dial / touchscreen on the Stream Deck +. This information is shown to the user.
  *
  * **Examples:**
  * - "Adjust volume"
@@ -632,7 +632,7 @@ export type Profile = {
 	AutoInstall?: boolean;
 
 	/**
-	 * Type of device the profile is intended for, for example Stream Deck+, Stream Deck Pedal, etc.
+	 * Type of device the profile is intended for, for example Stream Deck +, Stream Deck Pedal, etc.
 	 *
 	 * **Devices**
 	 * - Stream Deck (0)
@@ -642,7 +642,9 @@ export type Profile = {
 	 * - Corsair GKeys (4)
 	 * - Stream Deck Pedal (5)
 	 * - Corsair Voyager (6)
-	 * - Stream Deck Plus (7)
+	 * - Stream Deck + (7)
+	 * - Scuf Gamepad (8)
+	 * - Stream Deck Neo (9)
 	 */
 	DeviceType: (typeof DeviceType)[keyof typeof DeviceType];
 
