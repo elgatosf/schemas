@@ -1,14 +1,16 @@
 import Ajv, { type ErrorObject } from "ajv";
-import { join } from "node:path";
+import { existsSync, readFileSync } from "node:fs";
+import { join, resolve } from "node:path";
 import { keywordDefinitions } from "../src/index";
+import type { Manifest } from "../src/streamdeck/plugins";
 
 /**
  * Validates the specified manifest file; when the version is specified the `Software.MinimumVersion` is updated.
  * @param filename Name of the manifest file.
- * @param version Optional software minimum version to apply prior to validating.
+ * @param modify Optional modifier to be applied to the manifest before validation.
  * @returns Collection of errors as the result of validation.
  */
-export function validateStreamDeckPluginManifest(filename: string, version?: string): ErrorObject<string, Record<string, unknown>, unknown>[] {
+export function validateStreamDeckPluginManifest(filename: string, modify?: (manifest: Manifest) => void): ErrorObject<string, Record<string, unknown>, unknown>[] {
 	const schema = JSON.parse(getFileContents("../streamdeck/plugins/manifest.json"));
 	const validate = new Ajv()
 		.addKeyword(keywordDefinitions.errorMessage)
@@ -18,16 +20,13 @@ export function validateStreamDeckPluginManifest(filename: string, version?: str
 		.compile(schema);
 
 	const manifest = JSON.parse(getFileContents(join(`../src/streamdeck/plugins/manifest/__tests__/files/${filename}`)));
-	if (version) {
-		manifest.Software.MinimumVersion = version;
+	if (modify) {
+		modify(manifest);
 	}
 
 	validate(manifest);
 	return validate.errors ?? [];
 }
-
-import { existsSync, readFileSync } from "node:fs";
-import { resolve } from "node:path";
 
 /**
  * Gets the file contents from the specified path relative to the tests folder.

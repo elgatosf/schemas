@@ -229,7 +229,7 @@ export type Action = {
 	Controllers?: [Controller, Controller?];
 
 	/**
-	 * Determines whether the state of the action should automatically toggle when the user presses the action; only applies to actions that have two states defined. Default is
+	 * Determines whether the state of the action should automatically toggle when the user presses the action; only applies to actions that have more than one state defined. Default is
 	 * `false`.
 	 * @example
 	 * false
@@ -293,7 +293,6 @@ export type Action = {
 	 *
 	 * NB: Automatic toggling of the state on action activation can be disabled by setting `DisableAutomaticStates` to `true`.
 	 * @minItems 1
-	 * @maxItems 2
 	 */
 	States: State[];
 

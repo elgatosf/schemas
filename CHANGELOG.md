@@ -11,6 +11,24 @@
 
 # Change Log
 
+## Unreleased
+
+### ♻️ Changed
+
+-   `Actions[].States` can now contain more than 2 states.
+
+## 0.3.1
+
+### 🐞 Fix
+
+-   Fix missing `MinimumVersion` values.
+
+## 0.3.0
+
+### ♻️ Changed
+
+-   Renamed SCUF device type to `SCUFController`.
+
 ## 0.3.0
 
 ### ♻️ Changed
