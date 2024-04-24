@@ -406,8 +406,6 @@ export type Encoder = {
 	 * - #d60270
 	 * - #1f1f1
 	 * - #0038a8
-	 * @pattern
-	 * ^#(?:[0-9a-fA-F]{3}){1,2}$
 	 */
 	StackColor?: string;
 
@@ -607,8 +605,6 @@ export type State = {
 	 * - #5bcefa
 	 * - #f5a9b8
 	 * - #FFFFFF
-	 * @pattern
-	 * ^#(?:[0-9a-fA-F]{3}){1,2}$
 	 */
 	TitleColor?: string;
 };

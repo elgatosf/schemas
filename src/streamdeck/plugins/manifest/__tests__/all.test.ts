@@ -69,19 +69,6 @@ describe.each(["v6.4", "v6.5", "v6.6"])("%s", (version) => {
 			});
 
 			/**
-			 * Asserts the pattern of `StackColor`.
-			 */
-			test("StackColor", () => {
-				// Arrange, act, assert.
-				const errors = validateStreamDeckPluginManifest(filePath, (m) => (m.Actions[0].Encoder!.StackColor = "other.png"));
-				expect(errors).toHaveError({
-					instancePath: "/Actions/0/Encoder/StackColor",
-					keyword: "pattern",
-					pattern: patterns.COLOR
-				});
-			});
-
-			/**
 			 * Asserts the pattern of `background`.
 			 */
 			test("background", () => {
@@ -135,19 +122,6 @@ describe.each(["v6.4", "v6.5", "v6.6"])("%s", (version) => {
 					instancePath: "/Actions/0/States/0/MultiActionImage",
 					keyword: "pattern",
 					pattern: patterns.IMAGE_PATH
-				});
-			});
-
-			/**
-			 * Asserts the pattern of `TitleColor`.
-			 */
-			test("TitleColor", () => {
-				// Arrange, act, assert.
-				const errors = validateStreamDeckPluginManifest(filePath, (m) => (m.Actions[0].States[0].TitleColor = "other"));
-				expect(errors).toHaveError({
-					instancePath: "/Actions/0/States/0/TitleColor",
-					keyword: "pattern",
-					pattern: patterns.COLOR
 				});
 			});
 		});
