@@ -52,10 +52,12 @@ export type Manifest = {
 	 * **Examples**:
 	 * - assets/category-icon
 	 * - imgs/category
+	 * @filePath
+	 * { extensions: [".svg", ".png"], includeExtension: false }
 	 * @imageDimensions
 	 * [28, 28]
 	 */
-	CategoryIcon?: ImageFilePath;
+	CategoryIcon?: string;
 
 	/**
 	 * Path to the plugin's main entry point; this is executed when the Stream Deck application starts the plugin.
@@ -109,10 +111,12 @@ export type Manifest = {
 	 * **Examples**:
 	 * assets/plugin-icon
 	 * imgs/plugin
+	 * @filePath
+	 * { extensions: [".svg", ".png"], includeExtension: false }
 	 * @imageDimensions
 	 * [288, 288]
 	 */
-	Icon: ImageFilePath;
+	Icon: string;
 
 	/**
 	 * Name of the plugin, e.g. "Wave Link", "Camera Hub", "Control Center", etc.
@@ -157,8 +161,10 @@ export type Manifest = {
 	 *
 	 * **Also see:**
 	 * - `streamDeck.ui.onSendToPlugin(...)`
+	 * @filePath
+	 * { extensions: [".htm", ".html"], includeExtension: true }
 	 */
-	PropertyInspectorPath?: HtmlFilePath;
+	PropertyInspectorPath?: FilePath<"htm" | "html">;
 
 	/**
 	 * Preferred SDK version; this should _currently_ always be 2.
@@ -191,8 +197,12 @@ export type Manifest = {
 	 * - com.elgato.wavelink
 	 * - com.elgato.discord
 	 * - tv.twitch
+	 * @pattern
+	 * ^([a-z0-9-]+)(\.[a-z0-9-]+)+$
+	 * @errorMessage
+	 * String must be in reverse DNS format, and must only contain lowercase alphanumeric characters (a-z, 0-9), hyphens (-), and periods (.)
 	 */
-	UUID: Identifier;
+	UUID: string;
 
 	/**
 	 * Version of the plugin represented as a semantic version (https://semver.org) with a build number; pre-release identifiers are not permitted.
@@ -258,10 +268,12 @@ export type Action = {
 	 * **Examples:**
 	 * - assets/counter
 	 * - imgs/actions/mute
+	 * @filePath
+	 * { extensions: [".svg", ".png"], includeExtension: false }
 	 * @imageDimensions
 	 * [20, 20]
 	 */
-	Icon: ImageFilePath;
+	Icon: string;
 
 	/**
 	 * Name of the action; this is displayed to the user in the actions list, and is used throughout the Stream Deck application to visually identify the action.
@@ -285,8 +297,10 @@ export type Action = {
 	 * **Examples:**
 	 * - mute.html
 	 * - actions/join-voice-chat/settings.html
+	 * @filePath
+	 * { extensions: [".htm", ".html"], includeExtension: true }
 	 */
-	PropertyInspectorPath?: HtmlFilePath;
+	PropertyInspectorPath?: FilePath<"htm" | "html">;
 
 	/**
 	 * States the action can be in. When two states are defined the action will act as a toggle, with users being able to select their preferred iconography for each state.
@@ -322,8 +336,12 @@ export type Action = {
 	 * - com.elgato.wavelink.toggle-mute
 	 * - com.elgato.discord.join-voice
 	 * - tv.twitch.go-live
+	 * @pattern
+	 * ^([a-z0-9-]+)(\.[a-z0-9-]+)+$
+	 * @errorMessage
+	 * String must be in reverse DNS format, and must only contain lowercase alphanumeric characters (a-z, 0-9), hyphens (-), and periods (.)
 	 */
-	UUID: Identifier;
+	UUID: string;
 
 	/**
 	 * Determines whether the title field is available to the user when viewing the action's property inspector. Setting this to `false` will disable the user from specifying a
@@ -374,10 +392,12 @@ export type Encoder = {
 	 * **Examples:**
 	 * - assets/actions/mute/encoder-icon
 	 * - imgs/join-voice-chat-encoder
+	 * @filePath
+	 * { extensions: [".svg", ".png"], includeExtension: false }
 	 * @imageDimensions
 	 * [72, 72]
 	 */
-	Icon?: ImageFilePath;
+	Icon?: string;
 
 	/**
 	 * Background color to display in the Stream Deck application when the action is part of a dial stack, and is the current action. Represented as a hexadecimal value.
@@ -386,8 +406,10 @@ export type Encoder = {
 	 * - #d60270
 	 * - #1f1f1
 	 * - #0038a8
+	 * @pattern
+	 * ^#(?:[0-9a-fA-F]{3}){1,2}$
 	 */
-	StackColor?: HexColorString;
+	StackColor?: string;
 
 	/**
 	 * Descriptions that define the interaction of the action when it is associated with a dial / touchscreen on the Stream Deck +. This information is shown to the user.
@@ -544,10 +566,12 @@ export type State = {
 	 * **Examples:**
 	 * - assets/counter-key
 	 * - assets/icons/mute
+	 * @filePath
+	 * { extensions: [".svg", ".png"], includeExtension: false }
 	 * @imageDimensions
 	 * [72, 72]
 	 */
-	MultiActionImage?: ImageFilePath;
+	MultiActionImage?: string;
 
 	/**
 	 * Name of the state; when multiple states are defined this value is shown to the user when the action is being added to a multi-action. The user is then able to specify which
@@ -583,8 +607,10 @@ export type State = {
 	 * - #5bcefa
 	 * - #f5a9b8
 	 * - #FFFFFF
+	 * @pattern
+	 * ^#(?:[0-9a-fA-F]{3}){1,2}$
 	 */
-	TitleColor?: HexColorString;
+	TitleColor?: string;
 };
 
 /**
@@ -688,35 +714,3 @@ export type OS = {
  * File path, relative to the manifest's location.
  */
 type FilePath<TExt extends string> = `${string}.${Lowercase<TExt>}`;
-
-/**
- * Color represents as a hexadecimal string.
- * @pattern
- * ^#(?:[0-9a-fA-F]{3}){1,2}$
- * @errorMessage
- * String must be hexadecimal color.
- */
-type HexColorString = string;
-
-/**
- * File path that represents an HTML file relative to the plugin's manifest.
- * @filePath
- * { extensions: [".htm", ".html"], includeExtension: true }
- */
-type HtmlFilePath = FilePath<"htm" | "html">;
-
-/**
- * Unique identifier, in reverse DNS format.
- * @pattern
- * ^([a-z0-9-]+)(\.[a-z0-9-]+)+$
- * @errorMessage
- * String must be in reverse DNS format, and must only contain lowercase alphanumeric characters (a-z, 0-9), hyphens (-), and periods (.)
- */
-type Identifier = string;
-
-/**
- * File path that represents a file relative to the plugin's manifest, with the extension omitted. When multiple images with the same name are found, they are resolved in order.
- * @filePath
- * { extensions: [".svg", ".png"], includeExtension: false }
- */
-type ImageFilePath = string;

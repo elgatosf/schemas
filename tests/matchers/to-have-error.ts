@@ -6,7 +6,7 @@ import type { MatcherFunction } from "expect";
  * @param error Expected error.
  * @returns The matcher result.
  */
-export const toHaveError: MatcherFunction<[error: AdditionalPropertyError]> = function (actual: unknown, error: AdditionalPropertyError) {
+export const toHaveError: MatcherFunction<[error: AdditionalPropertyError]> = function (actual: unknown, error: JsonSchemaError) {
 	if (!Array.isArray(actual)) {
 		return {
 			message: () => `expected ${this.utils.printReceived(actual)} to be an array`,
@@ -22,18 +22,26 @@ export const toHaveError: MatcherFunction<[error: AdditionalPropertyError]> = fu
 			};
 		}
 
-		if (
-			item.instancePath === error.instancePath &&
-			item.keyword === error.keyword &&
-			"params" in item &&
-			"additionalProperty" in item.params &&
-			item.params.additionalProperty === error.property
-		) {
+		// keyword or instancePath differ.
+		if (item.keyword !== error.keyword || item.instancePath !== error.instancePath) {
+			continue;
+		}
+
+		// When keyword is params do not match the error, continue.
+		if (error.keyword === "additionalProperties" && item.params.additionalProperty !== error.property) {
+			continue;
+		} else if (error.keyword === "pattern" && item.params.pattern !== error.pattern) {
 			return {
-				message: () => `expected ${this.utils.printReceived(item)} to be a JSON schema of keyword "additionalProperty" for ${error.instancePath}`,
-				pass: true
+				message: () => `expected ${this.utils.printReceived(item.params.pattern)} to be ${this.utils.printExpected(error.pattern)}`,
+				pass: false
 			};
 		}
+
+		// Otherwise the error was found.
+		return {
+			message: () => `expected ${this.utils.printReceived(item)} to be a JSON schema of keyword "additionalProperty" for ${error.instancePath}`,
+			pass: true
+		};
 	}
 
 	return {
@@ -41,6 +49,11 @@ export const toHaveError: MatcherFunction<[error: AdditionalPropertyError]> = fu
 		pass: false
 	};
 };
+
+/**
+ * Represents a JSON error.
+ */
+type JsonSchemaError = AdditionalPropertyError | PatternError;
 
 /**
  * Represents a JSON error for the keyword `additionalProperties`.
@@ -62,14 +75,34 @@ type AdditionalPropertyError = {
 	property: string;
 };
 
+/**
+ * Represents a JSON error for the keyword `pattern`.
+ */
+type PatternError = {
+	/**
+	 * Path to the instance of the error.
+	 */
+	instancePath: string;
+
+	/**
+	 * Keyword of the error.
+	 */
+	keyword: "pattern";
+
+	/**
+	 * Expected pattern.
+	 */
+	pattern: string;
+};
+
 declare global {
 	// eslint-disable-next-line @typescript-eslint/no-namespace
 	namespace jest {
 		interface AsymmetricMatchers {
-			toHaveError(error: AdditionalPropertyError): void;
+			toHaveError(error: JsonSchemaError): void;
 		}
 		interface Matchers<R> {
-			toHaveError(error: AdditionalPropertyError): R;
+			toHaveError(error: JsonSchemaError): R;
 		}
 	}
 }
