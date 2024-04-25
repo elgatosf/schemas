@@ -15,7 +15,7 @@ describe("v6.6", () => {
 	/**
 	 * Asserts more than 2 states are allowed.
 	 */
-	test("allow more than 2 states", () => {
+	test("Actions[].States[] allow more than 2 items", () => {
 		// Arrange, act, assert.
 		const errors = validateStreamDeckPluginManifest("v6.6.json", (m) => {
 			m.Actions[0].States.push({ Image: "imgs/two" });
