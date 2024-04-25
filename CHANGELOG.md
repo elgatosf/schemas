@@ -11,6 +11,17 @@
 
 # Change Log
 
+## 0.3.3
+
+### 🐞 Fix
+
+-   Fix patterns for `CategoryIcon`, `Icon`, `PropertyInspectorPath`, and `UUID`.
+-   Fix patterns for `CodePath`, `CodePathMac`, and `CodePathWin`.
+-   Fix patterns for an action's `Icon`, `PropertyInspectorPath`, and `UUID`.
+-   Fix patterns for an encoder's `Icon`, `background`, and `layout`.
+-   Fix patterns for a state's `Image`, and `MultiActionImage`.
+-   Fix pattern for a profile's `Name`.
+
 ## 0.3.2
 
 ### ♻️ Changed
