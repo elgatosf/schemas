@@ -205,18 +205,13 @@ export type Manifest = {
 	UUID: string;
 
 	/**
-	 * Version of the plugin represented as a semantic version (https://semver.org) with a build number; pre-release identifiers are not permitted.
-	 *
-	 * **Examples:**
-	 * - 1.2.3.0 ✅
-	 * - 0.0.99.123 ✅
-	 * - 2.1.9-beta1 ❌
+	 * Version of the plugin, in the format `{major}.{minor}.{patch}.{build}`.
 	 * @example
 	 * "1.0.0.0"
 	 * @pattern
 	 * ^(0|[1-9]\d*)(\.(0|[1-9]\d*)){3}$
 	 * @errorMessage
-	 * String must be semantic version with a build number (pre-release identifiers are not permitted)
+	 * String must use format {major}.{minor}.{patch}.{build}
 	 */
 	Version: string;
 };
