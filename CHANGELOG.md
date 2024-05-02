@@ -11,6 +11,12 @@
 
 # Change Log
 
+## 0.3.4
+
+### 🐞 Fix
+
+-   Fix `Version` format documentation.
+
 ## 0.3.3
 
 ### 🐞 Fix
