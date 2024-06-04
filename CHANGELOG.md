@@ -11,6 +11,10 @@
 
 # Change Log
 
+## 0.3.5
+
+-   Add `@elgato/schemas/streamdeck/plugins/json` export.
+
 ## 0.3.4
 
 ### 🐞 Fix
