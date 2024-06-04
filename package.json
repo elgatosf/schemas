@@ -15,6 +15,11 @@
 			"import": "./dist/streamdeck/plugins/index.mjs",
 			"types": "./dist/streamdeck/plugins/index.d.ts"
 		},
+		"./streamdeck/plugins/json": {
+			"default": "./dist/streamdeck/plugins/json.js",
+			"import": "./dist/streamdeck/plugins/json.mjs",
+			"types": "./dist/streamdeck/plugins/json.d.ts"
+		},
 		"./streamdeck/plugins/layout.json": {
 			"default": "./streamdeck/plugins/layout.json"
 		},
@@ -59,6 +64,7 @@
 	},
 	"homepage": "https://github.com/elgatosf/schemas#readme",
 	"devDependencies": {
+		"@rollup/plugin-json": "^6.1.0",
 		"@rollup/plugin-node-resolve": "^15.2.2",
 		"@rollup/plugin-typescript": "^11.1.5",
 		"@swc-node/register": "^1.8.0",

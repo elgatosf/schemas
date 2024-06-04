@@ -26,8 +26,18 @@ npm install @elgato/schemas
 Manifest JSON file responsible for defining a Stream Deck plugin.
 
 ```ts
+// TypeScript type.
 import { type Manifest } from "@elgato/schemas/streamdeck/plugins";
-import manifestSchema from "@elgato/schemas/streamdeck/plugins/manifest.json";
+```
+
+```js
+// Schema as an object.
+import manifest from "@elgato/schemas/streamdeck/plugins/json";
+```
+
+```js
+// Schema as an object, with experimental import attributes
+import manifest from "@elgato/schemas/streamdeck/plugins/manifest.json" with { type: "json" };
 ```
 
 ```
@@ -39,8 +49,18 @@ https://schemas.elgato.com/streamdeck/plugins/manifest.json
 Layout JSON file that defines the layout of an action on Stream Deck +.
 
 ```ts
+// TypeScript type.
 import { type Layout } from "@elgato/schemas/streamdeck/plugins";
-import layoutSchema from "@elgato/schemas/streamdeck/plugins/layout.json";
+```
+
+```js
+// Schema as an object.
+import layout from "@elgato/schemas/streamdeck/plugins/json";
+```
+
+```js
+// Schema as an object, with experimental import attributes
+import layout from "@elgato/schemas/streamdeck/plugins/layout.json" with { type: "json" };
 ```
 
 ```
