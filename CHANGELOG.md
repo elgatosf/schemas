@@ -11,7 +11,15 @@
 
 # Change Log
 
+## 0.3.6
+
+### ✨ New
+
+-   Add Stream Deck 6.7.
+
 ## 0.3.5
+
+### ✨ New
 
 -   Add `@elgato/schemas/streamdeck/plugins/json` export.
 

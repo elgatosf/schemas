@@ -7,7 +7,7 @@ export type Software = {
 	/**
 	 * Minimum version of the Stream Deck application required for this plugin to run.
 	 */
-	MinimumVersion: "6.4" | "6.5" | "6.6";
+	MinimumVersion: "6.4" | "6.5" | "6.6" | "6.7";
 };
 
 /**
