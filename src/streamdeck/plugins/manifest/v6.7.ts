@@ -1,9 +1,9 @@
-import type { Manifest_6_7 } from "./v6.7";
+import type { Manifest } from "./latest";
 
 /**
  * Defines the plugin and available actions, and all information associated with them, including the plugin's entry point, all iconography, action default behavior, etc.
  */
-export type Manifest_6_6 = Omit<Manifest_6_7, "Software"> & {
+export type Manifest_6_7 = Omit<Manifest, "Software"> & {
 	/**
 	 * Determines the Stream Deck software requirements for this plugin.
 	 */
@@ -11,6 +11,6 @@ export type Manifest_6_6 = Omit<Manifest_6_7, "Software"> & {
 		/**
 		 * Minimum version of the Stream Deck application required for this plugin to run.
 		 */
-		MinimumVersion: "6.6";
+		MinimumVersion: "6.7";
 	};
 };
