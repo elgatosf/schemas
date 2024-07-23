@@ -12,3 +12,6 @@ logs/
 # @elgato/schemas
 /dist/
 /streamdeck/
+
+# Editor
+.history

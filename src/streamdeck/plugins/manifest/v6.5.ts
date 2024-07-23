@@ -14,7 +14,7 @@ export type Manifest_6_5 = Omit<Manifest_6_6, "Actions" | "Profiles" | "Software
 	/**
 	 * Collection of pre-defined profiles that are distributed with this plugin. Upon the plugin switching to the profile, the user will be prompted to install the profiles.
 	 *
-	 * NB: Plugins may only switch to profiles distributed with the plugin, as defined within the manifest, and cannot access user-defined profiles.
+	 * Note: Plugins may only switch to profiles distributed with the plugin, as defined within the manifest, and cannot access user-defined profiles.
 	 *
 	 * **Also see:**
 	 * `streamDeck.profiles.switchToProfile(...)`
