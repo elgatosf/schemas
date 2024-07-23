@@ -37,7 +37,7 @@ export type Manifest = {
 	/**
 	 * Defines the actions list group, providing a natural grouping of the plugin's actions with the Stream Deck application's action list.
 	 *
-	 * NB: `Category` should be distinctive and synonymous with your plugin, and it is therefore recommended that this be the same value as the plugin's `Name` field. When `undefined`, the
+	 * Note: `Category` should be distinctive and synonymous with your plugin, and it is therefore recommended that this be the same value as the plugin's `Name` field. When `undefined`, the
 	 * actions will be available under the "Custom" group.
 	 */
 	Category?: string;
@@ -126,7 +126,7 @@ export type Manifest = {
 	/**
 	 * Configuration options for Node.js based plugins.
 	 *
-	 * NB: All Node.js plugins are executed with the following command-line arguments:
+	 * Note: All Node.js plugins are executed with the following command-line arguments:
 	 *
 	 * - [`--no-addons`](https://nodejs.org/api/cli.html#--no-addons) (Stream Deck 6.4 only)
 	 * - [`--enable-source-maps`](https://nodejs.org/api/cli.html#--enable-source-maps)
@@ -142,7 +142,7 @@ export type Manifest = {
 	/**
 	 * Collection of pre-defined profiles that are distributed with this plugin. Upon the plugin switching to the profile, the user will be prompted to install the profiles.
 	 *
-	 * NB: Plugins may only switch to profiles distributed with the plugin, as defined within the manifest, and cannot access user-defined profiles.
+	 * Note: Plugins may only switch to profiles distributed with the plugin, as defined within the manifest, and cannot access user-defined profiles.
 	 *
 	 * **Also see:**
 	 * `streamDeck.profiles.switchToProfile(...)`
@@ -153,7 +153,7 @@ export type Manifest = {
 	 * Optional path to the HTML file that represents the property inspector for all actions; this is displayed to the user in the Stream Deck application when they add an action,
 	 * allowing them to configure the action's settings.
 	 *
-	 * NB: Path should be relative to the root of the plugin's folder, with no leading slash.
+	 * Note: Path should be relative to the root of the plugin's folder, with no leading slash.
 	 *
 	 *  **Examples:**
 	 * - mute.html
@@ -287,7 +287,7 @@ export type Action = {
 	 * Optional path to the HTML file that represents the property inspector for this action; this is displayed to the user in the Stream Deck application when they add the
 	 * action, allowing them to configure the action's settings. When `undefined`, the manifest's top-level `PropertyInspectorPath` is used, otherwise none.
 	 *
-	 * NB: Path should be relative to the root of the plugin's folder, with no leading slash.
+	 * Note: Path should be relative to the root of the plugin's folder, with no leading slash.
 	 *
 	 * **Examples:**
 	 * - mute.html
@@ -300,7 +300,7 @@ export type Action = {
 	/**
 	 * States the action can be in. When two states are defined the action will act as a toggle, with users being able to select their preferred iconography for each state.
 	 *
-	 * NB: Automatic toggling of the state on action activation can be disabled by setting `DisableAutomaticStates` to `true`.
+	 * Note: Automatic toggling of the state on action activation can be disabled by setting `DisableAutomaticStates` to `true`.
 	 * @minItems 1
 	 */
 	States: State[];
@@ -324,7 +324,7 @@ export type Action = {
 	 * - Hyphens (-)
 	 * - Periods (.)
 	 *
-	 * NB: `UUID` must be unique, and should be prefixed with the plugin's UUID.
+	 * Note: `UUID` must be unique, and should be prefixed with the plugin's UUID.
 	 *
 	 *
 	 * **Examples:**
@@ -382,7 +382,7 @@ export type Encoder = {
 	 * - Be in .PNG or .SVG format.
 	 * - Be provided in two sizes, 72x72 px and 144x144 px (@2x).
 	 *
-	 * NB: Can be overridden by the user in the Stream Deck application.
+	 * Note: Can be overridden by the user in the Stream Deck application.
 	 *
 	 * **Examples:**
 	 * - assets/actions/mute/encoder-icon
@@ -419,7 +419,7 @@ export type Encoder = {
 	 * - Be in .PNG or .SVG format.
 	 * - Be provided in two sizes, 200x100 px and 400x200 px (@2x).
 	 *
-	 * NB: Can be overridden by the user in the Stream Deck application.
+	 * Note: Can be overridden by the user in the Stream Deck application.
 	 *
 	 * **Examples:**
 	 * - assets/backgrounds/main
@@ -499,34 +499,34 @@ export type TriggerDescriptions = {
 /**
  * States the action can be in. When two states are defined the action will act as a toggle, with users being able to select their preferred iconography for each state.
  *
- * NB: Automatic toggling of the state on action activation can be disabled by setting `DisableAutomaticStates` to `true`.
+ * Note: Automatic toggling of the state on action activation can be disabled by setting `DisableAutomaticStates` to `true`.
  */
 export type State = {
 	/**
 	 * Default font-family to be used when rendering the title of this state.
 	 *
-	 * NB: Can be overridden by the user in the Stream Deck application.
+	 * Note: Can be overridden by the user in the Stream Deck application.
 	 */
 	FontFamily?: string;
 
 	/**
 	 * Default font-size to be used when rendering the title of this state.
 	 *
-	 * NB: Can be overridden by the user in the Stream Deck application.
+	 * Note: Can be overridden by the user in the Stream Deck application.
 	 */
 	FontSize?: number;
 
 	/**
 	 * Default font-style to be used when rendering the title of this state.
 	 *
-	 * NB: Can be overridden by the user in the Stream Deck application.
+	 * Note: Can be overridden by the user in the Stream Deck application.
 	 */
 	FontStyle?: "" | "Bold Italic" | "Bold" | "Italic" | "Regular";
 
 	/**
 	 * Determines whether the title associated with this state is underlined by default.
 	 *
-	 * NB: Can be overridden by the user in the Stream Deck application.
+	 * Note: Can be overridden by the user in the Stream Deck application.
 	 */
 	FontUnderline?: boolean;
 
@@ -536,7 +536,7 @@ export type State = {
 	 * - Be in .GIF, .PNG or .SVG format.
 	 * - Be provided in two sizes, 72x72 px and 144x144 px (@2x).
 	 *
-	 * NB: Can be overridden by the user in the Stream Deck application.
+	 * Note: Can be overridden by the user in the Stream Deck application.
 	 *
 	 * **Examples:**
 	 * - assets/counter-key
@@ -554,7 +554,7 @@ export type State = {
 	 * - Be in .PNG or .SVG format.
 	 * - Be provided in two sizes, 72x72 px and 144x144 px (@2x).
 	 *
-	 * NB: Can be overridden by the user in the Stream Deck application.
+	 * Note: Can be overridden by the user in the Stream Deck application.
 	 *
 	 * **Examples:**
 	 * - assets/counter-key
@@ -575,7 +575,7 @@ export type State = {
 	/**
 	 * Determines whether the title should be shown.
 	 *
-	 * NB: Can be overridden by the user in the Stream Deck application.
+	 * Note: Can be overridden by the user in the Stream Deck application.
 	 */
 	ShowTitle?: boolean;
 
@@ -587,14 +587,14 @@ export type State = {
 	/**
 	 * Default title alignment to be used when rendering the title of this state.
 	 *
-	 * NB: Can be overridden by the user in the Stream Deck application.
+	 * Note: Can be overridden by the user in the Stream Deck application.
 	 */
 	TitleAlignment?: "bottom" | "middle" | "top";
 
 	/**
 	 * Default title color to be used when rendering the title of this state, represented a hexadecimal value.
 	 *
-	 * NB: Can be overridden by the user in the Stream Deck application.
+	 * Note: Can be overridden by the user in the Stream Deck application.
 	 *
 	 * **Examples:**
 	 * - #5bcefa
@@ -612,7 +612,7 @@ export type Nodejs = {
 	 * Command-line arguments supplied to the plugin when run in debug mode. Optionally, the pre-defined values `"enabled"` and `"break"` run the plugin with a debugger enabled
 	 * with [`--inspect`](https://nodejs.org/api/cli.html#--inspecthostport) and [`--inspect-brk`](https://nodejs.org/api/cli.html#--inspect-brkhostport) respectively.
 	 *
-	 * NB: `"enabled"` and `"break"` will automatically be assigned an available `PORT` by Stream Deck.  Alternatively, if you wish to debug on a pre-defined port, this value can be
+	 * Note: `"enabled"` and `"break"` will automatically be assigned an available `PORT` by Stream Deck.  Alternatively, if you wish to debug on a pre-defined port, this value can be
 	 * a set of [command-line arguments](https://nodejs.org/api/cli.html).
 	 *
 	 * **Examples:**
