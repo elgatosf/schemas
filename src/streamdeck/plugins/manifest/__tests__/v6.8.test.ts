@@ -1,7 +1,5 @@
 import { validateStreamDeckPluginManifest } from "@tests";
 
-const VERSION = "6.8";
-
 describe("v6.8", () => {
 	/**
 	 * Asserts a valid v6.8 manifest.
