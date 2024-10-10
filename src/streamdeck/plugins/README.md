@@ -1,83 +1,62 @@
 # Stream Deck Plugin Schemas
 
-## Manifest Versioning
+## Manifest
 
-Manifest versioning is achieved on reverse-migration approach, utilizing the `Omit` utility type. Each version extends their successor, and omits new properties introduced.
-
-For example:
+Manifest versioning is achieved using reverse-migrations, by extending the versions successor and utilizing the `Omit` utility type to _remove_ new features, for example:
 
 ```mermaid
 classDiagram
-    Manifest <|-- Manifest_6_7
-    Manifest_6_7 <|-- Manifest_6_6
+    Manifest <|-- Manifest_6_6
     Manifest_6_6 <|-- Manifest_6_5
     class Manifest {
       + string:  Software.MinimumVersion
       ...
     }
-    class Manifest_6_7 {
-      + "6.7":  Software.MinimumVersion
-    }
     class Manifest_6_6 {
-      + "6.6":  Software.MinimumVersion
-      + // Omits new properties in 6.7
+      + "6.6" | "6.7":  Software.MinimumVersion
+      // No changes introduced from 6.6 to 6.7.
     }
     class Manifest_6_5 {
       + "6.5":  Software.MinimumVersion
-      + // Omits new properties in 6.6
+      // Changes introduced from 6.5 to 6.6, omit new properties.
     }
 ```
 
-### Versions
+### Glossary
 
-#### vLatest
+-   vLatest — The current version, with a flat `Software.MinimumVersion`.
+-   vCurrent — The current version, for example `v6.7.ts`.
+-   vNext — The new version being introduced, for example `v6.8.ts`.
 
--   The current structure of the manifest is stored within `latest.ts`.
--   `Software.MinimumVersion` is a union of _all_ possible versions.
--   All types within `latest.ts` reflect their current structure.
+### File Structure Example
 
-#### Version Specific
-
--   All versions, including vCurrent, are represented in separate files.
--   Versions use the file name format `v{major}.{minor}.ts`.
--   Versions extend their successors.
-    -   For example, v0 extends v1, v1 extends v2, etc.
-    -   vCurrent extends vLatest.
--   Changes are _omitted_ when extending, thus reflecting the migration.
-
-#### File Structure
+Manifest versions, and the type responsible for generating the JSON schema, are located in the following file structure:
 
 ```
-./manifest
-├── latest.ts
-├── v6.4.ts      # Extends v6.5
-├── v6.5.ts      # Extends v6.6
-├── v6.6.ts      # Extends v6.7
-└── v6.7.ts      # vCurrent, extends vLatest
+./src/streamdeck/plugins/
+├── manifest/
+│   ├── latest.ts  # vLatest — vCurrent, with flat Software.MinimumVersion, e.g. "6.5" | "6.6" | "6.7"
+|   ├── v6.5.ts
+|   ├── v6.6.ts
+|   └── v6.7.ts    # vCurrent, with specific Software.MinimumVersion, e.g. "6.7"
+└── schemas.ts
 ```
 
-### Migration
+### Adding Versions of Stream Deck
 
-#### Steps
+When adding a new version of Stream Deck, its important to consider if there are manifest changes. If simply adding a new version of `Software.MinimumVersion`, vCurrent can be updated to include the new version. If there are new properties introduced, a reverse-migration is needed.
 
-1. Within `latest.ts`
-    - Add changes to required structures.
-1. Create file for vNext, for example `6.8.ts`.
-    - Re-setting the `Software.MinimumVersion` to vNext, for example `"6.8"`.
-1. Update vCurrent
-    - To extend vNext.
-    - Apply reverse-migration by omitting new changes.
-1. Add unit tests for vNext.
-1. Update Manifest type within ./schemas.ts include vNext.
-
-#### Flowchart
+The following flowchart depicts how to introduce a new version of Stream Deck to the manifest type and JSON schema.
 
 ```mermaid
 graph TD;
-    a("Add changes to ./manifest/latest.ts")-->b
-    b("Create **vNext** file in ./manifest/ — extend latest, and re-set Software.MinimumVersion")-->c;
-    c("Update **vCurrent** file in ./manifest/ — extend vNext, and omit changes")-->d;
-    d("Add unit tests for **vNext**")-->e
-    e("Update Manifest type within ./schemas.ts include vNext")-->z
-    z("Fin")
+  a("New version of<br />Stream Deck app")-->b
+  b{"Manifest<br />changes"}
+  b-->|Yes|y0("Add changes to ./manifest/latest.ts")
+  y0-->y1("Create vNext (e.g. v6.8.ts) in ./manifest/ — extend latest, and re-set Software.MinimumVersion")
+  y1-->y2("Update vCurrent in ./manifest/ — extend vNext, and omit changes")
+  y2-->y3("Update Manifest type within ./schemas/ to include vNext")-->z0
+  b-->|No|n("Update vCurrent Software.MinimumVersion to include new version")-->z0
+  z0("Add unit tests for new version")
+  z0-->z1("Fin")
 ```
