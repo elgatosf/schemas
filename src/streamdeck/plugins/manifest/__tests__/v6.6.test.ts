@@ -1,14 +1,12 @@
 import { validateStreamDeckPluginManifest } from "@tests";
 
-const VERSION = "6.6";
-
-describe("v6.6", () => {
+describe.each(["6.6" as const, "6.7" as const, "6.8" as const])("v%s", (version) => {
 	/**
-	 * Asserts a valid v6.6 manifest.
+	 * Asserts the full manifest.
 	 */
 	test("full manifest", () => {
 		// Arrange, act, assert.
-		const errors = validateStreamDeckPluginManifest("v6.6.json");
+		const errors = validateStreamDeckPluginManifest(`v${version}.json`);
 		expect(errors).toHaveLength(0);
 	});
 
@@ -17,7 +15,7 @@ describe("v6.6", () => {
 	 */
 	test("Actions[].States[] allow more than 2 items", () => {
 		// Arrange, act, assert.
-		const errors = validateStreamDeckPluginManifest("v6.6.json", (m) => {
+		const errors = validateStreamDeckPluginManifest(`v${version}.json`, (m) => {
 			m.Actions[0].States.push({ Image: "imgs/two" });
 			m.Actions[0].States.push({ Image: "imgs/three" });
 			m.Actions[0].States.push({ Image: "imgs/four" });
@@ -25,13 +23,13 @@ describe("v6.6", () => {
 		expect(errors).toHaveLength(0);
 	});
 
-	describe("v6.6 features", () => {
+	describe(`v${version} feature compatibility`, () => {
 		/**
 		 * Asserts `Actions[].OS` is not valid for a v6.5 manifest.
 		 */
 		test("Actions[].OS is valid", () => {
 			// Arrange, act, assert.
-			const errors = validateStreamDeckPluginManifest("Actions[].OS.json", (m) => (m.Software.MinimumVersion = VERSION));
+			const errors = validateStreamDeckPluginManifest("Actions[].OS.json", (m) => (m.Software.MinimumVersion = version));
 			expect(errors).toHaveLength(0);
 		});
 
@@ -40,7 +38,7 @@ describe("v6.6", () => {
 		 */
 		test("Profiles[].AutoInstall is valid", () => {
 			// Arrange, act, assert.
-			const errors = validateStreamDeckPluginManifest("Profiles[].AutoInstall.json", (m) => (m.Software.MinimumVersion = VERSION));
+			const errors = validateStreamDeckPluginManifest("Profiles[].AutoInstall.json", (m) => (m.Software.MinimumVersion = version));
 			expect(errors).toHaveLength(0);
 		});
 	});

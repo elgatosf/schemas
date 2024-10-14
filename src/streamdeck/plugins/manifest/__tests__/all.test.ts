@@ -1,6 +1,6 @@
 import { validateStreamDeckPluginManifest } from "@tests";
 
-describe.each(["v6.4", "v6.5", "v6.6", "v6.7"])("%s", (version) => {
+describe.each(["v6.4", "v6.5", "v6.6", "v6.7", "v6.8"])("%s", (version) => {
 	const filePath = `${version}.json`;
 
 	/**

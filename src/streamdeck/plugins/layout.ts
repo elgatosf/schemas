@@ -217,8 +217,9 @@ export type Text = LayoutItemBase<"text"> & {
 	 */
 	font?: {
 		/**
-		 * Size of the font. **Note**, when the `key` of this layout item is set to `"title"` within the layout's JSON definition, this value will be ignored in favour of the user's
-		 * preferred title settings, as set in property inspector.
+		 * Size of the font, in pixels, represented as a whole number.
+		 *
+		 * **Note**, when the `key` of this layout item is set to `"title"` within the layout's JSON definition, this value will be ignored in favour of the user's preferred title settings, as set in property inspector.
 		 */
 		size?: number;
 

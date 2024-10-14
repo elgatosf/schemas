@@ -1,4 +1,5 @@
 import { DeviceType } from "../device-type";
+import type { Manifest as ManifestSchema } from "../schemas";
 
 /**
  * Determines the Stream Deck software requirements for this plugin.
@@ -7,7 +8,7 @@ export type Software = {
 	/**
 	 * Minimum version of the Stream Deck application required for this plugin to run.
 	 */
-	MinimumVersion: "6.4" | "6.5" | "6.6" | "6.7";
+	MinimumVersion: ManifestSchema["Software"]["MinimumVersion"];
 };
 
 /**
