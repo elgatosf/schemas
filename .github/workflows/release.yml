@@ -75,3 +75,11 @@ jobs:
 
       - name: "🌐 Invalidate CDN"
         run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CF_DISTRIBUTION_ID }} --paths "/*" > /dev/null
+
+  Documentation:
+    runs-on: "ubuntu-latest"
+    needs: [Publish]
+
+    steps:
+      - name: "📄 Deploy documentation"
+        run: curl --silent --output /dev/null -X POST "${{ secrets.DOCS_DEPLOY_HOOK }}"
