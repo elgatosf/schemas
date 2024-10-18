@@ -46,6 +46,8 @@ type LayoutItemBase<T extends string> = {
 
 	/**
 	 * Unique name used to identify the layout item. When calling `setFeedback` this value should be used as the key as part of the object that represents the feedback.
+	 *
+	 * Note: The `key` of the layout item cannot be changed at runtime.
 	 * @pattern
 	 * ^[A-Za-z0-9\-_]+$
 	 * @errorMessage
@@ -62,11 +64,15 @@ type LayoutItemBase<T extends string> = {
 	/**
 	 * Array defining the items coordinates in the format `[x, y, width, height]`; coordinates must be within canvas size of 200 x 100, e.g. [0, 0, 200, 100]. Items with the same `zOrder`
 	 * must **not** have an overlapping `rect`.
+	 *
+	 * Note: The `rect` of the layout item cannot be changed at runtime.
 	 */
 	rect: Rect;
 
 	/**
 	 * Type of layout item this instance represents, e.g. "pixmap", "bar", etc.
+	 *
+	 * Note: The `type` of the layout item cannot be changed at runtime.
 	 */
 	type: T;
 
