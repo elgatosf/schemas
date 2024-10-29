@@ -11,6 +11,12 @@
 
 # Change Log
 
+## 0.3.8
+
+### 🐞 Fix
+
+-   Fix `Icon` incorrectly allowing SVG images.
+
 ## 0.3.7
 
 ### ✨ New
