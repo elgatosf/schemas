@@ -113,7 +113,7 @@ export type Manifest = {
 	 * assets/plugin-icon
 	 * imgs/plugin
 	 * @filePath
-	 * { extensions: [".svg", ".png"], includeExtension: false }
+	 * { extensions: [".png"], includeExtension: false }
 	 * @imageDimensions
 	 * [288, 288]
 	 */

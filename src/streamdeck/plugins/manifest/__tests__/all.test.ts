@@ -188,7 +188,7 @@ describe.each(["v6.4", "v6.5", "v6.6", "v6.7", "v6.8"])("%s", (version) => {
 		expect(errors).toHaveError({
 			instancePath: "/Icon",
 			keyword: "pattern",
-			pattern: patterns.IMAGE_PATH
+			pattern: patterns.ICON_PATH
 		});
 	});
 
@@ -251,6 +251,7 @@ const patterns = {
 	LAYOUT: "^(^(?![\\.]*[\\\\\\/]+).+\\.([Jj][Ss][Oo][Nn])$)|(\\$(X1|A0|A1|B1|B2|C1))$",
 	IMAGE_PATH_WITH_GIF_SUPPORT: "^(?![~\\.]*[\\\\\\/]+)(?!.*\\.(([Gg][Ii][Ff])|([Ss][Vv][Gg])|([Pp][Nn][Gg]))$).*$",
 	IMAGE_PATH: "^(?![~\\.]*[\\\\\\/]+)(?!.*\\.(([Ss][Vv][Gg])|([Pp][Nn][Gg]))$).*$",
+	ICON_PATH: "^(?![~\\.]*[\\\\\\/]+)(?!.*\\.(([Pp][Nn][Gg]))$).*$",
 	PROFILE_PATH: "^(?![~\\.]*[\\\\\\/]+)(?!.*\\.(([Ss][Tt][Rr][Ee][Aa][Mm][Dd][Ee][Cc][Kk][Pp][Rr][Oo][Ff][Ii][Ll][Ee]))$).*$",
 	UUID: "^([a-z0-9-]+)(\\.[a-z0-9-]+)+$"
 };
