@@ -1,6 +1,6 @@
 {
 	"name": "@elgato/schemas",
-	"version": "0.3.8",
+	"version": "0.3.9",
 	"description": "Collection of schemas, and TypeScript declarations, to support the creation and validation of Stream Deck SDK files",
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
