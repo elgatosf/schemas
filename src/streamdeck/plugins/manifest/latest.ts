@@ -106,7 +106,7 @@ export type Manifest = {
 	/**
 	 * Path to the image, with the **file extension omitted**, that will be displayed on the Marketplace. The icon should accurately represent the plugin, stand out, and enable users
 	 * to quickly identify the plugin. The icon must adhere to the following style guidelines.
-	 * - Be in .PNG or .SVG format.
+	 * - Be in .PNG format.
 	 * - Be provided in two sizes, 288x288 px and 512x512 px (@2x).
 	 *
 	 * **Examples**:

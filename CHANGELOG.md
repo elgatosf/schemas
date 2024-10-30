@@ -11,6 +11,12 @@
 
 # Change Log
 
+## 0.3.9
+
+### ♻️ Changed
+
+-   Remove SVG reference from `Icon` documentation.
+
 ## 0.3.8
 
 ### 🐞 Fix
