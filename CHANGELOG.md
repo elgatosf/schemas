@@ -11,6 +11,12 @@
 
 # Change Log
 
+## 0.4.0
+
+### 🐞 Fix
+
+-   Fix package exports.
+
 ## 0.3.9
 
 ### ♻️ Changed

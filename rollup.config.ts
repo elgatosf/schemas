@@ -27,7 +27,7 @@ function getConfig(input: string): RollupOptions[] {
 			input,
 			output: [
 				{
-					file: `${pathWithoutExtension}.js`,
+					file: `${pathWithoutExtension}.cjs`,
 					format: "cjs",
 					banner
 				},
