@@ -11,6 +11,13 @@
 
 # Change Log
 
+## 0.4.1
+
+### ♻️ Update
+
+-   Update manifest `Profiles[].AutoInstall` to reflect minimum Stream Deck version.
+-   Update manifest `Icon` to remove Marketplace reference.
+
 ## 0.4.0
 
 ### 🐞 Fix
