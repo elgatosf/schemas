@@ -45,10 +45,12 @@ export type Manifest = {
 
 	/**
 	 * Path to the image, with the **file extension omitted**, that will be displayed next to the action list group within the Stream Deck application. The icon should accurately represent
-	 * the plugin, and enable users to quickly identify the plugin. The icon must adhere to the following style guidelines.
-	 * - Be in .PNG or .SVG format.
-	 * - Be provided in two sizes, 28x28 px and 56x56 px (@2x).
-	 * - Be monochromatic, with foreground color of #DFDFDF and a transparent background.
+	 * the plugin, and enable users to quickly identify the plugin.
+	 *
+	 * Image must be:
+	 * - PNG or SVG format.
+	 * - Provided in two sizes, 28 × 28 px and 56 × 56 px (@2x).
+	 * - Monochromatic, with foreground color of #DFDFDF and a transparent background.
 	 *
 	 * **Examples**:
 	 * - assets/category-icon
@@ -256,11 +258,12 @@ export type Action = {
 	Encoder?: Encoder;
 
 	/**
-	 * Path to the image, with the **file extension omitted**, that will be displayed next to the action in the Stream Deck application's action list. The image must adhere to
-	 * the following style guidelines.
-	 * - Be in .PNG or .SVG format.
-	 * - Be provided in two sizes, 20x20 px and 40x40 px (@2x).
-	 * - Be monochromatic, with foreground color of #EFEFEF and a transparent background.
+	 * Path to the image, with the **file extension omitted**, that will be displayed next to the action in the Stream Deck application's action list.
+	 *
+	 * Image must be:
+	 * - PNG or SVG format.
+	 * - Provided in two sizes, 20 × 20 px and 40 × 40 px (@2x).
+	 * - Monochromatic, with foreground color of #EFEFEF and a transparent background.
 	 *
 	 * **Examples:**
 	 * - assets/counter
@@ -380,9 +383,11 @@ export type ApplicationMonitoring = {
 export type Encoder = {
 	/**
 	 * Path to the image, with the **file extension omitted**, that will be displayed in the Stream Deck application in the circular canvas that represents the dial of the
-	 * action. The image must fulfill the following style guidelines.
-	 * - Be in .PNG or .SVG format.
-	 * - Be provided in two sizes, 72x72 px and 144x144 px (@2x).
+	 * action.
+	 *
+	 * Image must be:
+	 * - PNG or SVG format.
+	 * - Provided in two sizes, 72 × 72 px and 144 × 144 px (@2x).
 	 *
 	 * Note: Can be overridden by the user in the Stream Deck application.
 	 *
@@ -416,10 +421,11 @@ export type Encoder = {
 	TriggerDescription?: TriggerDescriptions;
 
 	/**
-	 * Path to the image, with the **file extension omitted**, that will be displayed on the touchscreen behind the action's layout. The image must fulfill the following style
-	 * guidelines.
-	 * - Be in .PNG or .SVG format.
-	 * - Be provided in two sizes, 200x100 px and 400x200 px (@2x).
+	 * Path to the image, with the **file extension omitted**, that will be displayed on the touchscreen behind the action's layout.
+	 *
+	 * Image must be:
+	 * - PNG or SVG format.
+	 * - Provided in two sizes, 200 × 100 px and 400 × 200 px (@2x).
 	 *
 	 * Note: Can be overridden by the user in the Stream Deck application.
 	 *
@@ -533,10 +539,11 @@ export type State = {
 	FontUnderline?: boolean;
 
 	/**
-	 * Path to the image, with the **file extension omitted**, that will be displayed on the Stream Deck when this action's state is active. The image must adhere to the following
-	 * style guidelines.
-	 * - Be in .GIF, .PNG or .SVG format.
-	 * - Be provided in two sizes, 72x72 px and 144x144 px (@2x).
+	 * Path to the image, with the **file extension omitted**, that will be displayed on the Stream Deck when this action's state is active.
+	 *
+	 * Image must be:
+	 * - GIF, PNG or SVG format.
+	 * - Provided in two sizes, 72 × 72 px and 144 × 144 px (@2x).
 	 *
 	 * Note: Can be overridden by the user in the Stream Deck application.
 	 *
@@ -551,10 +558,11 @@ export type State = {
 	Image: string;
 
 	/**
-	 * Path to the image, with the **file extension omitted**, that will be displayed when the action is being viewed as part of a multi-action. The image must adhere to the following
-	 * style guidelines.
-	 * - Be in .PNG or .SVG format.
-	 * - Be provided in two sizes, 72x72 px and 144x144 px (@2x).
+	 * Path to the image, with the **file extension omitted**, that will be displayed when the action is being viewed as part of a multi-action.
+	 *
+	 * Image must be:
+	 * - PNG or SVG format.
+	 * - Provided in two sizes, 72 × 72 px and 144 × 144 px (@2x).
 	 *
 	 * Note: Can be overridden by the user in the Stream Deck application.
 	 *
