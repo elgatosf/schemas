@@ -15,6 +15,7 @@
 
 ### ♻️ Update
 
+-   Improve consistency of color recommendations.
 -   Update dependencies.
 
 ## 0.4.1
