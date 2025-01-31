@@ -15,6 +15,7 @@
 
 ### ♻️ Update
 
+-   Update iconography color guide.
 -   Update dependencies.
 
 ## 0.4.1

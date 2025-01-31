@@ -50,7 +50,7 @@ export type Manifest = {
 	 * Image must be:
 	 * - PNG or SVG format.
 	 * - Provided in two sizes, 28 × 28 px and 56 × 56 px (@2x).
-	 * - Monochromatic, with foreground color of #DFDFDF and a transparent background.
+	 * - Monochromatic, with foreground color of #FFFFFF and a transparent background.
 	 *
 	 * **Examples**:
 	 * - assets/category-icon
@@ -263,7 +263,7 @@ export type Action = {
 	 * Image must be:
 	 * - PNG or SVG format.
 	 * - Provided in two sizes, 20 × 20 px and 40 × 40 px (@2x).
-	 * - Monochromatic, with foreground color of #EFEFEF and a transparent background.
+	 * - Monochromatic, with foreground color of #FFFFFF and a transparent background.
 	 *
 	 * **Examples:**
 	 * - assets/counter
@@ -405,9 +405,9 @@ export type Encoder = {
 	 * Background color to display in the Stream Deck application when the action is part of a dial stack, and is the current action. Represented as a hexadecimal value.
 	 *
 	 * **Examples:**
-	 * - #d60270
-	 * - #1f1f1
-	 * - #0038a8
+	 * - #D60270
+	 * - #F1F1F1
+	 * - #0038A8
 	 */
 	StackColor?: string;
 
@@ -607,8 +607,8 @@ export type State = {
 	 * Note: Can be overridden by the user in the Stream Deck application.
 	 *
 	 * **Examples:**
-	 * - #5bcefa
-	 * - #f5a9b8
+	 * - #5BCEFA
+	 * - #F5A9B8
 	 * - #FFFFFF
 	 */
 	TitleColor?: string;
