@@ -22,7 +22,9 @@ describe("v6.4", () => {
 			expect(errors).toHaveError({
 				instancePath: "/Actions/0",
 				keyword: "additionalProperties",
-				property: "OS"
+				params: {
+					additionalProperty: "OS"
+				}
 			});
 		});
 
@@ -35,7 +37,9 @@ describe("v6.4", () => {
 			expect(errors).toHaveError({
 				instancePath: "/Profiles/0",
 				keyword: "additionalProperties",
-				property: "AutoInstall"
+				params: {
+					additionalProperty: "AutoInstall"
+				}
 			});
 		});
 	});

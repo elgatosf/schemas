@@ -1,11 +1,12 @@
 import { type Manifest_6_4 } from "./manifest/v6.4";
 import { type Manifest_6_5 } from "./manifest/v6.5";
 import { type Manifest_6_6 } from "./manifest/v6.6";
+import { type Manifest_6_9 } from "./manifest/v6.9";
 
 /**
  * Defines the plugin and available actions, and all information associated with them, including the plugin's entry point, all iconography, action default behavior, etc.
  */
-export type Manifest = JsonSchema<Manifest_6_4> | JsonSchema<Manifest_6_5> | JsonSchema<Manifest_6_6>;
+export type Manifest = JsonSchema<Manifest_6_4> | JsonSchema<Manifest_6_5> | JsonSchema<Manifest_6_6> | JsonSchema<Manifest_6_9>;
 
 export type { Layout } from "./layout";
 

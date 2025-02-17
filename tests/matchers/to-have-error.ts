@@ -22,26 +22,13 @@ export const toHaveError: MatcherFunction<[error: AdditionalPropertyError]> = fu
 			};
 		}
 
-		// keyword or instancePath differ.
-		if (item.keyword !== error.keyword || item.instancePath !== error.instancePath) {
-			continue;
-		}
-
-		// When keyword is params do not match the error, continue.
-		if (error.keyword === "additionalProperties" && item.params.additionalProperty !== error.property) {
-			continue;
-		} else if (error.keyword === "pattern" && item.params.pattern !== error.pattern) {
+		// When the error was found, we are successful
+		if (item.keyword === error.keyword && item.instancePath === error.instancePath && this.equals(item.params, error.params)) {
 			return {
-				message: () => `expected ${this.utils.printReceived(item.params.pattern)} to be ${this.utils.printExpected(error.pattern)}`,
-				pass: false
+				message: () => `success`,
+				pass: true
 			};
 		}
-
-		// Otherwise the error was found.
-		return {
-			message: () => `expected ${this.utils.printReceived(item)} to be a JSON schema of keyword "additionalProperty" for ${error.instancePath}`,
-			pass: true
-		};
 	}
 
 	return {
@@ -53,32 +40,63 @@ export const toHaveError: MatcherFunction<[error: AdditionalPropertyError]> = fu
 /**
  * Represents a JSON error.
  */
-type JsonSchemaError = AdditionalPropertyError | PatternError;
+type JsonSchemaError = AdditionalPropertyError | ConstError | EnumError | PatternError;
 
 /**
  * Represents a JSON error for the keyword `additionalProperties`.
  */
-type AdditionalPropertyError = {
-	/**
-	 * Path to the instance of the error.
-	 */
-	instancePath: string;
+type AdditionalPropertyError = JsonSchemaBaseError<
+	"additionalProperties",
+	{
+		/**
+		 * Name of the property that should not be present.
+		 */
+		additionalProperty: string;
+	}
+>;
 
-	/**
-	 * Keyword of the error.
-	 */
-	keyword: "additionalProperties";
-
-	/**
-	 * Name of the property that should not be present.
-	 */
-	property: string;
-};
+/**
+ * Represents a JSON error for the keyword `const`.
+ */
+type ConstError = JsonSchemaBaseError<
+	"const",
+	{
+		/**
+		 * The allowed value.
+		 */
+		allowedValue: unknown;
+	}
+>;
+/**
+ * Represents a JSON error for the keyword `enum`.
+ */
+type EnumError = JsonSchemaBaseError<
+	"enum",
+	{
+		/**
+		 * The allowed values.
+		 */
+		allowedValues: unknown[];
+	}
+>;
 
 /**
  * Represents a JSON error for the keyword `pattern`.
  */
-type PatternError = {
+type PatternError = JsonSchemaBaseError<
+	"pattern",
+	{
+		/**
+		 * Expected pattern.
+		 */
+		pattern: string;
+	}
+>;
+
+/**
+ * Represents a base JSON schema error.
+ */
+type JsonSchemaBaseError<TKeyword, TParams> = {
 	/**
 	 * Path to the instance of the error.
 	 */
@@ -87,12 +105,12 @@ type PatternError = {
 	/**
 	 * Keyword of the error.
 	 */
-	keyword: "pattern";
+	keyword: TKeyword;
 
 	/**
-	 * Expected pattern.
+	 * Parameters that define the validation rule.
 	 */
-	pattern: string;
+	params: TParams;
 };
 
 declare global {
