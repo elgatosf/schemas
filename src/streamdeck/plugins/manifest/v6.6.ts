@@ -3,7 +3,7 @@ import type { Manifest_6_9 } from "./v6.9";
 /**
  * Defines the plugin and available actions, and all information associated with them, including the plugin's entry point, all iconography, action default behavior, etc.
  */
-export type Manifest_6_6 = Omit<Manifest_6_9, "Software" | "SDKVersion"> & {
+export type Manifest_6_6 = Omit<Manifest_6_9, "SDKVersion" | "Software"> & {
 	/**
 	 * Determines the Stream Deck software requirements for this plugin.
 	 */
