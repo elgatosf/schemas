@@ -171,9 +171,12 @@ export type Manifest = {
 	PropertyInspectorPath?: FilePath<"htm" | "html">;
 
 	/**
-	 * Preferred SDK version; this should _currently_ always be 2.
+	 * Preferred SDK version.
+	 *
+	 * Note: SDK version 3 is available in preview mode from Stream Deck 6.9; this SDK version is
+	 * subject to change.
 	 */
-	SDKVersion: 2;
+	SDKVersion: 2 | 3;
 
 	/**
 	 * Determines the Stream Deck software requirements for this plugin.

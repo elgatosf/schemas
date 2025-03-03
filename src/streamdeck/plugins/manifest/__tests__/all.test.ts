@@ -16,7 +16,9 @@ describe.each(["v6.4", "v6.5", "v6.6", "v6.7", "v6.8"])("%s", (version) => {
 			expect(errors).toHaveError({
 				instancePath: "/Actions/0/Icon",
 				keyword: "pattern",
-				pattern: patterns.IMAGE_PATH
+				params: {
+					pattern: patterns.IMAGE_PATH
+				}
 			});
 		});
 
@@ -34,7 +36,9 @@ describe.each(["v6.4", "v6.5", "v6.6", "v6.7", "v6.8"])("%s", (version) => {
 			expect(errors).toHaveError({
 				instancePath: "/Actions/0/PropertyInspectorPath",
 				keyword: "pattern",
-				pattern: patterns.HTML_PATH
+				params: {
+					pattern: patterns.HTML_PATH
+				}
 			});
 		});
 
@@ -47,7 +51,9 @@ describe.each(["v6.4", "v6.5", "v6.6", "v6.7", "v6.8"])("%s", (version) => {
 			expect(errors).toHaveError({
 				instancePath: "/Actions/0/UUID",
 				keyword: "pattern",
-				pattern: patterns.UUID
+				params: {
+					pattern: patterns.UUID
+				}
 			});
 		});
 
@@ -64,7 +70,9 @@ describe.each(["v6.4", "v6.5", "v6.6", "v6.7", "v6.8"])("%s", (version) => {
 				expect(errors).toHaveError({
 					instancePath: "/Actions/0/Encoder/Icon",
 					keyword: "pattern",
-					pattern: patterns.IMAGE_PATH
+					params: {
+						pattern: patterns.IMAGE_PATH
+					}
 				});
 			});
 
@@ -77,7 +85,9 @@ describe.each(["v6.4", "v6.5", "v6.6", "v6.7", "v6.8"])("%s", (version) => {
 				expect(errors).toHaveError({
 					instancePath: "/Actions/0/Encoder/background",
 					keyword: "pattern",
-					pattern: patterns.ENCODER_BACKGROUND_PATH
+					params: {
+						pattern: patterns.ENCODER_BACKGROUND_PATH
+					}
 				});
 			});
 
@@ -90,7 +100,9 @@ describe.each(["v6.4", "v6.5", "v6.6", "v6.7", "v6.8"])("%s", (version) => {
 				expect(errors).toHaveError({
 					instancePath: "/Actions/0/Encoder/layout",
 					keyword: "pattern",
-					pattern: patterns.LAYOUT
+					params: {
+						pattern: patterns.LAYOUT
+					}
 				});
 			});
 		});
@@ -108,7 +120,9 @@ describe.each(["v6.4", "v6.5", "v6.6", "v6.7", "v6.8"])("%s", (version) => {
 				expect(errors).toHaveError({
 					instancePath: "/Actions/0/States/0/Image",
 					keyword: "pattern",
-					pattern: patterns.IMAGE_PATH_WITH_GIF_SUPPORT
+					params: {
+						pattern: patterns.IMAGE_PATH_WITH_GIF_SUPPORT
+					}
 				});
 			});
 
@@ -121,7 +135,9 @@ describe.each(["v6.4", "v6.5", "v6.6", "v6.7", "v6.8"])("%s", (version) => {
 				expect(errors).toHaveError({
 					instancePath: "/Actions/0/States/0/MultiActionImage",
 					keyword: "pattern",
-					pattern: patterns.IMAGE_PATH
+					params: {
+						pattern: patterns.IMAGE_PATH
+					}
 				});
 			});
 		});
@@ -136,7 +152,9 @@ describe.each(["v6.4", "v6.5", "v6.6", "v6.7", "v6.8"])("%s", (version) => {
 		expect(errors).toHaveError({
 			instancePath: "/CategoryIcon",
 			keyword: "pattern",
-			pattern: patterns.IMAGE_PATH
+			params: {
+				pattern: patterns.IMAGE_PATH
+			}
 		});
 	});
 
@@ -149,7 +167,9 @@ describe.each(["v6.4", "v6.5", "v6.6", "v6.7", "v6.8"])("%s", (version) => {
 		expect(errors).toHaveError({
 			instancePath: "/CodePath",
 			keyword: "pattern",
-			pattern: patterns.FILE_PATH
+			params: {
+				pattern: patterns.FILE_PATH
+			}
 		});
 	});
 
@@ -162,7 +182,9 @@ describe.each(["v6.4", "v6.5", "v6.6", "v6.7", "v6.8"])("%s", (version) => {
 		expect(errors).toHaveError({
 			instancePath: "/CodePathMac",
 			keyword: "pattern",
-			pattern: patterns.FILE_PATH
+			params: {
+				pattern: patterns.FILE_PATH
+			}
 		});
 	});
 
@@ -175,7 +197,9 @@ describe.each(["v6.4", "v6.5", "v6.6", "v6.7", "v6.8"])("%s", (version) => {
 		expect(errors).toHaveError({
 			instancePath: "/CodePathWin",
 			keyword: "pattern",
-			pattern: patterns.FILE_PATH
+			params: {
+				pattern: patterns.FILE_PATH
+			}
 		});
 	});
 
@@ -188,7 +212,9 @@ describe.each(["v6.4", "v6.5", "v6.6", "v6.7", "v6.8"])("%s", (version) => {
 		expect(errors).toHaveError({
 			instancePath: "/Icon",
 			keyword: "pattern",
-			pattern: patterns.ICON_PATH
+			params: {
+				pattern: patterns.ICON_PATH
+			}
 		});
 	});
 
@@ -206,7 +232,9 @@ describe.each(["v6.4", "v6.5", "v6.6", "v6.7", "v6.8"])("%s", (version) => {
 			expect(errors).toHaveError({
 				instancePath: "/Profiles/0/Name",
 				keyword: "pattern",
-				pattern: patterns.PROFILE_PATH
+				params: {
+					pattern: patterns.PROFILE_PATH
+				}
 			});
 		});
 	});
@@ -225,7 +253,9 @@ describe.each(["v6.4", "v6.5", "v6.6", "v6.7", "v6.8"])("%s", (version) => {
 		expect(errors).toHaveError({
 			instancePath: "/PropertyInspectorPath",
 			keyword: "pattern",
-			pattern: patterns.HTML_PATH
+			params: {
+				pattern: patterns.HTML_PATH
+			}
 		});
 	});
 
@@ -238,7 +268,9 @@ describe.each(["v6.4", "v6.5", "v6.6", "v6.7", "v6.8"])("%s", (version) => {
 		expect(errors).toHaveError({
 			instancePath: "/UUID",
 			keyword: "pattern",
-			pattern: patterns.UUID
+			params: {
+				pattern: patterns.UUID
+			}
 		});
 	});
 });
