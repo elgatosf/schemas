@@ -11,6 +11,12 @@
 
 # Change Log
 
+## 0.4.3
+
+### ✨ New
+
+-   Add Stream Deck 6.9.
+
 ## 0.4.2
 
 ### ♻️ Update
