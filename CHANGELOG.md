@@ -11,6 +11,12 @@
 
 # Change Log
 
+## 0.4.4
+
+### ✨ New
+
+-   Add `SupportURL` and `Actions[].SupportURL`.
+
 ## 0.4.3
 
 ### ✨ New

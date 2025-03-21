@@ -36,6 +36,7 @@
 					"TitleColor": "#000000"
 				}
 			],
+			"SupportURL": "https://help.elgato.com",
 			"SupportedInMultiActions": true,
 			"Tooltip": "This is the tooltip",
 			"UserTitleEnabled": true,
@@ -85,6 +86,7 @@
 	"Software": {
 		"MinimumVersion": "6.9"
 	},
+	"SupportURL": "https://help.elgato.com",
 	"URL": "https://www.elgato.com",
 	"UUID": "com.elgato.test",
 	"Version": "1.0.0.0"
