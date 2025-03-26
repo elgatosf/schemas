@@ -78,4 +78,39 @@ describe("6.9", () => {
 			});
 		});
 	});
+
+	describe("SupportURL", () => {
+		it("is optional", () => {
+			// Arrange, act.
+			const errors = validateStreamDeckPluginManifest("v6.9.json", (m) => {
+				m.Actions[0].SupportURL = undefined;
+				m.SupportURL = undefined;
+			});
+
+			// Assert.
+			expect(errors).toHaveLength(0);
+		});
+
+		it("cannot be in lower than 6.9", () => {
+			// Arrange, act.
+			const errors = validateStreamDeckPluginManifest("v6.9.json", (m) => (m.Software.MinimumVersion = "6.8"));
+
+			// Assert.
+			expect(errors).toHaveError({
+				keyword: "additionalProperties",
+				instancePath: "/Actions/0",
+				params: {
+					additionalProperty: "SupportURL"
+				}
+			});
+
+			expect(errors).toHaveError({
+				keyword: "additionalProperties",
+				instancePath: "",
+				params: {
+					additionalProperty: "SupportURL"
+				}
+			});
+		});
+	});
 });

@@ -184,6 +184,15 @@ export type Manifest = {
 	Software: Software;
 
 	/**
+	 * Link to the plugin's support website.
+	 *
+	 * **Examples**:
+	 * - https://help.corsair.com/
+	 * - https://help.elgato.com/
+	 */
+	SupportURL?: string;
+
+	/**
 	 * Link to the plugin's website.
 	 *
 	 * **Examples**:
@@ -317,6 +326,15 @@ export type Action = {
 	 * Determines whether the action is available to user's when they are creating multi-actions. Default is `true`.
 	 */
 	SupportedInMultiActions?: boolean;
+
+	/**
+	 * Link to the actions's support website.
+	 *
+	 * **Examples**:
+	 * - https://help.corsair.com/
+	 * - https://help.elgato.com/
+	 */
+	SupportURL?: string;
 
 	/**
 	 * Tooltip shown to the user when they hover over the action within the actions list in the Stream Deck application.
