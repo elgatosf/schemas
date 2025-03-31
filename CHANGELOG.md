@@ -11,6 +11,12 @@
 
 # Change Log
 
+## 0.4.5
+
+### ✨ New
+
+-   Add `StreamDeckStudio` device type and manifest hint.
+
 ## 0.4.4
 
 ### ✨ New

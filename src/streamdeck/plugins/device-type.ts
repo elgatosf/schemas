@@ -50,5 +50,10 @@ export enum DeviceType {
 	/**
 	 * Stream Deck Neo, comprised of 8 customizable LCD keys in a 4 x 2 layout, an info bar, and 2 touch points for page navigation.
 	 */
-	StreamDeckNeo = 9
+	StreamDeckNeo = 9,
+
+	/**
+	 * Stream Deck Studio, comprised of 32 customizable LCD keys in a 16 x 2 layout, and 2 dials (1 on either side).
+	 */
+	StreamDeckStudio = 10
 }
