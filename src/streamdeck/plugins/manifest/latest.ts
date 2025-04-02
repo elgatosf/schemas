@@ -694,6 +694,7 @@ export type Profile = {
 	 * - Stream Deck + (7)
 	 * - SCUF Controller (8)
 	 * - Stream Deck Neo (9)
+	 * - Stream Deck Studio (10)
 	 */
 	DeviceType: (typeof DeviceType)[keyof typeof DeviceType];
 
