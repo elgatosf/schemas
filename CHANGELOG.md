@@ -11,6 +11,12 @@
 
 # Change Log
 
+## 0.4.6
+
+### 🐞 Fix
+
+-   Fix documentation for `Icon` size requirements.
+
 ## 0.4.5
 
 ### ✨ New

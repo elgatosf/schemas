@@ -110,7 +110,7 @@ export type Manifest = {
 	 *
 	 * Image must be:
 	 * - PNG format.
-	 * - Provided in two sizes, 288 × 288 px and 512 × 512 px (@2x).
+	 * - Provided in two sizes, 256 × 256 px and 512 × 512 px (@2x).
 	 *
 	 * **Examples:**
 	 * - assets/plugin-icon
@@ -118,7 +118,7 @@ export type Manifest = {
 	 * @filePath
 	 * { extensions: [".png"], includeExtension: false }
 	 * @imageDimensions
-	 * [288, 288]
+	 * [256, 256]
 	 */
 	Icon: string;
 
