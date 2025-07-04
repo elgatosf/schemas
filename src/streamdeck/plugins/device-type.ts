@@ -55,5 +55,10 @@ export enum DeviceType {
 	/**
 	 * Stream Deck Studio, comprised of 32 customizable LCD keys in a 16 x 2 layout, and 2 dials (1 on either side).
 	 */
-	StreamDeckStudio = 10
+	StreamDeckStudio = 10,
+
+	/**
+	 * Virtual Stream Deck, comprised of 1 to 64 action (on-screen) on a scalable canvas, with a maximum layout of 8 x 8.
+	 */
+	VirtualStreamDeck = 11
 }
