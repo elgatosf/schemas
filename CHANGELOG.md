@@ -15,6 +15,7 @@
 
 ### ✨ New
 
+-   Add Stream Deck 7.0.
 -   Add `VirtualStreamDeck` device type and manifest hint.
 
 ## 0.4.6
