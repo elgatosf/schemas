@@ -1,116 +1,59 @@
 import { validateStreamDeckPluginManifest } from "@tests";
 
-describe("6.9", () => {
+describe.each(["6.9" as const, "7.0" as const])("v%s", (version) => {
 	/**
 	 * Asserts the full manifest.
 	 */
 	test("full manifest", () => {
 		// Arrange, act, assert.
-		const errors = validateStreamDeckPluginManifest(`v6.9.json`);
+		const errors = validateStreamDeckPluginManifest(`v${version}.json`);
 		expect(errors).toHaveLength(0);
 	});
 
 	describe("SDKVersion", () => {
-		describe("in Stream Deck 6.9", () => {
-			/**
-			 * Asserts the `SDKVersion` can be `2` in Stream Deck `6.9`.
-			 */
-			test("can be 2", () => {
-				const errors = validateStreamDeckPluginManifest("v6.9.json", (m) => (m.SDKVersion = 2));
-				expect(errors).toHaveLength(0);
-			});
-
-			/**
-			 * Asserts the `SDKVersion` can be `3` in Stream Deck `6.9`.
-			 */
-			test("can be 3", () => {
-				const errors = validateStreamDeckPluginManifest("v6.9.json", (m) => (m.SDKVersion = 3));
-				expect(errors).toHaveLength(0);
-			});
-
-			/**
-			 * Asserts the `SDKVersion` is within scope in Stream Deck `6.9`.
-			 */
-			test("cannot be 4 in 6.9", () => {
-				const errors = validateStreamDeckPluginManifest("v6.9.json", (m) => {
-					// @ts-expect-error: To test invalid values for 6.9
-					m.SDKVersion = 4;
-				});
-
-				expect(errors).toHaveError({
-					keyword: "enum",
-					instancePath: "/SDKVersion",
-					params: {
-						allowedValues: [2, 3]
-					}
-				});
-			});
+		/**
+		 * Asserts the `SDKVersion` can be `2`.
+		 */
+		test("can be 2", () => {
+			const errors = validateStreamDeckPluginManifest(`v${version}.json`, (m) => (m.SDKVersion = 2));
+			expect(errors).toHaveLength(0);
 		});
 
-		describe("in Stream Deck 6.8", () => {
-			/**
-			 * Asserts the `SDKVersion` can be `2` in Stream Deck `6.8`.
-			 */
-			it("can be 2", () => {
-				const errors = validateStreamDeckPluginManifest("v6.8.json", (m) => {
-					m.SDKVersion = 2;
-				});
+		/**
+		 * Asserts the `SDKVersion` can be `3`.
+		 */
+		test("can be 3", () => {
+			const errors = validateStreamDeckPluginManifest(`v${version}.json`, (m) => (m.SDKVersion = 3));
+			expect(errors).toHaveLength(0);
+		});
 
-				expect(errors).toHaveLength(0);
+		/**
+		 * Asserts the `SDKVersion` is within scope.
+		 */
+		test("cannot be 4", () => {
+			const errors = validateStreamDeckPluginManifest(`v${version}.json`, (m) => {
+				// @ts-expect-error: To test invalid values
+				m.SDKVersion = 4;
 			});
 
-			/**
-			 * Asserts the `SDKVersion` cannot be `3` in Stream Deck `6.8`.
-			 */
-			it("cannot be 3", () => {
-				const errors = validateStreamDeckPluginManifest("v6.9.json", (m) => {
-					m.Software.MinimumVersion = "6.8";
-					m.SDKVersion = 3;
-				});
-
-				expect(errors).toHaveError({
-					keyword: "const",
-					instancePath: "/SDKVersion",
-					params: {
-						allowedValue: 2
-					}
-				});
+			expect(errors).toHaveError({
+				keyword: "enum",
+				instancePath: "/SDKVersion",
+				params: {
+					allowedValues: [2, 3]
+				}
 			});
 		});
 	});
 
-	describe("SupportURL", () => {
-		it("is optional", () => {
-			// Arrange, act.
-			const errors = validateStreamDeckPluginManifest("v6.9.json", (m) => {
-				m.Actions[0].SupportURL = undefined;
-				m.SupportURL = undefined;
-			});
-
-			// Assert.
-			expect(errors).toHaveLength(0);
+	test("SupportURL is optional", () => {
+		// Arrange, act.
+		const errors = validateStreamDeckPluginManifest(`v${version}.json`, (m) => {
+			m.Actions[0].SupportURL = undefined;
+			m.SupportURL = undefined;
 		});
 
-		it("cannot be in lower than 6.9", () => {
-			// Arrange, act.
-			const errors = validateStreamDeckPluginManifest("v6.9.json", (m) => (m.Software.MinimumVersion = "6.8"));
-
-			// Assert.
-			expect(errors).toHaveError({
-				keyword: "additionalProperties",
-				instancePath: "/Actions/0",
-				params: {
-					additionalProperty: "SupportURL"
-				}
-			});
-
-			expect(errors).toHaveError({
-				keyword: "additionalProperties",
-				instancePath: "",
-				params: {
-					additionalProperty: "SupportURL"
-				}
-			});
-		});
+		// Assert.
+		expect(errors).toHaveLength(0);
 	});
 });

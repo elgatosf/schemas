@@ -42,4 +42,60 @@ describe.each(["6.6" as const, "6.7" as const, "6.8" as const])("v%s", (version)
 			expect(errors).toHaveLength(0);
 		});
 	});
+
+	describe("SDKVersion", () => {
+		/**
+		 * Asserts the `SDKVersion` can be `2`.
+		 */
+		it("can be 2", () => {
+			const errors = validateStreamDeckPluginManifest(`v${version}.json`, (m) => {
+				m.SDKVersion = 2;
+			});
+
+			expect(errors).toHaveLength(0);
+		});
+
+		/**
+		 * Asserts the `SDKVersion` cannot be `3`.
+		 */
+		it("cannot be 3", () => {
+			const errors = validateStreamDeckPluginManifest(`v${version}.json`, (m) => {
+				m.Software.MinimumVersion = version;
+				m.SDKVersion = 3;
+			});
+
+			expect(errors).toHaveError({
+				keyword: "const",
+				instancePath: "/SDKVersion",
+				params: {
+					allowedValue: 2
+				}
+			});
+		});
+	});
+
+	/**
+	 * Asserts the SupportURL is invalid.
+	 */
+	test("SupportURL is invalid", () => {
+		// Arrange, act.
+		const errors = validateStreamDeckPluginManifest("v6.9.json", (m) => (m.Software.MinimumVersion = "6.8"));
+
+		// Assert.
+		expect(errors).toHaveError({
+			keyword: "additionalProperties",
+			instancePath: "/Actions/0",
+			params: {
+				additionalProperty: "SupportURL"
+			}
+		});
+
+		expect(errors).toHaveError({
+			keyword: "additionalProperties",
+			instancePath: "",
+			params: {
+				additionalProperty: "SupportURL"
+			}
+		});
+	});
 });
