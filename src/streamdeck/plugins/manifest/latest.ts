@@ -16,7 +16,7 @@ export type Software = {
  */
 export type Manifest = {
 	/**
-	 * Collection of actions provided by the plugin, and all of their information; this can include actions that are available to user's via the actions list, and actions that are
+	 * Collection of actions provided by the plugin, and all of their information; this can include actions that are available to users via the actions list, and actions that are
 	 * hidden to the user but available to pre-defined profiles distributed with the plugin (`Manifest.Actions.VisibleInActionsList`).
 	 */
 	Actions: Action[];
@@ -189,6 +189,8 @@ export type Manifest = {
 	 * **Examples**:
 	 * - https://help.corsair.com/
 	 * - https://help.elgato.com/
+	 *
+	 * Available from Stream Deck 6.9.
 	 */
 	SupportURL?: string;
 
@@ -323,7 +325,14 @@ export type Action = {
 	States: State[];
 
 	/**
-	 * Determines whether the action is available to user's when they are creating multi-actions. Default is `true`.
+	 * Determines whether the action is available to users when they are creating key logic actions. Default is `true`.
+	 *
+	 * Available from Stream Deck 7.0.
+	 */
+	SupportedInKeyLogicActions?: boolean;
+
+	/**
+	 * Determines whether the action is available to users when they are creating multi-actions. Default is `true`.
 	 */
 	SupportedInMultiActions?: boolean;
 
@@ -333,6 +342,8 @@ export type Action = {
 	 * **Examples**:
 	 * - https://help.corsair.com/
 	 * - https://help.elgato.com/
+	 *
+	 * Available from Stream Deck 6.9.
 	 */
 	SupportURL?: string;
 
@@ -371,7 +382,7 @@ export type Action = {
 	UserTitleEnabled?: boolean;
 
 	/**
-	 * Determines whether the action is available to user's via the actions list in the Stream Deck application. Setting this to `false` allows for the action to be used as
+	 * Determines whether the action is available to users via the actions list in the Stream Deck application. Setting this to `false` allows for the action to be used as
 	 * part of pre-defined profiles distributed with the plugins, whilst not being available to users. Default is `true`.
 	 */
 	VisibleInActionsList?: boolean;

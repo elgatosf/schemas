@@ -11,6 +11,12 @@
 
 # Change Log
 
+## 0.4.8
+
+### ✨ New
+
+-   Add `Actions[].SupportedInKeyLogicActions`.
+
 ## 0.4.7
 
 ### ✨ New

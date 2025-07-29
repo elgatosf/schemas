@@ -37,6 +37,7 @@
 				}
 			],
 			"SupportURL": "https://help.elgato.com",
+			"SupportedInKeyLogicActions": true,
 			"SupportedInMultiActions": true,
 			"Tooltip": "This is the tooltip",
 			"UserTitleEnabled": true,

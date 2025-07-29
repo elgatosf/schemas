@@ -1,6 +1,6 @@
 import { validateStreamDeckPluginManifest } from "@tests";
 
-describe.each(["6.9" as const])("v%s", (version) => {
+describe.each(["7.0" as const])("v%s", (version) => {
 	/**
 	 * Asserts the full manifest.
 	 */
@@ -45,15 +45,28 @@ describe.each(["6.9" as const])("v%s", (version) => {
 			});
 		});
 	});
+});
 
-	test("SupportURL is optional", () => {
-		// Arrange, act.
-		const errors = validateStreamDeckPluginManifest(`v${version}.json`, (m) => {
-			m.Actions[0].SupportURL = undefined;
-			m.SupportURL = undefined;
-		});
-
-		// Assert.
+describe("SupportedInKeyLogicActions", () => {
+	/**
+	 * Asserts Actions[].SupportedInKeyLogicActions is available in Stream Deck 7.0.
+	 */
+	it("is supported in 7.0", () => {
+		const errors = validateStreamDeckPluginManifest(`v7.0.json`, (m) => (m.Actions[0].SupportedInKeyLogicActions = true));
 		expect(errors).toHaveLength(0);
+	});
+
+	/**
+	 * Asserts Actions[].SupportedInKeyLogicActions is not available in Stream Deck 6.9.
+	 */
+	it("is not supported in 6.9", () => {
+		const errors = validateStreamDeckPluginManifest(`v6.9.json`, (m) => (m.Actions[0].SupportedInKeyLogicActions = true));
+		expect(errors).toHaveError({
+			keyword: "additionalProperties",
+			instancePath: "/Actions/0",
+			params: {
+				additionalProperty: "SupportedInKeyLogicActions"
+			}
+		});
 	});
 });
