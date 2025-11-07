@@ -671,9 +671,9 @@ export type Nodejs = {
 	GenerateProfilerOutput?: boolean;
 
 	/**
-	 * Version of Node.js to use; currently version `"20"` is supported.
+	 * Version of Node.js to use.
 	 */
-	Version: "20";
+	Version: "20" | "24";
 };
 
 /**
