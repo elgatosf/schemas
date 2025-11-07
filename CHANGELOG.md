@@ -11,10 +11,18 @@
 
 # Change Log
 
-## 0.4.9
+## 0.4.10
+
+### ✨ New
 
 -   Add Stream Deck 7.1.
 -   Add support for Node.js 24.
+
+## 0.4.9
+
+### ♻️ Update
+
+-   Update recommended `SDKVersion`.
 
 ## 0.4.8
 
