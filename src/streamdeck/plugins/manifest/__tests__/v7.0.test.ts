@@ -46,6 +46,11 @@ describe.each(["7.0" as const])("v%s", (version) => {
 		});
 	});
 
+	test("Node.js is optional", () => {
+		const errors = validateStreamDeckPluginManifest(`v${version}.json`, (m) => (m.Nodejs = undefined));
+		expect(errors).toHaveLength(0);
+	});
+
 	describe("Nodejs.Version", () => {
 		/**
 		 * Asserts Nodejs.Version can be 20.

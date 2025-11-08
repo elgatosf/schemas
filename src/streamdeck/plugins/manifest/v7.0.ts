@@ -8,7 +8,7 @@ export type Manifest_7_0 = Omit<Manifest_7_1, "Nodejs" | "Software"> & {
 	/**
 	 * Configuration options for Node.js based plugins.
 	 */
-	Nodejs: Omit<Nodejs, "Version"> & {
+	Nodejs?: Omit<Nodejs, "Version"> & {
 		/**
 		 * Version of Node.js to use.
 		 */

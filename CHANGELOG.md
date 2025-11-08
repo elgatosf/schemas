@@ -11,6 +11,12 @@
 
 # Change Log
 
+## 0.4.11
+
+### 🐞 Fix
+
+-   `Nodejs` is now correctly marked as optional in older version.
+
 ## 0.4.10
 
 ### ✨ New
