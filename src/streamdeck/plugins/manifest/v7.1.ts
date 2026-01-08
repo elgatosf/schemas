@@ -11,6 +11,6 @@ export type Manifest_7_1 = Omit<Manifest, "Software"> & {
 		/**
 		 * Minimum version of the Stream Deck application required for this plugin to run.
 		 */
-		MinimumVersion: "7.1";
+		MinimumVersion: "7.1" | "7.2";
 	};
 };
