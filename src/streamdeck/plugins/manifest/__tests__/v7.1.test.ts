@@ -1,6 +1,6 @@
 import { validateStreamDeckPluginManifest } from "@tests";
 
-describe.each(["7.1" as const])("v%s", (version) => {
+describe.each(["7.1" as const, "7.2" as const])("v%s", (version) => {
 	/**
 	 * Asserts the full manifest.
 	 */
