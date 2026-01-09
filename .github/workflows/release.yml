@@ -13,9 +13,10 @@ defaults:
 jobs:
   Publish:
     runs-on: "ubuntu-latest"
+
     permissions:
       contents: read
-      id-token: write
+      id-token: write # Required for OIDC
 
     steps:
       - name: "📥 Checkout"
@@ -24,7 +25,7 @@ jobs:
       - name: "🗃️ Setup Node"
         uses: actions/setup-node@v4
         with:
-          node-version: "20.8.1"
+          node-version: "24"
           registry-url: "https://registry.npmjs.org"
 
       - name: "📐 Install dependencies"
@@ -39,10 +40,12 @@ jobs:
       - name: "🧪 Test"
         run: npm run test:ci
 
+      - name: "📖 Retrieve package information"
+        uses: geekyeggo/npm-pkg@v1
+        id: pkg
+
       - name: "📤 Publish"
-        run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --tag ${{ steps.pkg.outputs.version-tag }}
 
       - name: "💾 Preserve schemas"
         uses: actions/upload-artifact@v4
