@@ -11,6 +11,12 @@
 
 # Change Log
 
+## 0.4.13
+
+### 🐞 Fix
+
+-   Fix release pipeline.
+
 ## 0.4.12
 
 ### ✨ New
