@@ -13,6 +13,8 @@
 
 ## 0.4.14
 
+### ✨ New
+
 - Add Stream Deck 7.3.
 - Add `Galleon100SD` device type and manifest hint.
 - Add `StreamDeckPlusXL` device type and manifest hint.
