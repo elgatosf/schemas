@@ -76,7 +76,7 @@
 	],
 	"Profiles": [
 		{
-			"DeviceType": 7,
+			"DeviceType": 13,
 			"DontAutoSwitchWhenInstalled": true,
 			"Name": "Test Profile",
 			"Readonly": true
