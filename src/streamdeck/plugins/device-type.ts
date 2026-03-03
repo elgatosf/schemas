@@ -60,5 +60,15 @@ export enum DeviceType {
 	/**
 	 * Virtual Stream Deck, comprised of 1 to 64 action (on-screen) on a scalable canvas, with a maximum layout of 8 x 8.
 	 */
-	VirtualStreamDeck = 11
+	VirtualStreamDeck = 11,
+
+	/**
+	 * High-performance gaming keyboard, with a built-in Stream Deck comprised of 12 customizable LCD keys in a 3 x 4 layout, an LCD screen, and 2 dials.
+	 */
+	Galleon100SD = 12,
+
+	/**
+	 * Stream Deck + XL, comprised of 36 customizable LCD keys in a 9 x 4 layout, a touch strip, and 6 dials.
+	 */
+	StreamDeckPlusXL = 13
 }
