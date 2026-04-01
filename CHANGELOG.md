@@ -11,6 +11,10 @@
 
 # Change Log
 
+## 0.4.15
+
+- Add Stream Deck 7.4.
+
 ## 0.4.14
 
 ### ✨ New
