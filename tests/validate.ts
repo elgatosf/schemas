@@ -12,7 +12,7 @@ import type { Manifest } from "../src/streamdeck/plugins";
  */
 export function validateStreamDeckPluginManifest(filename: string, modify?: (manifest: Manifest) => void): ErrorObject<string, Record<string, unknown>, unknown>[] {
 	const schema = JSON.parse(getFileContents("../streamdeck/plugins/manifest.json"));
-	const validate = new Ajv({ allErrors: true })
+	const validate = new Ajv({ allErrors: true, strictTypes: false })
 		.addKeyword(keywordDefinitions.errorMessage)
 		.addKeyword(keywordDefinitions.filePath)
 		.addKeyword(keywordDefinitions.imageDimensions)
