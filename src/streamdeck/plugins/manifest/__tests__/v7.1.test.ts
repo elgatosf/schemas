@@ -1,6 +1,6 @@
 import { validateStreamDeckPluginManifest } from "@tests";
 
-describe.each(["7.1" as const, "7.2" as const, "7.3" as const, "7.4" as const])("v%s", (version) => {
+describe.each(["7.1" as const, "7.2" as const, "7.3" as const, "7.4" as const, "7.5" as const])("v%s", (version) => {
 	/**
 	 * Asserts the full manifest.
 	 */
@@ -41,6 +41,25 @@ describe.each(["7.1" as const, "7.2" as const, "7.3" as const, "7.4" as const])(
 				instancePath: "/SDKVersion",
 				params: {
 					allowedValues: [2, 3]
+				}
+			});
+		});
+	});
+
+	describe("Actions[].Controllers", () => {
+		/**
+		 * Asserts Actions[].Controllers cannot contain "Neo".
+		 */
+		it("cannot be Neo", () => {
+			const errors = validateStreamDeckPluginManifest(`v${version}.json`, (m) => {
+				m.Actions[0].Controllers = ["Neo"];
+			});
+
+			expect(errors).toHaveError({
+				keyword: "enum",
+				instancePath: "/Actions/0/Controllers/0",
+				params: {
+					allowedValues: ["Encoder", "Keypad"]
 				}
 			});
 		});

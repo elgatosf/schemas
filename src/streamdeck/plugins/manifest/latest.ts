@@ -232,21 +232,25 @@ export type Manifest = {
 };
 
 /**
- * Defines the controller type the action is applicable to. **Keypad** refers to a standard action on a Stream Deck device, e.g. 1 of the 15 buttons on the Stream Deck MK.2, or a pedal
- * on the Stream Deck Pedal, etc., whereas an **Encoder** refers to a dial / touchscreen on the Stream Deck +.
+ * Defines the controller type the action is applicable to.
+ * - **Keypad** refers to a standard action on a Stream Deck device, e.g. 1 of the 15 buttons on the Stream Deck MK.2
+ * - **Encoder** refers to a dial / touchscreen on the Stream Deck +.
+ * - **Neo** refers to the infobar found on Stream Deck Neo (available from Stream Deck 7.6).
  */
-export type Controller = "Encoder" | "Keypad";
+export type Controller = "Encoder" | "Keypad" | "Neo";
 
 /**
  * Provides information about an action provided by the plugin.
  */
 export type Action = {
 	/**
-	 * Defines the controller type the action is applicable to. **Keypad** refers to a standard action on a Stream Deck device, e.g. 1 of the 15 buttons on the Stream Deck MK.2,
-	 * or a pedal on the Stream Deck Pedal, etc., whereas an **Encoder** refers to a dial / touchscreen on the Stream Deck +.
+	 * Defines the controller type the action is applicable to.
+	 * - **Keypad** refers to a standard action on a Stream Deck device, e.g. 1 of the 15 buttons on the Stream Deck MK.2
+	 * - **Encoder** refers to a dial / touchscreen on the Stream Deck +.
+	 * - **Neo** refers to the infobar found on Stream Deck Neo (available from Stream Deck 7.6).
 	 * @uniqueItems
 	 */
-	Controllers?: [Controller, Controller?];
+	Controllers?: [Controller, Controller?, Controller?];
 
 	/**
 	 * Determines whether the state of the action should automatically toggle when the user presses the action; only applies to actions that have more than one state defined. Default is
