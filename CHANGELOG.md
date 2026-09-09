@@ -11,7 +11,7 @@
 
 # Change Log
 
-## 0.4.16
+## 0.5.0
 
 - Add support for Neo Infobar layout sizes.
 
