@@ -1,7 +1,7 @@
-import { type Layout as LayoutJsonSchema } from "./layout";
+import { type Layout as LayoutJsonSchema } from "./layout/layout";
 
 export { DeviceType } from "./device-type";
-export * from "./layout";
+export * from "./layout/layout";
 export * from "./manifest/latest";
 
 /**

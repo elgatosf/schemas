@@ -18,7 +18,7 @@ export type Manifest =
 	| JsonSchema<Manifest_7_1>
 	| JsonSchema<Manifest_7_6>;
 
-export type { Layout } from "./layout";
+export type { Layout } from "./layout/layout";
 
 /**
  * @inheritdoc

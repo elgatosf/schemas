@@ -1,11 +1,25 @@
+import type { Controller } from "../manifest/latest";
+import { StreamDeckNeoRect } from "./stream-deck-neo-rect";
+import { StreamDeckPlusRect } from "./stream-deck-plus-rect";
+
 /**
  * Defines the structure of a custom layout file.
  */
-export type Layout = {
+export type Layout = StreamDeckNeoLayout | StreamDeckPlusLayout;
+
+/**
+ * A Stream Deck + layout.
+ */
+type StreamDeckPlusLayout = {
 	/**
 	 * JSON schema responsible for describing the manifest's data format and validation.
 	 */
 	$schema?: string;
+
+	/**
+	 * Controller the layout is intended for.
+	 */
+	$controller?: Extract<Controller, "Encoder"> | undefined;
 
 	/**
 	 * Unique identifier associated with the layout.
@@ -15,19 +29,44 @@ export type Layout = {
 	/**
 	 * Items within the layout.
 	 */
-	items: LayoutItem[];
+	items: LayoutItem<StreamDeckPlusRect>[];
+};
+
+/**
+ * A Stream Deck Neo Infobar layout.
+ */
+type StreamDeckNeoLayout = {
+	/**
+	 * JSON schema responsible for describing the manifest's data format and validation.
+	 */
+	$schema?: string;
+
+	/**
+	 * Controller the layout is intended for.
+	 */
+	$controller?: Extract<Controller, "Neo">;
+
+	/**
+	 * Unique identifier associated with the layout.
+	 */
+	id: string;
+
+	/**
+	 * Items within the layout.
+	 */
+	items: LayoutItem<StreamDeckNeoRect>[];
 };
 
 /**
  * A layout item.
  * @discriminator type
  */
-type LayoutItem = Bar | GBar | Pixmap | Text;
+type LayoutItem<TRect> = Bar<TRect> | GBar<TRect> | Pixmap<TRect> | Text<TRect>;
 
 /**
  * Extended information used to define a layout item within a layout's JSON file.
  */
-type LayoutItemBase<T extends string> = {
+type LayoutItemBase<TType extends string, TRect> = {
 	/**
 	 * Background color represented as a named color, hexadecimal value, or gradient. Gradients can be defined by specifying multiple color-stops separated by commas, in the following
 	 * format `[{offset}:{color}[,]]`.
@@ -62,19 +101,25 @@ type LayoutItemBase<T extends string> = {
 	opacity?: Opacity;
 
 	/**
-	 * Array defining the items coordinates in the format `[x, y, width, height]`; coordinates must be within canvas size of 200 x 100, e.g. [0, 0, 200, 100]. Items with the same `zOrder`
-	 * must **not** have an overlapping `rect`.
+	 * The coordinates of the item, represented as `[x, y, width, height]`.
+	 *
+	 * Items must be within the bounds of the Stream Deck device the layout is intended for, and must
+	 * not be overlapping with other items. For items that may overlap, consider using `zOrder`.
+	 *
+	 * Stream Deck device layout sizes:
+	 * - Stream Deck +, 200 x 100 px
+	 * - Stream Deck Neo, 232 x 50 px
 	 *
 	 * Note: The `rect` of the layout item cannot be changed at runtime.
 	 */
-	rect: Rect;
+	rect: TRect;
 
 	/**
 	 * Type of layout item this instance represents, e.g. "pixmap", "bar", etc.
 	 *
 	 * Note: The `type` of the layout item cannot be changed at runtime.
 	 */
-	type: T;
+	type: TType;
 
 	/**
 	 * Z-order of the item, used to layer items within a layout; must be between 0-700. Items with the same `zOrder` must **not** have an overlapping `rect`. Default is `0`.
@@ -85,7 +130,7 @@ type LayoutItemBase<T extends string> = {
 /**
  * Bar layout item used to render a horizontal bar with a filler, e.g. a progress bar. The amount to fill the bar by can be specified by setting the `value`.
  */
-export type Bar<T extends string = "bar"> = LayoutItemBase<T> & {
+export type Bar<TRect, T extends string = "bar"> = LayoutItemBase<T, TRect> & {
 	/**
 	 * Bar background color represented as a named color, hexadecimal value, or gradient. Default is `darkGray`. Gradients can be defined by specifying multiple color-stops separated
 	 * by commas, in the following format `[{offset}:{color}[,]]`.
@@ -171,7 +216,7 @@ export type Range = {
 /**
  * Bar layout item used to render a horizontal bar with an indicator represented as a triangle beneath the bar. The location of the indicator can be specified by setting the `value`.
  */
-export type GBar = Bar<"gbar"> & {
+export type GBar<TRect> = Bar<TRect, "gbar"> & {
 	/**
 	 * Height of the bar's indicator. Default is `10`.
 	 * @example
@@ -183,7 +228,7 @@ export type GBar = Bar<"gbar"> & {
 /**
  * Image layout item used to render an image sourced from either a local file located under the plugin's folder, or base64 encoded `string`. The `value` defines the image.
  */
-export type Pixmap = LayoutItemBase<"pixmap"> & {
+export type Pixmap<TRect> = LayoutItemBase<"pixmap", TRect> & {
 	/**
 	 * Image to render; this can be either a path to a local file within the plugin's folder, a base64 encoded `string` with the mime type declared (e.g. PNG, JPEG, etc.), or an SVG
 	 * `string`.
@@ -200,7 +245,7 @@ export type Pixmap = LayoutItemBase<"pixmap"> & {
  * user to specify the font's
  * settings via the property inspector, and will cause `setTitle` to update this item.
  */
-export type Text = LayoutItemBase<"text"> & {
+export type Text<TRect> = LayoutItemBase<"text", TRect> & {
 	/**
 	 * Alignment of the text. Default is `"center"`. **Note**, when the `key` of this layout item is set to `"title"` within the layout's JSON definition, these values will be ignored
 	 * in favour of the user's preferred title settings, as set in property inspector.
@@ -288,39 +333,6 @@ export enum BarSubType {
 	 */
 	Groove = 4
 }
-
-/**
- * Array defining the items coordinates and size.
- */
-type Rect = [x: X, y: Y, width: Width, height: Height];
-
-/**
- * X coordinate of the rectangle.
- * @minimum 0
- * @maximum 200
- */
-type X = number;
-
-/**
- * Y coordinate of the rectangle.
- * @minimum 0
- * @maximum 100
- */
-type Y = number;
-
-/**
- * Width of the rectangle.
- * @minimum 0
- * @maximum 200
- */
-type Width = number;
-
-/**
- * Height of the rectangle.
- * @minimum 0
- * @maximum 100
- */
-type Height = number;
 
 /**
  * Numerical value used to specify the opacity of an item within a layout.
