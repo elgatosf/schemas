@@ -17,14 +17,14 @@ type StreamDeckPlusLayout = {
 	$schema?: string;
 
 	/**
+	 * Controller the layout is intended for.
+	 */
+	$controller?: Extract<Controller, "Encoder"> | undefined;
+
+	/**
 	 * Unique identifier associated with the layout.
 	 */
 	id: string;
-
-	/**
-	 * Controller the layout is intended for.
-	 */
-	controller?: Extract<Controller, "Encoder"> | undefined;
 
 	/**
 	 * Items within the layout.
@@ -42,14 +42,14 @@ type StreamDeckNeoLayout = {
 	$schema?: string;
 
 	/**
+	 * Controller the layout is intended for.
+	 */
+	$controller?: Extract<Controller, "Neo">;
+
+	/**
 	 * Unique identifier associated with the layout.
 	 */
 	id: string;
-
-	/**
-	 * Controller the layout is intended for.
-	 */
-	controller: Extract<Controller, "Neo">;
 
 	/**
 	 * Items within the layout.
