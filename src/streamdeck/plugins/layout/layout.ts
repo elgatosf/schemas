@@ -1,7 +1,5 @@
 import type { Controller } from "../manifest/latest";
 import type { Rect } from "./rect";
-import { StreamDeckNeoRect } from "./stream-deck-neo-rect";
-import { StreamDeckPlusRect } from "./stream-deck-plus-rect";
 
 /**
  * Defines the structure of a custom layout file.
@@ -24,30 +22,10 @@ export type Layout<TRect = Rect> = {
 };
 
 /**
- * A Stream Deck + layout.
- */
-export type StreamDeckPlusLayoutSchema = Omit<Layout<StreamDeckPlusRect>, "$controller"> & {
-	/**
-	 * Controller the layout is intended for.
-	 */
-	$controller?: Extract<Controller, "Encoder"> | undefined;
-};
-
-/**
- * A Stream Deck Neo Infobar layout.
- */
-export type StreamDeckNeoLayoutSchema = Omit<Layout<StreamDeckNeoRect>, "$controller"> & {
-	/**
-	 * Controller the layout is intended for.
-	 */
-	$controller: Extract<Controller, "Neo">;
-};
-
-/**
  * A layout item.
  * @discriminator type
  */
-type LayoutItem<TRect> = Bar<TRect> | GBar<TRect> | Pixmap<TRect> | Text<TRect>;
+type LayoutItem<TRect> = Bar<"bar", TRect> | GBar<TRect> | Pixmap<TRect> | Text<TRect>;
 
 /**
  * Extended information used to define a layout item within a layout's JSON file.
@@ -116,7 +94,7 @@ type LayoutItemBase<TType extends string, TRect> = {
 /**
  * Bar layout item used to render a horizontal bar with a filler, e.g. a progress bar. The amount to fill the bar by can be specified by setting the `value`.
  */
-export type Bar<TRect, T extends string = "bar"> = LayoutItemBase<T, TRect> & {
+export type Bar<T extends "bar" | "gbar" = "bar", TRect = Rect> = LayoutItemBase<T, TRect> & {
 	/**
 	 * Bar background color represented as a named color, hexadecimal value, or gradient. Default is `darkGray`. Gradients can be defined by specifying multiple color-stops separated
 	 * by commas, in the following format `[{offset}:{color}[,]]`.
@@ -202,7 +180,7 @@ export type Range = {
 /**
  * Bar layout item used to render a horizontal bar with an indicator represented as a triangle beneath the bar. The location of the indicator can be specified by setting the `value`.
  */
-export type GBar<TRect> = Bar<TRect, "gbar"> & {
+export type GBar<TRect = Rect> = Bar<"gbar", TRect> & {
 	/**
 	 * Height of the bar's indicator. Default is `10`.
 	 * @example
@@ -214,7 +192,7 @@ export type GBar<TRect> = Bar<TRect, "gbar"> & {
 /**
  * Image layout item used to render an image sourced from either a local file located under the plugin's folder, or base64 encoded `string`. The `value` defines the image.
  */
-export type Pixmap<TRect> = LayoutItemBase<"pixmap", TRect> & {
+export type Pixmap<TRect = Rect> = LayoutItemBase<"pixmap", TRect> & {
 	/**
 	 * Image to render; this can be either a path to a local file within the plugin's folder, a base64 encoded `string` with the mime type declared (e.g. PNG, JPEG, etc.), or an SVG
 	 * `string`.
@@ -231,7 +209,7 @@ export type Pixmap<TRect> = LayoutItemBase<"pixmap", TRect> & {
  * user to specify the font's
  * settings via the property inspector, and will cause `setTitle` to update this item.
  */
-export type Text<TRect> = LayoutItemBase<"text", TRect> & {
+export type Text<TRect = Rect> = LayoutItemBase<"text", TRect> & {
 	/**
 	 * Alignment of the text. Default is `"center"`. **Note**, when the `key` of this layout item is set to `"title"` within the layout's JSON definition, these values will be ignored
 	 * in favour of the user's preferred title settings, as set in property inspector.

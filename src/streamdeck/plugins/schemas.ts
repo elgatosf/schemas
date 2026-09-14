@@ -6,7 +6,8 @@ import type { Manifest_7_0 } from "./manifest/v7.0";
 import type { Manifest_7_1 } from "./manifest/v7.1";
 import type { Manifest_7_6 } from "./manifest/v7.6";
 
-import type { StreamDeckNeoLayoutSchema, StreamDeckPlusLayoutSchema } from "./layout/layout";
+import type { StreamDeckNeoLayoutSchema } from "./layout/stream-deck-neo";
+import type { StreamDeckPlusLayoutSchema } from "./layout/stream-deck-plus";
 
 /**
  * Defines the plugin and available actions, and all information associated with them, including the plugin's entry point, all iconography, action default behavior, etc.

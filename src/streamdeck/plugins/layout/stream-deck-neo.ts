@@ -1,3 +1,16 @@
+import type { Controller } from "../manifest/latest";
+import type { Layout } from "./layout";
+
+/**
+ * A Stream Deck Neo Infobar layout.
+ */
+export type StreamDeckNeoLayoutSchema = Omit<Layout<StreamDeckNeoRect>, "$controller"> & {
+	/**
+	 * Controller the layout is intended for.
+	 */
+	$controller: Extract<Controller, "Neo">;
+};
+
 /**
  * The coordinates of the item, represented as `[x, y, width, height]`.
  *
@@ -10,32 +23,32 @@
  *
  * Note: The `rect` of the layout item cannot be changed at runtime.
  */
-export type StreamDeckPlusRect = [x: X, y: Y, width: Width, height: Height];
+type StreamDeckNeoRect = [x: X, y: Y, width: Width, height: Height];
 
 /**
  * X coordinate of the rectangle.
  * @minimum 0
- * @maximum 200
+ * @maximum 232
  */
 type X = number;
 
 /**
  * Y coordinate of the rectangle.
  * @minimum 0
- * @maximum 100
+ * @maximum 50
  */
 type Y = number;
 
 /**
  * Width of the rectangle.
  * @minimum 0
- * @maximum 200
+ * @maximum 232
  */
 type Width = number;
 
 /**
  * Height of the rectangle.
  * @minimum 0
- * @maximum 100
+ * @maximum 50
  */
 type Height = number;
