@@ -31,12 +31,12 @@ describe("Stream Deck + layouts", () => {
 	});
 
 	/**
-	 * Asserts an unspecified $controller is Stream Deck +.
+	 * Asserts an unspecified controller is Stream Deck +.
 	 */
-	test("unspecified $controller is Stream Deck +", () => {
+	test("unspecified controller is Stream Deck +", () => {
 		// Arrange, act.
 		const errors = validateStreamDeckPluginLayout("stream-deck-plus.json", (layout) => {
-			layout.$controller = undefined;
+			delete layout.controller;
 		});
 
 		// Assert.

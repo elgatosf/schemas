@@ -1,6 +1,6 @@
 {
 	"$schema": "../../../../../../streamdeck/plugins/layout.json",
-	"$controller": "Encoder",
+	"controller": "Encoder",
 	"id": "encoder",
 	"items": [
 		{

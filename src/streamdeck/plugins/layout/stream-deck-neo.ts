@@ -4,11 +4,11 @@ import type { Layout } from "./layout";
 /**
  * A Stream Deck Neo Infobar layout.
  */
-export type StreamDeckNeoLayoutSchema = Omit<Layout<StreamDeckNeoRect>, "$controller"> & {
+export type StreamDeckNeoLayoutSchema = Omit<Layout<StreamDeckNeoRect>, "controller"> & {
 	/**
 	 * Controller the layout is intended for.
 	 */
-	$controller: Extract<Controller, "Neo">;
+	controller: Extract<Controller, "Neo">;
 };
 
 /**

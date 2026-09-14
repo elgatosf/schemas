@@ -1,6 +1,6 @@
 {
 	"$schema": "../../../../../../streamdeck/plugins/layout.json",
-	"$controller": "Neo",
+	"controller": "Neo",
 	"id": "neo",
 	"items": [
 		{

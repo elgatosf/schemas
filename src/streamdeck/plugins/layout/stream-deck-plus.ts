@@ -4,11 +4,11 @@ import type { Layout } from "./layout";
 /**
  * A Stream Deck + layout.
  */
-export type StreamDeckPlusLayoutSchema = Omit<Layout<StreamDeckPlusRect>, "$controller"> & {
+export type StreamDeckPlusLayoutSchema = Omit<Layout<StreamDeckPlusRect>, "controller"> & {
 	/**
 	 * Controller the layout is intended for.
 	 */
-	$controller?: Extract<Controller, "Encoder"> | undefined;
+	controller?: Extract<Controller, "Encoder"> | undefined;
 };
 
 /**

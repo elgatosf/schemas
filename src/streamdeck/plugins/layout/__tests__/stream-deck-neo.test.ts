@@ -31,21 +31,22 @@ describe("Stream Deck Neo layouts", () => {
 	});
 
 	/**
-	 * Asserts an unspecified $controller is not Stream Deck Neo.
+	 * Asserts an unspecified controller is not Stream Deck Neo.
 	 */
-	test("unspecified $controller is not Stream Deck Neo", () => {
+	test("unspecified controller is not Stream Deck Neo", () => {
 		// Arrange, act.
 		const errors = validateStreamDeckPluginLayout("stream-deck-neo.json", (layout) => {
-			layout.items[0].rect = [0, 0, 200, 100];
+			delete layout.controller;
+			layout.items[0].rect = [0, 0, 232, 50];
 		});
 
 		// Assert (height)
 		expect(errors).toHaveError({
-			instancePath: "/items/0/rect/3",
+			instancePath: "/items/0/rect/2",
 			keyword: "maximum",
 			params: {
 				comparison: "<=",
-				limit: 50
+				limit: 200
 			}
 		});
 	});

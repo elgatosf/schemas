@@ -8,7 +8,7 @@ export type Layout<TRect = Rect> = {
 	/**
 	 * Controller the layout is intended for.
 	 */
-	$controller?: Extract<Controller, "Encoder" | "Neo">;
+	controller?: Extract<Controller, "Encoder" | "Neo">;
 
 	/**
 	 * Unique identifier associated with the layout.
