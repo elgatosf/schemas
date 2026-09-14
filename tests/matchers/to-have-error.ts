@@ -40,7 +40,7 @@ export const toHaveError: MatcherFunction<[error: AdditionalPropertyError]> = fu
 /**
  * Represents a JSON error.
  */
-type JsonSchemaError = AdditionalPropertyError | ConstError | EnumError | PatternError;
+type JsonSchemaError = AdditionalPropertyError | ConstError | EnumError | MaximumError | PatternError;
 
 /**
  * Represents a JSON error for the keyword `additionalProperties`.
@@ -67,6 +67,7 @@ type ConstError = JsonSchemaBaseError<
 		allowedValue: unknown;
 	}
 >;
+
 /**
  * Represents a JSON error for the keyword `enum`.
  */
@@ -77,6 +78,24 @@ type EnumError = JsonSchemaBaseError<
 		 * The allowed values.
 		 */
 		allowedValues: unknown[];
+	}
+>;
+
+/**
+ * Represents a JSON error for the keyword `maximum`.
+ */
+type MaximumError = JsonSchemaBaseError<
+	"maximum",
+	{
+		/**
+		 * The comparison.
+		 */
+		comparison: "<=";
+
+		/**
+		 * The inclusive maximum limit.
+		 */
+		limit: number;
 	}
 >;
 

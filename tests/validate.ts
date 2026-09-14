@@ -1,17 +1,39 @@
 import Ajv, { type ErrorObject } from "ajv";
 import { existsSync, readFileSync } from "node:fs";
-import { join, resolve } from "node:path";
+import { resolve } from "node:path";
 import { keywordDefinitions } from "../src/index";
-import type { Manifest } from "../src/streamdeck/plugins";
+import type { Manifest } from "../src/streamdeck/plugins/";
+import type { Layout } from "../src/streamdeck/plugins/schemas";
 
 /**
- * Validates the specified manifest file; when the version is specified the `Software.MinimumVersion` is updated.
+ * Validates the specified manifest file.
  * @param filename Name of the manifest file.
- * @param modify Optional modifier to be applied to the manifest before validation.
+ * @param modify Optional modifier to be applied before validation.
  * @returns Collection of errors as the result of validation.
  */
 export function validateStreamDeckPluginManifest(filename: string, modify?: (manifest: Manifest) => void): ErrorObject<string, Record<string, unknown>, unknown>[] {
-	const schema = JSON.parse(getFileContents("../streamdeck/plugins/manifest.json"));
+	return validate(`../src/streamdeck/plugins/manifest/__tests__/files/${filename}`, "../streamdeck/plugins/manifest.json", modify);
+}
+
+/**
+ * Validates the specified layout file.
+ * @param filename Name of the layout file.
+ * @param modify Optional modifier to be applied before validation.
+ * @returns Collection of errors as the result of validation.
+ */
+export function validateStreamDeckPluginLayout(filename: string, modify?: (layout: Layout) => void): ErrorObject<string, Record<string, unknown>, unknown>[] {
+	return validate(`../src/streamdeck/plugins/layout/__tests__/files/${filename}`, "../streamdeck/plugins/layout.json", modify);
+}
+
+/**
+ * Validates the specified content against the schema, after applying optional modifications.
+ * @param path Path to the file that contains the contents to validate
+ * @param schemaPath Path to the schema.
+ * @param modify Optional modifier to be applied before validation.
+ * @returns Collection of errors as the result of validation.
+ */
+function validate<T>(path: string, schemaPath: string, modify?: (value: T) => void): ErrorObject<string, Record<string, unknown>, unknown>[] {
+	const schema = JSON.parse(getFileContents(schemaPath));
 	const validate = new Ajv({ allErrors: true, strictTypes: false })
 		.addKeyword(keywordDefinitions.errorMessage)
 		.addKeyword(keywordDefinitions.filePath)
@@ -19,12 +41,12 @@ export function validateStreamDeckPluginManifest(filename: string, modify?: (man
 		.addKeyword(keywordDefinitions.markdownDescription)
 		.compile(schema);
 
-	const manifest = JSON.parse(getFileContents(join(`../src/streamdeck/plugins/manifest/__tests__/files/${filename}`)));
+	const contents = JSON.parse(getFileContents(path));
 	if (modify) {
-		modify(manifest);
+		modify(contents);
 	}
 
-	validate(manifest);
+	validate(contents);
 	return validate.errors ?? [];
 }
 

@@ -1,21 +1,27 @@
 import type { Controller } from "../manifest/latest";
+import type { Rect } from "./rect";
 import { StreamDeckNeoRect } from "./stream-deck-neo-rect";
 import { StreamDeckPlusRect } from "./stream-deck-plus-rect";
 
 /**
  * Defines the structure of a custom layout file.
  */
-export type Layout = StreamDeckNeoLayout | StreamDeckPlusLayout;
+export type Layout = {
+	/**
+	 * Unique identifier associated with the layout.
+	 */
+	id: string;
+
+	/**
+	 * Items within the layout.
+	 */
+	items: LayoutItem<Rect>[];
+};
 
 /**
  * A Stream Deck + layout.
  */
-type StreamDeckPlusLayout = {
-	/**
-	 * JSON schema responsible for describing the manifest's data format and validation.
-	 */
-	$schema?: string;
-
+export type StreamDeckPlusLayoutSchema = {
 	/**
 	 * Controller the layout is intended for.
 	 */
@@ -35,16 +41,11 @@ type StreamDeckPlusLayout = {
 /**
  * A Stream Deck Neo Infobar layout.
  */
-type StreamDeckNeoLayout = {
-	/**
-	 * JSON schema responsible for describing the manifest's data format and validation.
-	 */
-	$schema?: string;
-
+export type StreamDeckNeoLayoutSchema = {
 	/**
 	 * Controller the layout is intended for.
 	 */
-	$controller?: Extract<Controller, "Neo">;
+	$controller: Extract<Controller, "Neo">;
 
 	/**
 	 * Unique identifier associated with the layout.
