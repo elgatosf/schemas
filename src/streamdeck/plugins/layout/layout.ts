@@ -4,9 +4,14 @@ import { StreamDeckNeoRect } from "./stream-deck-neo-rect";
 import { StreamDeckPlusRect } from "./stream-deck-plus-rect";
 
 /**
- * The base layout structure.
+ * Defines the structure of a custom layout file.
  */
-type LayoutBase<TRect> = {
+export type Layout<TRect = Rect> = {
+	/**
+	 * Controller the layout is intended for.
+	 */
+	$controller?: Extract<Controller, "Encoder" | "Neo">;
+
 	/**
 	 * Unique identifier associated with the layout.
 	 */
@@ -19,19 +24,9 @@ type LayoutBase<TRect> = {
 };
 
 /**
- * Defines the structure of a custom layout file.
- */
-export type Layout = LayoutBase<Rect> & {
-	/**
-	 * Controller the layout is intended for.
-	 */
-	$controller?: Controller;
-};
-
-/**
  * A Stream Deck + layout.
  */
-export type StreamDeckPlusLayoutSchema = LayoutBase<StreamDeckPlusRect> & {
+export type StreamDeckPlusLayoutSchema = Omit<Layout<StreamDeckPlusRect>, "$controller"> & {
 	/**
 	 * Controller the layout is intended for.
 	 */
@@ -41,7 +36,7 @@ export type StreamDeckPlusLayoutSchema = LayoutBase<StreamDeckPlusRect> & {
 /**
  * A Stream Deck Neo Infobar layout.
  */
-export type StreamDeckNeoLayoutSchema = LayoutBase<StreamDeckNeoRect> & {
+export type StreamDeckNeoLayoutSchema = Omit<Layout<StreamDeckNeoRect>, "$controller"> & {
 	/**
 	 * Controller the layout is intended for.
 	 */
