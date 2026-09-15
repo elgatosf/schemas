@@ -11,6 +11,10 @@
 
 # Change Log
 
+## 0.5.0
+
+- Add support for Neo Infobar layout sizes.
+
 ## 0.4.15
 
 - Add Stream Deck 7.4.

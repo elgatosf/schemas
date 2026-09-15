@@ -6,6 +6,9 @@ import type { Manifest_7_0 } from "./manifest/v7.0";
 import type { Manifest_7_1 } from "./manifest/v7.1";
 import type { Manifest_7_6 } from "./manifest/v7.6";
 
+import type { StreamDeckNeoLayoutSchema } from "./layout/stream-deck-neo";
+import type { StreamDeckPlusLayoutSchema } from "./layout/stream-deck-plus";
+
 /**
  * Defines the plugin and available actions, and all information associated with them, including the plugin's entry point, all iconography, action default behavior, etc.
  */
@@ -18,7 +21,10 @@ export type Manifest =
 	| JsonSchema<Manifest_7_1>
 	| JsonSchema<Manifest_7_6>;
 
-export type { Layout } from "./layout";
+/**
+ * Defines the structure of a custom layout rendered on a Stream Deck + or Stream Deck Neo.
+ */
+export type Layout = JsonSchema<StreamDeckNeoLayoutSchema> | JsonSchema<StreamDeckPlusLayoutSchema>;
 
 /**
  * @inheritdoc
